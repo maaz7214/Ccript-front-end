@@ -73,14 +73,14 @@ export default function LoginForm() {
 
   return (
     <div className="w-full">
-      <div className="text-left mb-8">
-        <h1 className="text-2xl font-bold text-foreground mb-2">Welcome Back</h1>
-        <p className="text-muted-foreground">Sign in to your Account to continue</p>
+      <div className="text-left mb-10">
+        <h1 className="text-3xl font-bold text-foreground mb-3">Welcome Back</h1>
+        <p className="text-lg text-muted-foreground">Sign in to your Account to continue</p>
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col">
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
+      <div className="space-y-6">
+        <div className="space-y-3">
+          <Label htmlFor="email" className="text-base">Email</Label>
           <Input
             id="email"
             name="email"
@@ -88,15 +88,15 @@ export default function LoginForm() {
             placeholder="Enter Email"
             value={formData.email}
             onChange={handleInputChange}
-            className={errors.email ? "border-destructive focus-visible:ring-destructive" : " p-2"}
+            className={errors.email ? "border-destructive focus-visible:ring-destructive h-12 text-base" : "h-12 text-base"}
           />
           {errors.email && (
             <p className="text-sm text-destructive">{errors.email}</p>
           )}
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="password">Password</Label>
+        <div className="space-y-3">
+          <Label htmlFor="password" className="text-base">Password</Label>
           <div className="relative">
             <Input
               id="password"
@@ -105,7 +105,7 @@ export default function LoginForm() {
               placeholder="Enter Password"
               value={formData.password}
               onChange={handleInputChange}
-              className={errors.password ? "border-destructive focus-visible:ring-destructive pr-10" : "pr-10"}
+              className={errors.password ? "border-destructive focus-visible:ring-destructive pr-10 h-12 text-base" : "pr-10 h-12 text-base"}
             />
             <button
               type="button"
@@ -159,7 +159,7 @@ export default function LoginForm() {
         type="submit"
         variant="default"
         size="lg"
-        className="mt-12 w-full gap-x-4 bg-[#009689] hover:bg-[#007f75] cursor-pointer"
+        className="mt-16 w-full gap-x-4 bg-[#009689] hover:bg-[#007f75] cursor-pointer h-12 text-base font-semibold"
         disabled={isLoading}
       >
         {isLoading ? 'Signing in...' : 'Get Started'}
