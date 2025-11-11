@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { loginAction, AuthActionResult } from '@/app/actions/auth';
 
 interface LoginFormData {
   email: string;
@@ -11,6 +13,7 @@ interface LoginFormData {
 }
 
 export default function LoginForm() {
+  const router = useRouter();
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: '',
@@ -18,6 +21,7 @@ export default function LoginForm() {
   const [errors, setErrors] = useState<Partial<LoginFormData>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState<string>('');
 
   const validateForm = (): boolean => {
     const newErrors: Partial<LoginFormData> = {};
@@ -43,19 +47,38 @@ export default function LoginForm() {
     if (!validateForm()) return;
 
     setIsLoading(true);
+    setMessage('');
+    setErrors({});
     
     try {
-      // TODO: Implement actual login logic here
-      console.log('Login attempt with:', formData);
+      // Create FormData for server action
+      // Note: API expects username field, server action will map email -> username
+      const formDataForAction = new FormData();
+      formDataForAction.append('email', formData.email);
+      formDataForAction.append('password', formData.password);
+
+      // Call server action
+      const result: AuthActionResult = await loginAction(formDataForAction);
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Handle successful login (redirect, etc.)
-      console.log('Login successful');
+      if (result.success) {
+        setMessage(result.message || 'Login successful!');
+        
+        // Redirect to dashboard or specified page
+        if (result.redirectTo) {
+          router.push(result.redirectTo);
+        }
+      } else {
+        // Handle errors from server action
+        if (result.errors) {
+          setErrors(result.errors);
+        }
+        if (result.message) {
+          setMessage(result.message);
+        }
+      }
     } catch (error) {
-      console.error('Login failed:', error);
-      // Handle login error
+      console.error('Login error:', error);
+      setMessage('An unexpected error occurred. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -77,14 +100,26 @@ export default function LoginForm() {
         <h1 className="text-3xl font-bold text-foreground mb-3">Welcome Back</h1>
         <p className="text-lg text-muted-foreground">Sign in to your Account to continue</p>
       </div>
-      <form onSubmit={handleSubmit} className="flex flex-col">
+      
+      {/* Display success/error message */}
+      {message && (
+        <div className={`mb-6 p-4 rounded-md ${
+          message.includes('successful') || message.includes('success')
+            ? 'bg-green-50 text-green-800 border border-green-200'
+            : 'bg-red-50 text-red-800 border border-red-200'
+        }`}>
+          {message}
+        </div>
+      )}
+      
+      <form onSubmit={handleSubmit} className="flex flex-col" noValidate>
       <div className="space-y-6">
         <div className="space-y-3">
           <Label htmlFor="email" className="text-base">Email</Label>
           <Input
             id="email"
             name="email"
-            type="email"
+            type="text"
             placeholder="Enter Email"
             value={formData.email}
             onChange={handleInputChange}

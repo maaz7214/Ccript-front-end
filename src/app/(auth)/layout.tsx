@@ -8,7 +8,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className="min-h-screen flex">
       {/* Left side - Banner */}
-      <div className="hidden lg:flex lg:w-2/3 relative bg-gray-50 overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 relative bg-gray-50 overflow-hidden">
         <Image
           src="/login-banner.png"
           alt="Authentication Banner"

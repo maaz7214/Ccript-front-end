@@ -13,7 +13,9 @@ A modern web application built with Next.js, featuring authentication and a clea
 
 ## ✨ Features
 
-- 🔐 **Authentication System** - Complete login functionality
+- 🔐 **Authentication System** - Complete login functionality with secure session management
+- 🏠 **Dashboard** - User-specific dashboard with dynamic header
+- 👤 **Dynamic User Avatar** - Auto-generated user initials from logged-in user data
 - 📱 **Responsive Design** - Mobile-first approach with Tailwind CSS
 - 🎨 **Modern UI Components** - Built with Radix UI primitives
 - ⚡ **Performance Optimized** - Next.js 16 with latest React features
@@ -27,6 +29,8 @@ src/
 ├── app/
 │   ├── (auth)/           # Authentication routes
 │   │   └── login/        # Login page
+│   ├── dashboard/        # Dashboard page with header
+│   ├── actions/          # Server actions (auth, etc.)
 │   ├── globals.css       # Global styles
 │   ├── layout.tsx        # Root layout
 │   └── page.tsx          # Home page
@@ -38,13 +42,24 @@ src/
 │       ├── input.tsx
 │       └── label.tsx
 ├── features/
-│   └── auth/             # Authentication feature module
-│       └── components/
-│           └── LoginForm.tsx
+│   ├── auth/             # Authentication feature module
+│   │   └── components/
+│   │       └── LoginForm.tsx
+│   └── dashboard/        # Dashboard feature module
+│       ├── components/
+│       │   ├── Header.tsx      # Dashboard header with logo & user avatar
+│       │   └── index.ts
+│       ├── utils/
+│       │   ├── userUtils.ts    # User initials generation utilities
+│       │   └── index.ts
+│       └── index.ts
+├── hooks/                # Custom React hooks
 ├── lib/
-│   └── utils.ts          # Utility functions
+│   ├── api.ts           # API configuration and utilities
+│   └── utils.ts         # General utility functions
 └── types/
-    └── global.d.ts       # Global type definitions
+    ├── api.ts           # API-related type definitions
+    └── global.d.ts      # Global type definitions
 ```
 
 ## 🛠️ Getting Started
@@ -99,15 +114,66 @@ To add new UI components using shadcn/ui:
 npx shadcn@latest add [component-name]
 ```
 
+## 🆕 Recent Updates
+
+### Dashboard Header with Dynamic User Avatar (November 2025)
+
+Added a comprehensive dashboard header component with the following features:
+
+- **Company Branding** - Tumlinson Electric logo and company name
+- **Dynamic User Avatar** - Circle avatar with user initials
+- **Smart Initial Generation** - Multiple fallback strategies for user identification
+- **Server-Side Rendering** - Fetches user data server-side for better performance
+- **Type Safety** - Full TypeScript implementation with proper interfaces
+
+#### Technical Implementation
+
+```typescript
+// Auto-generates initials from user data
+generateUserInitials("John Doe") // Returns "JD"
+generateInitialsFromEmail("john@company.com") // Returns "JO"
+```
+
+#### Files Added/Modified
+
+- `src/features/dashboard/` - New dashboard feature module
+- `src/features/dashboard/components/Header.tsx` - Main header component
+- `src/features/dashboard/utils/userUtils.ts` - Initial generation utilities
+- `src/app/dashboard/page.tsx` - Updated to use dynamic header
+
 ## 🔐 Authentication
 
 The application includes a complete authentication system with:
 
-- Login form with validation
-- Password visibility toggle
-- Form error handling
-- Loading states
-- Responsive design
+- **Login Form** - Validation, password toggle, error handling, loading states
+- **Server Actions** - Secure server-side authentication handling
+- **Session Management** - HTTP-only cookies for security
+- **User Data Storage** - Persistent user information in cookies
+- **Protected Routes** - Dashboard access control
+
+### Dashboard Features
+
+- **Dynamic Header** - Company logo and branding
+- **User Avatar** - Auto-generated initials from logged-in user
+- **Smart Initials Logic** - Fallback hierarchy for initial generation:
+  1. Full name → First + Last name initials (e.g., "John Doe" → "JD")
+  2. Email → First two characters of username
+  3. Username → Generated from username
+  4. Default → "U" for User
+
+## 🧩 Component Architecture
+
+### Dashboard Components
+
+- **Header.tsx** - Main dashboard header with logo and user avatar
+- **userUtils.ts** - Utility functions for generating user initials
+
+### Authentication Flow
+
+1. User logs in via `LoginForm.tsx`
+2. `loginAction` server action authenticates and stores user data
+3. Dashboard displays personalized header with user initials
+4. User data persists across sessions via secure cookies
 
 ## 🚀 Deployment
 
@@ -145,4 +211,4 @@ For support and questions, please contact the development team or open an issue 
 
 ---
 
-Built with ❤️ using Next.js and TypeScript
+Built using Next.js and TypeScript
