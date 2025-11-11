@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import { getCurrentUser } from '@/app/actions/auth';
 import { generateUserInitials, generateInitialsFromEmail } from '../utils/userUtils';
+import UserAvatar from './UserAvatar';
 
 export default async function Header() {
   // Fetch current user data
   const currentUser = await getCurrentUser();
   
   // Generate user initials and name
-  let userInitials = 'U'; // Default fallback
+  let userInitials = 'U';
   let userName = 'User';
   
   if (currentUser) {
@@ -42,12 +43,10 @@ export default async function Header() {
         {/* Right side - User Avatar */}
         <div className="flex items-center space-x-3">
           <div className="flex items-center space-x-2">
-            <div 
-              className="w-10 h-10 bg-[#009689] text-white rounded-full flex items-center justify-center text-sm font-medium"
-              title={userName}
-            >
-              {userInitials}
-            </div>
+            <UserAvatar 
+              userInitials={userInitials}
+              userName={userName}
+            />
           </div>
         </div>
       </div>
