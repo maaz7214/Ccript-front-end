@@ -41,22 +41,47 @@ export default function UserAvatar({ userInitials, userName }: UserAvatarProps) 
   const handleLogout = async () => {
     setIsLoading(true);
     try {
-      const result = await logoutAction();
-      if (result.success) {
-        // Redirect to login page
-        if (result.redirectTo) {
-          router.push(result.redirectTo);
-        } else {
-          router.push('/login');
+      // Clear localStorage first
+      if (typeof window !== 'undefined') {
+        const token = localStorage.getItem('authToken');
+        
+        // Call logout endpoint (optional, just for logging)
+        if (token) {
+          try {
+            await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/logout`, {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'ngrok-skip-browser-warning': 'true',
+              },
+            });
+          } catch (error) {
+            console.log('Logout endpoint error:', error);
+          }
         }
-      } else {
-        console.error('Logout failed:', result.message);
+        
+        // Clear localStorage
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('currentUser');
       }
+      
+      // Call server action to clear cookies
+      try {
+        await logoutAction();
+      } catch (error) {
+        console.error('Logout action error:', error);
+      }
+      
+      // Force a full page redirect to login - this ensures all state is cleared
+      window.location.href = '/login';
     } catch (error) {
       console.error('Logout error:', error);
-    } finally {
-      setIsLoading(false);
-      setIsPopupOpen(false);
+      // Still clear localStorage and redirect even if there's an error
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('currentUser');
+        window.location.href = '/login';
+      }
     }
   };
 

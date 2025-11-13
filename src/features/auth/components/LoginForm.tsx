@@ -63,6 +63,16 @@ export default function LoginForm() {
       if (result.success) {
         setMessage(result.message || 'Login successful!');
         
+        // Store token in localStorage for client-side API calls
+        if (result.token) {
+          localStorage.setItem('authToken', result.token);
+        }
+        
+        // Store user info in localStorage
+        if (result.user) {
+          localStorage.setItem('currentUser', JSON.stringify(result.user));
+        }
+        
         // Redirect to dashboard or specified page
         if (result.redirectTo) {
           router.push(result.redirectTo);

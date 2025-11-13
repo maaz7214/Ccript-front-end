@@ -15,6 +15,8 @@ export interface AuthActionResult {
   message?: string;
   errors?: { [key: string]: string };
   redirectTo?: string;
+  token?: string;
+  user?: any;
 }
 
 /**
@@ -105,6 +107,8 @@ export async function loginAction(formData: FormData): Promise<AuthActionResult>
       success: true,
       message: 'Login successful!',
       redirectTo: '/dashboard', // Redirect to dashboard after successful login
+      token: response.access_token, // Return token for localStorage storage
+      user: response.user, // Return user info for localStorage storage
     };
 
   } catch (error) {

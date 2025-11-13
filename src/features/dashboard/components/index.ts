@@ -4,3 +4,7 @@ export { default as Breadcrumb } from './Breadcrumb';
 export { default as UserAvatar } from './UserAvatar';
 export { default as Sidebar } from './Sidebar';
 export { default as FolderList } from './FolderList';
+export { default as Pagination } from './Pagination';
+export { default as ConfigBadge } from './ConfigBadge';
+export { default as LogoutButton } from './LogoutButton';
+export { default as ProtectedRoute } from './ProtectedRoute';
