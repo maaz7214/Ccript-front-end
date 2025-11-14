@@ -59,7 +59,7 @@ export default function Sidebar() {
                   key={item.id}
                   onClick={() => handleNavigation(item.href)}
                   className={`
-                    w-full flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-200
+                    w-full flex flex-col cursor-pointer items-center gap-2 p-3 rounded-lg transition-all duration-200
                     ${active 
                       ? 'bg-[#009689] text-white shadow-sm' 
                       : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'

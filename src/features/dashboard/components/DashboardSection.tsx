@@ -61,6 +61,8 @@ export default function DashboardSection() {
   // Delete confirmation state
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<DashboardItem | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deletingItemPath, setDeletingItemPath] = useState<string | null>(null);
 
   // Load data from API
   const loadData = useCallback(async () => {
@@ -207,13 +209,18 @@ export default function DashboardSection() {
     if (!itemToDelete) return;
 
     try {
+      setIsDeleting(true);
+      setDeletingItemPath(itemToDelete.path);
       await deleteItem(itemToDelete.path, itemToDelete.item_type);
       setDeleteDialogOpen(false);
       setItemToDelete(null);
       // Reload data
-      loadData();
+      await loadData();
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to delete item');
+    } finally {
+      setIsDeleting(false);
+      setDeletingItemPath(null);
     }
   };
 
@@ -329,7 +336,7 @@ export default function DashboardSection() {
               }
             }, 50);
             
-            // Auto-close modal after 3 seconds and refresh structure (like in reference)
+            // Auto-close modal after 3 seconds and refresh structure
             setTimeout(() => {
               handleClose(); // handleClose already calls loadData()
             }, 3000);
@@ -478,8 +485,8 @@ export default function DashboardSection() {
               className="pl-10 pr-4 w-80"
             />
           </div>
-          {/* Only show Upload Folder button when inside accepted_invites folder */}
-          {(currentPath === 'accepted_invites' || currentPath.startsWith('accepted_invites/')) && (
+          {/* Only show Upload Folder button when exactly in accepted_invites folder (not subfolders) */}
+          {currentPath === 'accepted_invites' && (
             <Button
               onClick={handleUploadClick}
               variant="default"
@@ -494,7 +501,7 @@ export default function DashboardSection() {
       </div>
 
       {/* Breadcrumb */}
-      <div className="bg-white rounded-lg border border-gray-200 border-l-4 border-l-[#009689] p-4">
+      <div className="bg-white rounded-lg border border-gray-200  p-4">
         <div className="flex items-center gap-2 text-sm flex-wrap">
           {/* Navigation buttons */}
           <div className="flex items-center gap-2 pr-3 border-r border-gray-300 mr-2">
@@ -552,14 +559,14 @@ export default function DashboardSection() {
       </div>
 
       {/* Items count */}
-      <div className="flex items-center justify-between bg-gray-50 rounded px-4 py-2 text-sm text-gray-600">
+      {/* <div className="flex items-center justify-between bg-gray-50 rounded px-4 py-2 text-sm text-gray-600">
         <span>
           {searchQuery.trim() !== '' 
             ? `${totalItems} result${totalItems !== 1 ? 's' : ''} found`
             : `${totalItems} item${totalItems !== 1 ? 's' : ''}`
           }
         </span>
-      </div>
+      </div> */}
 
       {/* Error message */}
       {error && (
@@ -582,10 +589,12 @@ export default function DashboardSection() {
             onItemClick={handleItemClick}
             onDelete={handleDeleteClick}
             searchQuery={searchQuery}
+            deletingItemPath={deletingItemPath}
+            isDeleting={isDeleting}
           />
 
           {/* Pagination */}
-          {totalPages > 1 && (
+          {/* {totalPages > 1 && (
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
@@ -594,7 +603,7 @@ export default function DashboardSection() {
               onPageChange={handlePageChange}
               onItemsPerPageChange={handleItemsPerPageChange}
             />
-          )}
+          )} */}
         </>
       )}
 
@@ -739,7 +748,15 @@ export default function DashboardSection() {
       </AlertDialog>
 
       {/* Delete Confirmation Dialog */}
-      <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+      <AlertDialog 
+        open={deleteDialogOpen} 
+        onOpenChange={(open) => {
+          // Prevent closing dialog while deleting
+          if (!isDeleting) {
+            setDeleteDialogOpen(open);
+          }
+        }}
+      >
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Confirm Deletion</AlertDialogTitle>
@@ -754,12 +771,20 @@ export default function DashboardSection() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel disabled={isDeleting}>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={confirmDelete}
-              className="bg-red-600 hover:bg-red-700"
+              disabled={isDeleting}
+              className="bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Delete
+              {isDeleting ? (
+                <span className="flex items-center gap-2">
+                  <RefreshCw className="h-4 w-4 animate-spin" />
+                  Deleting...
+                </span>
+              ) : (
+                'Delete'
+              )}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

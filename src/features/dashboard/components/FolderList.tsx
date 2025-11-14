@@ -1,6 +1,6 @@
 'use client';
 
-import { Folder, File, Trash2, ChevronRight } from 'lucide-react';
+import { Folder, File, Trash2, ChevronRight, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { DashboardItem } from '@/types/dashboard';
 
@@ -9,9 +9,11 @@ interface FolderListProps {
   onItemClick?: (item: DashboardItem) => void;
   onDelete?: (item: DashboardItem) => void;
   searchQuery?: string;
+  deletingItemPath?: string | null;
+  isDeleting?: boolean;
 }
 
-export default function FolderList({ items, onItemClick, onDelete, searchQuery }: FolderListProps) {
+export default function FolderList({ items, onItemClick, onDelete, searchQuery, deletingItemPath, isDeleting }: FolderListProps) {
   const formatFileSize = (bytes: number): string => {
     const kb = bytes / 1024;
     return `${kb.toFixed(2)} KB`;
@@ -112,9 +114,14 @@ export default function FolderList({ items, onItemClick, onDelete, searchQuery }
                     e.stopPropagation();
                     onDelete?.(item);
                   }}
-                  className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                  disabled={isDeleting && deletingItemPath === item.path}
+                  className="text-red-600 hover:text-red-700 hover:bg-red-50 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Trash2 className="h-4 w-4" />
+                  {isDeleting && deletingItemPath === item.path ? (
+                    <RefreshCw className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Trash2 className="h-4 w-4" />
+                  )}
                 </Button>
               </div>
             </div>
