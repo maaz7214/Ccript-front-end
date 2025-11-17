@@ -14,7 +14,11 @@ function getApiBaseUrl(): string {
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   
   if (!API_BASE_URL) {
-    throw new Error('NEXT_PUBLIC_API_BASE_URL is not defined in environment variables. Please set it in your .env.local file or Vercel environment variables');
+    const isVercel = process.env.VERCEL === '1';
+    const errorMessage = isVercel
+      ? 'API configuration error: NEXT_PUBLIC_API_BASE_URL is not set in Vercel environment variables. Please add it in your Vercel project settings under Settings → Environment Variables.'
+      : 'NEXT_PUBLIC_API_BASE_URL is not defined in environment variables. Please set it in your .env.local file or Vercel environment variables';
+    throw new Error(errorMessage);
   }
   
   return API_BASE_URL;

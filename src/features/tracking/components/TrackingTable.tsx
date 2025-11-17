@@ -86,10 +86,6 @@ export default function TrackingTable({ initialData, initialSearch = '' }: Track
     router.push(`/tracking?${params.toString()}`, { scroll: false });
   };
 
-  const handleRefresh = () => {
-    loadData(searchQuery);
-  };
-
   const scrollTable = (direction: 'left' | 'right') => {
     if (tableScrollRef.current) {
       const scrollAmount = 300;
@@ -126,18 +122,6 @@ export default function TrackingTable({ initialData, initialSearch = '' }: Track
               className="pl-10 pr-4 w-80"
             />
           </div>
-
-          {/* Refresh Button */}
-          <Button
-            onClick={handleRefresh}
-            variant="outline"
-            size="default"
-            className="flex items-center gap-2"
-            disabled={loading}
-          >
-            <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-            Refresh
-          </Button>
         </div>
       </div>
 

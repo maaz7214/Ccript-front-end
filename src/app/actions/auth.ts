@@ -118,8 +118,10 @@ export async function loginAction(formData: FormData): Promise<AuthActionResult>
     let errorMessage = 'An unexpected error occurred during login';
     
     if (error instanceof Error) {
-      // Check if it's an API error with a specific message
-      if (error.message.includes('HTTP 401') || error.message.includes('Unauthorized')) {
+      // Check for configuration errors first
+      if (error.message.includes('NEXT_PUBLIC_API_BASE_URL') || error.message.includes('API configuration error')) {
+        errorMessage = 'Server configuration error: API base URL is not configured. Please contact the administrator.';
+      } else if (error.message.includes('HTTP 401') || error.message.includes('Unauthorized')) {
         errorMessage = 'Invalid email or password';
       } else if (error.message.includes('HTTP 422') || error.message.includes('Validation')) {
         errorMessage = 'Please check your input and try again';
