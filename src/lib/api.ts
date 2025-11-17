@@ -4,19 +4,27 @@
  * reusable functions for making API requests across the application.
  */
 
-// Get the base URL from environment variables
-// This will work in both server and client environments
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-if (!API_BASE_URL) {
-  throw new Error('NEXT_PUBLIC_API_BASE_URL is not defined in environment variables. Please set it in your .env.local file');
+/**
+ * Get the API base URL from environment variables
+ * This function performs a lazy check to avoid build-time errors
+ * @returns The API base URL
+ * @throws Error if NEXT_PUBLIC_API_BASE_URL is not defined
+ */
+function getApiBaseUrl(): string {
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+  
+  if (!API_BASE_URL) {
+    throw new Error('NEXT_PUBLIC_API_BASE_URL is not defined in environment variables. Please set it in your .env.local file or Vercel environment variables');
+  }
+  
+  return API_BASE_URL;
 }
 
 /**
- * API Configuration object containing base URL and common headers
+ * API Configuration object containing common headers
+ * Base URL is retrieved lazily to avoid build-time errors
  */
 export const apiConfig = {
-  baseUrl: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
     // Add ngrok-skip-browser-warning header to bypass ngrok browser warning
@@ -48,8 +56,8 @@ export const apiEndpoints = {
  * @returns Full URL for the API endpoint
  */
 export function getApiUrl(endpoint: string): string {
-  // Remove trailing slash from base URL and leading slash from endpoint to avoid double slashes
-  const baseUrl = apiConfig.baseUrl.replace(/\/$/, '');
+  // Get base URL lazily to avoid build-time errors
+  const baseUrl = getApiBaseUrl().replace(/\/$/, '');
   const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
   return `${baseUrl}${cleanEndpoint}`;
 }
