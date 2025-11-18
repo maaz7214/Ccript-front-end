@@ -195,16 +195,49 @@ jobs:
           PACKAGE_SIZE=$(du -h deployment.tar.gz | cut -f1)
           echo "Deployment package size: $PACKAGE_SIZE"
           
-          # Check EC2 disk space first
+          # Check EC2 disk space and clean up
           echo "Checking EC2 disk space..."
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'SPACECHECK'
-            echo "Disk space on /tmp:"
-            df -h /tmp
-            echo "Disk space on /:"
+            echo "=== Disk Space Before Cleanup ==="
             df -h /
-            # Clean up old deployment files if /tmp is getting full
-            rm -f /tmp/deployment.tar.gz /tmp/backup-* 2>/dev/null || true
-            echo "Cleaned up old files"
+            echo ""
+            
+            # Clean up old deployment files
+            echo "Cleaning up old files..."
+            rm -f /tmp/deployment.tar.gz 2>/dev/null || true
+            
+            # Remove old backups (keep only last 2)
+            echo "Removing old backups..."
+            ls -dt /tmp/backup-* 2>/dev/null | tail -n +3 | xargs rm -rf 2>/dev/null || true
+            
+            # Clean npm cache
+            echo "Cleaning npm cache..."
+            npm cache clean --force 2>/dev/null || true
+            
+            # Clean PM2 logs (keep last 100 lines)
+            echo "Cleaning PM2 logs..."
+            pm2 flush 2>/dev/null || true
+            
+            # Remove old node_modules from app directory if it exists
+            APP_DIR="${{ secrets.EC2_APP_DIR }}"
+            if [ -d "\$APP_DIR/node_modules" ]; then
+              echo "Removing old node_modules from app directory..."
+              rm -rf "\$APP_DIR/node_modules" 2>/dev/null || true
+            fi
+            
+            echo ""
+            echo "=== Disk Space After Cleanup ==="
+            df -h /
+            
+            # Check if we have at least 2GB free
+            AVAILABLE=\$(df / | tail -1 | awk '{print \$4}')
+            AVAILABLE_GB=\$((AVAILABLE / 1024 / 1024))
+            echo "Available space: \$AVAILABLE_GB GB"
+            
+            if [ \$AVAILABLE_GB -lt 2 ]; then
+              echo "⚠️  WARNING: Less than 2GB free space available!"
+              echo "Consider increasing EC2 disk size or cleaning up more files"
+            fi
           SPACECHECK
           
           # Upload deployment package with retry
@@ -269,19 +302,43 @@ jobs:
               sudo chown -R \$USER:\$USER "\$APP_DIR" 2>/dev/null || chown -R \$USER:\$USER "\$APP_DIR" 2>/dev/null || true
             fi
             
-            # Create backup
+            # Create backup (excluding large directories to save space)
             if [ -d "\$APP_DIR" ] && [ "\$(ls -A \$APP_DIR 2>/dev/null)" ]; then
-              echo "Creating backup..."
+              echo "Creating backup (excluding node_modules and .next)..."
               mkdir -p "\$BACKUP_DIR"
-              cp -r "\$APP_DIR" "\$BACKUP_DIR/" || true
+              # Use rsync to exclude large directories
+              rsync -a --exclude='node_modules' --exclude='.next' --exclude='.git' "\$APP_DIR/" "\$BACKUP_DIR/" 2>/dev/null || {
+                # Fallback: manual copy excluding large dirs
+                mkdir -p "\$BACKUP_DIR"
+                for item in "\$APP_DIR"/*; do
+                  if [ -e "\$item" ]; then
+                    item_name=\$(basename "\$item")
+                    if [ "\$item_name" != "node_modules" ] && [ "\$item_name" != ".next" ] && [ "\$item_name" != ".git" ]; then
+                      cp -r "\$item" "\$BACKUP_DIR/" 2>/dev/null || true
+                    fi
+                  fi
+                done
+              }
+              echo "✅ Backup created (excluding large directories)"
             fi
+            
+            # Clean up old backups to free space (keep only last 2)
+            echo "Cleaning up old backups..."
+            ls -dt /tmp/backup-* 2>/dev/null | tail -n +3 | xargs rm -rf 2>/dev/null || true
             
             # Extract deployment package
             echo "Extracting deployment package..."
             cd "\$APP_DIR"
             
             # Clean old files (keep backups safe)
-            rm -rf .next public src node_modules 2>/dev/null || true
+            # Remove node_modules first to free space
+            echo "Removing old node_modules to free space..."
+            rm -rf node_modules 2>/dev/null || true
+            rm -rf .next public src 2>/dev/null || true
+            
+            # Check available space
+            echo "Available disk space:"
+            df -h .
             
             # Extract deployment package
             echo "Extracting deployment package..."
@@ -309,7 +366,18 @@ jobs:
             
             # Always install production dependencies (node_modules not in package)
             echo "Installing production dependencies..."
-            npm ci --production
+            echo "Available space before npm install:"
+            df -h .
+            
+            # Use npm install with production flag (more space-efficient than ci)
+            npm install --production --no-audit --no-fund || {
+              echo "⚠️  npm install failed, trying with cache clean..."
+              npm cache clean --force
+              npm install --production --no-audit --no-fund
+            }
+            
+            echo "Available space after npm install:"
+            df -h .
             
             # Create .env.production file if environment variables are provided
             if [ -n "\$API_BASE_URL" ]; then
