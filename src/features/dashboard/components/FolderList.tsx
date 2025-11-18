@@ -14,21 +14,6 @@ interface FolderListProps {
 }
 
 export default function FolderList({ items, onItemClick, onDelete, searchQuery, deletingItemPath, isDeleting }: FolderListProps) {
-  const formatFileSize = (bytes: number): string => {
-    const kb = bytes / 1024;
-    return `${kb.toFixed(2)} KB`;
-  };
-
-  const formatDate = (dateString: string): string => {
-    const date = new Date(dateString);
-    return date.toLocaleString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  };
 
   if (items.length === 0) {
     const emptyMessage = searchQuery?.trim() 

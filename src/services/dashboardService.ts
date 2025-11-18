@@ -1,5 +1,5 @@
 import { getApiUrl } from '@/lib/api';
-import type { StructureResponse, ConfigResponse, TrackingResponse, DeleteResponse } from '@/types/dashboard';
+import type { StructureResponse, ConfigResponse, TrackingResponse, DeleteResponse, UploadProgress } from '@/types/dashboard';
 
 /**
  * Get auth token from localStorage
@@ -100,7 +100,7 @@ export async function uploadFiles(
   files: File[],
   paths: string[],
   clientId: string
-): Promise<any> {
+): Promise<{ message: string }> {
   const formData = new FormData();
   
   files.forEach(file => {
@@ -117,7 +117,7 @@ export async function uploadFiles(
     body: formData,
   });
 
-  return handleApiResponse<any>(response);
+  return handleApiResponse<{ message: string }>(response);
 }
 
 /**
@@ -160,7 +160,7 @@ export async function loadTracking(search: string = ''): Promise<TrackingRespons
  */
 export function createUploadWebSocket(
   clientId: string,
-  onMessage: (data: any) => void,
+  onMessage: (data: UploadProgress) => void,
   onError?: (error: Event) => void
 ): Promise<WebSocket> {
   return new Promise((resolve, reject) => {

@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import FolderList from './FolderList';
-import Pagination from './Pagination';
 import { RefreshCw, Search, Upload, Home, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { DashboardItem, UploadProgress } from '@/types/dashboard';
 import {
@@ -33,7 +32,6 @@ export default function DashboardSection() {
   const [historyIndex, setHistoryIndex] = useState(0);
 
   // Data state
-  const [allItems, setAllItems] = useState<DashboardItem[]>([]);
   const [displayedItems, setDisplayedItems] = useState<DashboardItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -41,8 +39,6 @@ export default function DashboardSection() {
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(50);
-  const [totalItems, setTotalItems] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
 
   // Search state
   const [searchQuery, setSearchQuery] = useState('');
@@ -73,9 +69,6 @@ export default function DashboardSection() {
       const limit = itemsPerPage === 0 ? 0 : itemsPerPage;
       const data = await loadStructure(currentPage, limit, searchQuery);
       console.log('data', data);
-      setAllItems(data.items);
-      setTotalItems(data.total);
-      setTotalPages(data.total_pages);
       
       // Filter items based on current path
       const filtered = filterItemsByPath(data.items, currentPath);
@@ -148,7 +141,7 @@ export default function DashboardSection() {
         setUploadProgress(100);
       }
     }
-  }, [uploadStatus]);
+  }, [uploadStatus, uploadProgress]);
 
   // Navigation functions
   const navigateToFolder = (folderPath: string, skipHistory = false) => {
@@ -230,15 +223,6 @@ export default function DashboardSection() {
     setCurrentPage(1);
   };
 
-  // Handle pagination
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  const handleItemsPerPageChange = (perPage: number | 'all') => {
-    setItemsPerPage(perPage === 'all' ? 0 : perPage);
-    setCurrentPage(1);
-  };
 
   // Handle upload
   const handleUploadClick = () => {
@@ -365,7 +349,8 @@ export default function DashboardSection() {
       // Prepare file paths
       const filePaths: string[] = [];
       files.forEach((file) => {
-        const relativePath = (file as any).webkitRelativePath || file.name;
+        const fileWithPath = file as File & { webkitRelativePath?: string };
+        const relativePath = fileWithPath.webkitRelativePath || file.name;
         const pathParts = relativePath.split('/');
         pathParts.pop(); // Remove file name
         let folderPath = pathParts.join('/');

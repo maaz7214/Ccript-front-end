@@ -18,7 +18,7 @@ export default function ConfigBadge() {
         }
         
         setConfigText(text);
-      } catch (error) {
+      } catch {
         setConfigText('Config Error');
       }
     };

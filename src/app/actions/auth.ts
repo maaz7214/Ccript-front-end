@@ -7,7 +7,7 @@
 
 import { cookies } from 'next/headers';
 import { apiPost, apiEndpoints } from '@/lib/api';
-import { LoginRequest, LoginResponse } from '@/types/api';
+import { LoginRequest, LoginResponse, User } from '@/types/api';
 
 // Action result type for better type safety
 export interface AuthActionResult {
@@ -16,7 +16,7 @@ export interface AuthActionResult {
   errors?: { [key: string]: string };
   redirectTo?: string;
   token?: string;
-  user?: any;
+  user?: User;
 }
 
 /**
