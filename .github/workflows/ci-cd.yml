@@ -66,10 +66,22 @@ jobs:
       - name: Create artifact bundle
         run: |
           echo "Creating artifact bundle..."
-          # Create a tar archive that includes .next (bypasses gitignore)
-          tar -czf build-artifacts.tar.gz .next public package.json package-lock.json node_modules
+          # Create a tar archive that includes all necessary files for production
+          tar -czf build-artifacts.tar.gz \
+            .next \
+            src \
+            public \
+            package.json \
+            package-lock.json \
+            node_modules \
+            next.config.ts \
+            tsconfig.json
           echo "✅ Artifact bundle created"
           ls -lh build-artifacts.tar.gz
+          
+          # Verify contents
+          echo "Verifying bundle contents..."
+          tar -tzf build-artifacts.tar.gz | head -20
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -134,6 +146,7 @@ jobs:
           # Create deployment package with all necessary files
           tar -czf deployment.tar.gz \
             .next \
+            src \
             public \
             package.json \
             package-lock.json \
