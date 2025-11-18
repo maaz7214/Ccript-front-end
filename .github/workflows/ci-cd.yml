@@ -133,10 +133,8 @@ jobs:
             # Create .env.production file if environment variables are provided
             if [ -n "\$API_BASE_URL" ]; then
               echo "Creating .env.production file..."
-              cat > .env.production << ENVEOF
-NODE_ENV=production
-NEXT_PUBLIC_API_BASE_URL=\$API_BASE_URL
-ENVEOF
+              echo "NODE_ENV=production" > .env.production
+              echo "NEXT_PUBLIC_API_BASE_URL=\$API_BASE_URL" >> .env.production
             fi
             
             # Install/update dependencies
