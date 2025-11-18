@@ -403,7 +403,7 @@ jobs:
             
             # Create Nginx configuration
             echo "Configuring Nginx..."
-            printf 'server {\n    listen 80;\n    server_name _;\n\n    location / {\n        proxy_pass http://localhost:3000;\n        proxy_http_version 1.1;\n        proxy_set_header Upgrade $http_upgrade;\n        proxy_set_header Connection upgrade;\n        proxy_set_header Host $host;\n        proxy_cache_bypass $http_upgrade;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n    }\n}\n' | sudo tee /etc/nginx/conf.d/tumlinson-frontend.conf > /dev/null
+            printf '%s\n' 'server {' '    listen 80;' '    server_name _;' '' '    location / {' '        proxy_pass http://localhost:3000;' '        proxy_http_version 1.1;' '        proxy_set_header Upgrade $http_upgrade;' '        proxy_set_header Connection "upgrade";' '        proxy_set_header Host $host;' '        proxy_cache_bypass $http_upgrade;' '        proxy_set_header X-Real-IP $remote_addr;' '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;' '        proxy_set_header X-Forwarded-Proto $scheme;' '    }' '}' | sudo tee /etc/nginx/conf.d/tumlinson-frontend.conf > /dev/null
             
             # Remove default Nginx config if it exists
             sudo rm -f /etc/nginx/sites-enabled/default
@@ -478,4 +478,3 @@ jobs:
               echo "⚠️  Nginx not responding on port 80"
             fi
           ENDSSH
-
