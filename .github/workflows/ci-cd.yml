@@ -237,9 +237,15 @@ jobs:
 
             ls -dt /tmp/backup-* 2>/dev/null | tail -n +3 | xargs rm -rf 2>/dev/null || true
             cd "$$APP_DIR"
-            
+
+            # Ensure proper permissions before extraction
+            sudo chown -R $$USER:$$USER "$$APP_DIR" 2>/dev/null || sudo chmod -R 755 "$$APP_DIR" 2>/dev/null || true
+
             rm -rf node_modules .next public src 2>/dev/null || true
             tar -xzf /tmp/deployment.tar.gz
+
+            # Ensure extracted files have correct permissions
+            sudo chown -R $$USER:$$USER . 2>/dev/null || sudo chmod -R 755 . 2>/dev/null || true
 
             if [ ! -d ".next" ]; then
               echo "⚠️  .next missing, rebuilding..."
