@@ -63,16 +63,19 @@ jobs:
           ls -la .next/ | head -10
           echo "Build verification complete"
 
+      - name: Create artifact bundle
+        run: |
+          echo "Creating artifact bundle..."
+          # Create a tar archive that includes .next (bypasses gitignore)
+          tar -czf build-artifacts.tar.gz .next public package.json package-lock.json node_modules
+          echo "✅ Artifact bundle created"
+          ls -lh build-artifacts.tar.gz
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-files
-          path: |
-            .next/**
-            public/**
-            package.json
-            package-lock.json
-            node_modules/**
+          path: build-artifacts.tar.gz
           retention-days: 1
           if-no-files-found: error
 
@@ -91,48 +94,40 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-files
-          path: ./deploy-artifacts
+          path: .
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Verify and prepare build artifacts
+      - name: Extract and verify build artifacts
         run: |
-          echo "Checking downloaded artifacts..."
-          if [ ! -d "deploy-artifacts" ]; then
-            echo "ERROR: deploy-artifacts directory not found!"
-            exit 1
-          fi
-          
-          echo "Contents of deploy-artifacts:"
-          ls -la deploy-artifacts/
-          
-          # Check if .next exists in artifacts
-          if [ ! -d "deploy-artifacts/.next" ]; then
-            echo "ERROR: .next folder not found in downloaded artifacts!"
-            echo "This means the build step failed or artifacts weren't uploaded correctly."
-            echo "Please check the 'Build and Test' job logs."
-            exit 1
-          fi
-          
-          # Move artifacts to current directory
-          echo "Moving artifacts to current directory..."
-          cp -r deploy-artifacts/* . || true
-          cp -r deploy-artifacts/.* . 2>/dev/null || true
-          
-          # Verify .next folder exists after move
-          if [ ! -d ".next" ]; then
-            echo "ERROR: .next folder not found after moving artifacts!"
+          echo "Extracting build artifacts..."
+          if [ ! -f "build-artifacts.tar.gz" ]; then
+            echo "ERROR: build-artifacts.tar.gz not found!"
             echo "Listing current directory:"
             ls -la
             exit 1
           fi
           
-          echo "✅ .next folder found"
+          echo "Extracting archive..."
+          tar -xzf build-artifacts.tar.gz
+          
+          # Verify .next folder exists after extraction
+          if [ ! -d ".next" ]; then
+            echo "ERROR: .next folder not found after extraction!"
+            echo "Listing current directory:"
+            ls -la
+            exit 1
+          fi
+          
+          echo "✅ .next folder extracted successfully"
           echo "✅ Verifying .next structure..."
           ls -la .next/ | head -10
+          
+          # Clean up the tar file
+          rm -f build-artifacts.tar.gz
 
       - name: Create deployment package
         run: |
