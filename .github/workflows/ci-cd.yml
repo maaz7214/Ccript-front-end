@@ -229,15 +229,9 @@ jobs:
             echo "=== Disk Space After Cleanup ==="
             df -h /
             
-            # Check if we have at least 2GB free
-            AVAILABLE=\$(df / | tail -1 | awk '{print \$4}')
-            AVAILABLE_GB=\$((AVAILABLE / 1024 / 1024))
-            echo "Available space: \$AVAILABLE_GB GB"
-            
-            if [ \$AVAILABLE_GB -lt 2 ]; then
-              echo "⚠️  WARNING: Less than 2GB free space available!"
-              echo "Consider increasing EC2 disk size or cleaning up more files"
-            fi
+            # Check available space (simplified check)
+            echo "Checking available space..."
+            df -h / | tail -1
           SPACECHECK
           
           # Upload deployment package with retry
