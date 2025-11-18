@@ -68,18 +68,39 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-files
-          path: .
+          path: ./deploy-artifacts
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Install production dependencies
-        run: npm ci --production
+      - name: Verify and prepare build artifacts
+        run: |
+          echo "Checking downloaded artifacts..."
+          ls -la deploy-artifacts/ || echo "deploy-artifacts directory not found"
+          
+          # Move artifacts to current directory
+          if [ -d "deploy-artifacts" ]; then
+            cp -r deploy-artifacts/* . || true
+            cp -r deploy-artifacts/.* . 2>/dev/null || true
+          fi
+          
+          # Verify .next folder exists
+          if [ ! -d ".next" ]; then
+            echo "ERROR: .next folder not found in artifacts! This should not happen."
+            echo "Listing current directory:"
+            ls -la
+            exit 1
+          fi
+          
+          echo "✅ .next folder found"
+          echo "✅ Verifying .next structure..."
+          ls -la .next/ | head -10
 
       - name: Create deployment package
         run: |
+          # Create deployment package with all necessary files
           tar -czf deployment.tar.gz \
             .next \
             public \
@@ -88,7 +109,19 @@ jobs:
             node_modules \
             next.config.ts \
             tsconfig.json \
-            .env.production 2>/dev/null || true
+            2>/dev/null || true
+          
+          # Verify .next is in the package
+          echo "Verifying deployment package contents..."
+          if ! tar -tzf deployment.tar.gz | grep -q "^\.next/"; then
+            echo "ERROR: .next folder not included in deployment package!"
+            echo "Package contents:"
+            tar -tzf deployment.tar.gz | head -20
+            exit 1
+          fi
+          
+          echo "✅ Deployment package created successfully"
+          echo "Package size: $(du -h deployment.tar.gz | cut -f1)"
 
       - name: Configure SSH
         run: |
@@ -128,7 +161,36 @@ jobs:
             # Extract deployment package
             echo "Extracting deployment package..."
             cd "\$APP_DIR"
+            
+            # Clean old files (keep backups safe)
+            rm -rf .next public node_modules 2>/dev/null || true
+            
+            # Extract deployment package
             tar -xzf /tmp/deployment.tar.gz
+            
+            # Verify .next folder exists after extraction
+            if [ ! -d ".next" ]; then
+              echo "ERROR: .next folder not found after extraction!"
+              echo "Listing extracted files:"
+              ls -la
+              echo "Package contents:"
+              tar -tzf /tmp/deployment.tar.gz | head -20
+              echo "Rebuilding on EC2 as fallback..."
+              # Install all dependencies (including dev) for build
+              npm ci
+              npm run build
+              # Remove dev dependencies after build
+              npm ci --production
+            else
+              echo "✅ .next folder extracted successfully"
+              # Only install production dependencies if node_modules is missing or incomplete
+              if [ ! -d "node_modules" ] || [ ! -f "node_modules/.package-lock.json" ]; then
+                echo "Installing production dependencies..."
+                npm ci --production
+              else
+                echo "✅ node_modules already present, skipping npm install"
+              fi
+            fi
             
             # Create .env.production file if environment variables are provided
             if [ -n "\$API_BASE_URL" ]; then
@@ -137,18 +199,21 @@ jobs:
               echo "NEXT_PUBLIC_API_BASE_URL=\$API_BASE_URL" >> .env.production
             fi
             
-            # Install/update dependencies
-            echo "Installing dependencies..."
-            npm ci --production
+            # Final verification
+            if [ ! -d ".next" ]; then
+              echo "ERROR: .next folder still missing after all attempts!"
+              exit 1
+            fi
+            echo "✅ Build verification complete"
             
             # Restart application using PM2
             echo "Restarting application..."
             if pm2 list | grep -q "tumlinson-frontend"; then
-              pm2 restart tumlinson-frontend
-            else
-              pm2 start npm --name "tumlinson-frontend" -- start
-              pm2 save
+              pm2 delete tumlinson-frontend
             fi
+            # Start with explicit host binding to 0.0.0.0
+            pm2 start npm --name "tumlinson-frontend" -- start -- -H 0.0.0.0
+            pm2 save
             
             # Cleanup
             rm -f /tmp/deployment.tar.gz
