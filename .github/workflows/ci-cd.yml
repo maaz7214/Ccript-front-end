@@ -36,22 +36,45 @@ jobs:
         run: npm run lint
 
       - name: Build application
-        run: npm run build
+        run: |
+          if [ -z "${{ secrets.NEXT_PUBLIC_API_BASE_URL }}" ]; then
+            echo "ERROR: NEXT_PUBLIC_API_BASE_URL secret is not set!"
+            echo "Please add NEXT_PUBLIC_API_BASE_URL to GitHub Secrets"
+            exit 1
+          fi
+          echo "Building with API URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL }}"
+          npm run build
         env:
           NODE_ENV: production
-          NEXT_PUBLIC_API_BASE_URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL || '' }}
+          NEXT_PUBLIC_API_BASE_URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL }}
+
+      - name: Verify build output
+        run: |
+          echo "Verifying build output..."
+          if [ ! -d ".next" ]; then
+            echo "ERROR: .next directory not found after build!"
+            echo "Listing current directory:"
+            ls -la
+            echo "Checking if build completed successfully..."
+            exit 1
+          fi
+          echo "✅ .next directory exists"
+          echo "Checking .next contents:"
+          ls -la .next/ | head -10
+          echo "Build verification complete"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-files
           path: |
-            .next
-            public
+            .next/**
+            public/**
             package.json
             package-lock.json
-            node_modules
+            node_modules/**
           retention-days: 1
+          if-no-files-found: error
 
   # Deploy to EC2 (only on main branch)
   deploy:
@@ -78,17 +101,30 @@ jobs:
       - name: Verify and prepare build artifacts
         run: |
           echo "Checking downloaded artifacts..."
-          ls -la deploy-artifacts/ || echo "deploy-artifacts directory not found"
-          
-          # Move artifacts to current directory
-          if [ -d "deploy-artifacts" ]; then
-            cp -r deploy-artifacts/* . || true
-            cp -r deploy-artifacts/.* . 2>/dev/null || true
+          if [ ! -d "deploy-artifacts" ]; then
+            echo "ERROR: deploy-artifacts directory not found!"
+            exit 1
           fi
           
-          # Verify .next folder exists
+          echo "Contents of deploy-artifacts:"
+          ls -la deploy-artifacts/
+          
+          # Check if .next exists in artifacts
+          if [ ! -d "deploy-artifacts/.next" ]; then
+            echo "ERROR: .next folder not found in downloaded artifacts!"
+            echo "This means the build step failed or artifacts weren't uploaded correctly."
+            echo "Please check the 'Build and Test' job logs."
+            exit 1
+          fi
+          
+          # Move artifacts to current directory
+          echo "Moving artifacts to current directory..."
+          cp -r deploy-artifacts/* . || true
+          cp -r deploy-artifacts/.* . 2>/dev/null || true
+          
+          # Verify .next folder exists after move
           if [ ! -d ".next" ]; then
-            echo "ERROR: .next folder not found in artifacts! This should not happen."
+            echo "ERROR: .next folder not found after moving artifacts!"
             echo "Listing current directory:"
             ls -la
             exit 1
