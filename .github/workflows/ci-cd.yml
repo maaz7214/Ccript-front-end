@@ -191,290 +191,97 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          # Check deployment package size
-          PACKAGE_SIZE=$(du -h deployment.tar.gz | cut -f1)
-          echo "Deployment package size: $PACKAGE_SIZE"
-          
-          # Check EC2 disk space and clean up
-          echo "Checking EC2 disk space..."
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'SPACECHECK'
-            echo "=== Disk Space Before Cleanup ==="
-            df -h /
-            echo ""
-            
-            # Clean up old deployment files
-            echo "Cleaning up old files..."
+            # Clean up old deployment files and free space
             rm -f /tmp/deployment.tar.gz 2>/dev/null || true
-            
-            # Remove old backups (keep only last 2)
-            echo "Removing old backups..."
             ls -dt /tmp/backup-* 2>/dev/null | tail -n +3 | xargs rm -rf 2>/dev/null || true
-            
-            # Clean npm cache
-            echo "Cleaning npm cache..."
             npm cache clean --force 2>/dev/null || true
-            
-            # Clean PM2 logs (keep last 100 lines)
-            echo "Cleaning PM2 logs..."
             pm2 flush 2>/dev/null || true
-            
-            # Remove old node_modules from app directory if it exists
+
             APP_DIR="${{ secrets.EC2_APP_DIR }}"
-            if [ -d "\$APP_DIR/node_modules" ]; then
-              echo "Removing old node_modules from app directory..."
-              rm -rf "\$APP_DIR/node_modules" 2>/dev/null || true
-            fi
-            
-            echo ""
-            echo "=== Disk Space After Cleanup ==="
-            df -h /
-            
-            # Check available space (simplified check)
-            echo "Checking available space..."
-            df -h / | tail -1
+            [ -d "$$APP_DIR/node_modules" ] && rm -rf "$$APP_DIR/node_modules" 2>/dev/null || true
           SPACECHECK
-          
-          # Upload deployment package with retry
-          echo "Uploading deployment package..."
+
           for i in 1 2 3; do
-            if scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=60 -v deployment.tar.gz ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/tmp/ 2>&1 | tee /tmp/scp_output.log; then
+            if scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=60 deployment.tar.gz ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/tmp/ 2>/dev/null; then
               echo "✅ Upload successful"
               break
+            elif [ $i -eq 3 ]; then
+              echo "❌ SCP failed, trying base64..."
+              base64 deployment.tar.gz | ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "base64 -d > /tmp/deployment.tar.gz" || exit 1
+              echo "✅ Upload successful (base64)"
             else
-              echo "⚠️  Upload attempt $i failed"
-              if [ -f /tmp/scp_output.log ]; then
-                echo "SCP error details:"
-                cat /tmp/scp_output.log | tail -20
-              fi
-              if [ $i -eq 3 ]; then
-                echo "❌ Upload failed after 3 attempts"
-                echo "Trying alternative method: base64 encoding..."
-                # Alternative: use base64 encoding for smaller transfers
-                base64 deployment.tar.gz | ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "base64 -d > /tmp/deployment.tar.gz"
-                if [ $? -eq 0 ]; then
-                  echo "✅ Upload successful using base64 method"
-                  break
-                else
-                  echo "❌ All upload methods failed"
-                  exit 1
-                fi
-              fi
               sleep 5
             fi
           done
-          
-          # Verify upload
+
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'VERIFYEOF'
-            if [ ! -f "/tmp/deployment.tar.gz" ]; then
-              echo "ERROR: deployment.tar.gz not found on EC2!"
-              exit 1
-            fi
-            echo "✅ File uploaded successfully"
-            ls -lh /tmp/deployment.tar.gz
-            # Verify file integrity
-            if ! tar -tzf /tmp/deployment.tar.gz > /dev/null 2>&1; then
-              echo "ERROR: deployment.tar.gz is corrupted!"
-              exit 1
-            fi
-            echo "✅ File integrity verified"
+            [ ! -f "/tmp/deployment.tar.gz" ] && echo "ERROR: File not found!" && exit 1
+            tar -tzf /tmp/deployment.tar.gz > /dev/null || exit 1
+            echo "✅ File verified"
           VERIFYEOF
           
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
             set -e
             
-            # Variables
             APP_DIR="${{ secrets.EC2_APP_DIR }}"
             API_BASE_URL="${{ secrets.NEXT_PUBLIC_API_BASE_URL }}"
-            BACKUP_DIR="/tmp/backup-$(date +%Y%m%d-%H%M%S)"
-            
-            # Create app directory if it doesn't exist (with proper permissions)
-            if [ ! -d "\$APP_DIR" ]; then
-              echo "Creating application directory: \$APP_DIR"
-              # Try to create with sudo if needed, fallback to user directory
-              sudo mkdir -p "\$APP_DIR" 2>/dev/null || mkdir -p "\$APP_DIR"
-              # Set ownership to current user
-              sudo chown -R \$USER:\$USER "\$APP_DIR" 2>/dev/null || chown -R \$USER:\$USER "\$APP_DIR" 2>/dev/null || true
+            BACKUP_DIR="/tmp/backup-$$(date +%Y%m%d-%H%M%S)"
+
+            [ ! -d "$$APP_DIR" ] && sudo mkdir -p "$$APP_DIR" && sudo chown -R $$USER:$$USER "$$APP_DIR" 2>/dev/null || true
+
+            if [ -d "$$APP_DIR" ] && [ "$$(ls -A $$APP_DIR 2>/dev/null)" ]; then
+              mkdir -p "$$BACKUP_DIR"
+              rsync -a --exclude='node_modules' --exclude='.next' --exclude='.git' "$$APP_DIR/" "$$BACKUP_DIR/" 2>/dev/null || true
             fi
-            
-            # Create backup (excluding large directories to save space)
-            if [ -d "\$APP_DIR" ] && [ "\$(ls -A \$APP_DIR 2>/dev/null)" ]; then
-              echo "Creating backup (excluding node_modules and .next)..."
-              mkdir -p "\$BACKUP_DIR"
-              # Use rsync to exclude large directories
-              rsync -a --exclude='node_modules' --exclude='.next' --exclude='.git' "\$APP_DIR/" "\$BACKUP_DIR/" 2>/dev/null || {
-                # Fallback: manual copy excluding large dirs
-                mkdir -p "\$BACKUP_DIR"
-                for item in "\$APP_DIR"/*; do
-                  if [ -e "\$item" ]; then
-                    item_name=\$(basename "\$item")
-                    if [ "\$item_name" != "node_modules" ] && [ "\$item_name" != ".next" ] && [ "\$item_name" != ".git" ]; then
-                      cp -r "\$item" "\$BACKUP_DIR/" 2>/dev/null || true
-                    fi
-                  fi
-                done
-              }
-              echo "✅ Backup created (excluding large directories)"
-            fi
-            
-            # Clean up old backups to free space (keep only last 2)
-            echo "Cleaning up old backups..."
+
             ls -dt /tmp/backup-* 2>/dev/null | tail -n +3 | xargs rm -rf 2>/dev/null || true
+            cd "$$APP_DIR"
             
-            # Extract deployment package
-            echo "Extracting deployment package..."
-            cd "\$APP_DIR"
-            
-            # Clean old files (keep backups safe)
-            # Remove node_modules first to free space
-            echo "Removing old node_modules to free space..."
-            rm -rf node_modules 2>/dev/null || true
-            rm -rf .next public src 2>/dev/null || true
-            
-            # Check available space
-            echo "Available disk space:"
-            df -h .
-            
-            # Extract deployment package
-            echo "Extracting deployment package..."
+            rm -rf node_modules .next public src 2>/dev/null || true
             tar -xzf /tmp/deployment.tar.gz
-            
-            # Verify extraction
+
             if [ ! -d ".next" ]; then
-              echo "ERROR: .next folder not found after extraction!"
-              echo "Listing extracted files:"
-              ls -la
-              echo "Checking package integrity..."
-              if ! tar -tzf /tmp/deployment.tar.gz > /dev/null 2>&1; then
-                echo "ERROR: Package is corrupted!"
-                exit 1
-              fi
-              echo "Package is valid, but .next missing. Rebuilding..."
-              # Install all dependencies (including dev) for build
-              npm ci
-              npm run build
-              # Remove dev dependencies after build
-              npm ci --production
-            else
-              echo "✅ .next folder extracted successfully"
+              echo "⚠️  .next missing, rebuilding..."
+              npm ci && npm run build && npm ci --production
             fi
+
+            echo "📦 Installing dependencies..."
+            npm install --production --no-audit --no-fund || npm cache clean --force && npm install --production --no-audit --no-fund
+
+            [ -n "$$API_BASE_URL" ] && echo -e "NODE_ENV=production\nNEXT_PUBLIC_API_BASE_URL=$$API_BASE_URL" > .env.production
+
+            [ ! -d ".next" ] && echo "❌ Build failed!" && exit 1
+            echo "✅ Build ready"
             
-            # Always install production dependencies (node_modules not in package)
-            echo "Installing production dependencies..."
-            echo "Available space before npm install:"
-            df -h .
-            
-            # Use npm install with production flag (more space-efficient than ci)
-            npm install --production --no-audit --no-fund || {
-              echo "⚠️  npm install failed, trying with cache clean..."
-              npm cache clean --force
-              npm install --production --no-audit --no-fund
-            }
-            
-            echo "Available space after npm install:"
-            df -h .
-            
-            # Create .env.production file if environment variables are provided
-            if [ -n "\$API_BASE_URL" ]; then
-              echo "Creating .env.production file..."
-              echo "NODE_ENV=production" > .env.production
-              echo "NEXT_PUBLIC_API_BASE_URL=\$API_BASE_URL" >> .env.production
-            fi
-            
-            # Final verification
-            if [ ! -d ".next" ]; then
-              echo "ERROR: .next folder still missing after all attempts!"
-              exit 1
-            fi
-            echo "✅ Build verification complete"
-            
-            # Install and configure Nginx
-            echo "Setting up Nginx..."
-            if ! command -v nginx &> /dev/null; then
-              echo "Installing Nginx..."
-              if command -v yum &> /dev/null; then
-                sudo yum install -y nginx
-              elif command -v apt-get &> /dev/null; then
-                sudo apt-get update -y
-                sudo apt-get install -y nginx
-              else
-                echo "WARNING: Could not install Nginx. Package manager not found."
-              fi
-            fi
-            
-            # Create Nginx configuration
-            echo "Configuring Nginx..."
-            printf '%s\n' 'server {' '    listen 80;' '    server_name _;' '' '    location / {' '        proxy_pass http://localhost:3000;' '        proxy_http_version 1.1;' '        proxy_set_header Upgrade $http_upgrade;' '        proxy_set_header Connection "upgrade";' '        proxy_set_header Host $host;' '        proxy_cache_bypass $http_upgrade;' '        proxy_set_header X-Real-IP $remote_addr;' '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;' '        proxy_set_header X-Forwarded-Proto $scheme;' '    }' '}' | sudo tee /etc/nginx/conf.d/tumlinson-frontend.conf > /dev/null
-            
-            # Remove default Nginx config if it exists
-            sudo rm -f /etc/nginx/sites-enabled/default
-            sudo rm -f /etc/nginx/conf.d/default.conf 2>/dev/null || true
-            
-            # Test Nginx configuration
-            echo "Testing Nginx configuration syntax..."
-            if sudo nginx -t 2>&1; then
-              echo "✅ Nginx configuration is valid"
-            else
-              echo "❌ Nginx configuration test failed"
-              echo "Config file contents:"
-              sudo cat /etc/nginx/conf.d/tumlinson-frontend.conf
-              exit 1
-            fi
-            
-            # Enable and start Nginx
-            sudo systemctl enable nginx
-            sudo systemctl restart nginx
-            
-            echo "✅ Nginx configured and started"
-            
-            # Restart application using PM2
-            echo "Restarting application..."
-            if pm2 list | grep -q "tumlinson-frontend"; then
-              pm2 delete tumlinson-frontend
-            fi
-            # Start with explicit host binding to 0.0.0.0
+            command -v nginx >/dev/null || { command -v yum >/dev/null && sudo yum install -y nginx || sudo apt-get update && sudo apt-get install -y nginx; }
+
+            printf '%s\n' 'server {' '    listen 80;' '    server_name _;' '' '    location / {' '        proxy_pass http://localhost:3000;' '        proxy_http_version 1.1;' '        proxy_set_header Upgrade $http_upgrade;' '        proxy_set_header Connection "upgrade";' '        proxy_set_header Host $host;' '        proxy_cache_bypass $http_upgrade;' '        proxy_set_header X-Real-IP $remote_addr;' '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;' '        proxy_set_header X-Forwarded-Proto $scheme;' '    }' '}' | sudo tee /etc/nginx/conf.d/tumlinson-frontend.conf >/dev/null
+
+            sudo rm -f /etc/nginx/sites-enabled/default /etc/nginx/conf.d/default.conf 2>/dev/null || true
+
+            sudo nginx -t || { echo "❌ Nginx config error"; sudo cat /etc/nginx/conf.d/tumlinson-frontend.conf; exit 1; }
+
+            sudo systemctl enable nginx && sudo systemctl restart nginx
+            echo "🌐 Nginx ready"
+
+            pm2 delete tumlinson-frontend 2>/dev/null || true
             pm2 start npm --name "tumlinson-frontend" -- start -- -H 0.0.0.0
             pm2 save
-            
-            # Cleanup
+
             rm -f /tmp/deployment.tar.gz
-            echo "Deployment completed successfully!"
+            echo "✅ Deployment successful!"
           EOF
 
       - name: Verify deployment
         run: |
-          sleep 5
+          sleep 3
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'ENDSSH'
-            # Check PM2
-            if pm2 list | grep -q "tumlinson-frontend.*online"; then
-              echo "✅ PM2: Application is running successfully!"
-              pm2 status
-            else
-              echo "❌ PM2: Application failed to start"
-              pm2 logs tumlinson-frontend --lines 50
-              exit 1
-            fi
-            
-            # Check Nginx
-            if sudo systemctl is-active --quiet nginx; then
-              echo "✅ Nginx: Running"
-              sudo systemctl status nginx --no-pager -l | head -5
-            else
-              echo "❌ Nginx: Not running"
-              sudo systemctl status nginx --no-pager -l
-              exit 1
-            fi
-            
-            # Test local connection
-            echo "Testing local connection..."
-            if curl -s -o /dev/null -w "%{http_code}" http://localhost:3000 | grep -q "200\|301\|302"; then
-              echo "✅ App responding on port 3000"
-            else
-              echo "⚠️  App not responding on port 3000"
-            fi
-            
-            if curl -s -o /dev/null -w "%{http_code}" http://localhost:80 | grep -q "200\|301\|302"; then
-              echo "✅ Nginx proxy working on port 80"
-            else
-              echo "⚠️  Nginx not responding on port 80"
-            fi
+            pm2 list | grep -q "tumlinson-frontend.*online" || { echo "❌ PM2 failed"; pm2 logs tumlinson-frontend --lines 20; exit 1; }
+            sudo systemctl is-active --quiet nginx || { echo "❌ Nginx failed"; exit 1; }
+
+            curl -s -f http://localhost:3000 >/dev/null && echo "✅ App running (port 3000)" || echo "⚠️  App not responding"
+            curl -s -f http://localhost:80 >/dev/null && echo "✅ Nginx proxy working" || echo "⚠️  Nginx not responding"
+
+            echo "🎉 Deployment verified!"
           ENDSSH
