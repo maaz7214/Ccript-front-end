@@ -176,7 +176,66 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no deployment.tar.gz ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/tmp/
+          # Check deployment package size
+          PACKAGE_SIZE=$(du -h deployment.tar.gz | cut -f1)
+          echo "Deployment package size: $PACKAGE_SIZE"
+          
+          # Check EC2 disk space first
+          echo "Checking EC2 disk space..."
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'SPACECHECK'
+            echo "Disk space on /tmp:"
+            df -h /tmp
+            echo "Disk space on /:"
+            df -h /
+            # Clean up old deployment files if /tmp is getting full
+            rm -f /tmp/deployment.tar.gz /tmp/backup-* 2>/dev/null || true
+            echo "Cleaned up old files"
+          SPACECHECK
+          
+          # Upload deployment package with retry
+          echo "Uploading deployment package..."
+          for i in 1 2 3; do
+            if scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=60 -v deployment.tar.gz ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/tmp/ 2>&1 | tee /tmp/scp_output.log; then
+              echo "✅ Upload successful"
+              break
+            else
+              echo "⚠️  Upload attempt $i failed"
+              if [ -f /tmp/scp_output.log ]; then
+                echo "SCP error details:"
+                cat /tmp/scp_output.log | tail -20
+              fi
+              if [ $i -eq 3 ]; then
+                echo "❌ Upload failed after 3 attempts"
+                echo "Trying alternative method: base64 encoding..."
+                # Alternative: use base64 encoding for smaller transfers
+                base64 deployment.tar.gz | ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "base64 -d > /tmp/deployment.tar.gz"
+                if [ $? -eq 0 ]; then
+                  echo "✅ Upload successful using base64 method"
+                  break
+                else
+                  echo "❌ All upload methods failed"
+                  exit 1
+                fi
+              fi
+              sleep 5
+            fi
+          done
+          
+          # Verify upload
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'VERIFYEOF'
+            if [ ! -f "/tmp/deployment.tar.gz" ]; then
+              echo "ERROR: deployment.tar.gz not found on EC2!"
+              exit 1
+            fi
+            echo "✅ File uploaded successfully"
+            ls -lh /tmp/deployment.tar.gz
+            # Verify file integrity
+            if ! tar -tzf /tmp/deployment.tar.gz > /dev/null 2>&1; then
+              echo "ERROR: deployment.tar.gz is corrupted!"
+              exit 1
+            fi
+            echo "✅ File integrity verified"
+          VERIFYEOF
           
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
             set -e
