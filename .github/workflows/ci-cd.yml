@@ -143,17 +143,24 @@ jobs:
 
       - name: Create deployment package
         run: |
-          # Create deployment package with all necessary files
+          # Create deployment package WITHOUT node_modules (we'll install on EC2)
+          # This makes the package much smaller and faster to transfer
+          echo "Creating deployment package (excluding node_modules)..."
           tar -czf deployment.tar.gz \
             .next \
             src \
             public \
             package.json \
             package-lock.json \
-            node_modules \
             next.config.ts \
-            tsconfig.json \
-            2>/dev/null || true
+            tsconfig.json
+          
+          # Verify package integrity
+          echo "Verifying package integrity..."
+          if ! tar -tzf deployment.tar.gz > /dev/null 2>&1; then
+            echo "ERROR: Failed to create valid tar archive!"
+            exit 1
+          fi
           
           # Verify .next is in the package
           echo "Verifying deployment package contents..."
@@ -164,8 +171,16 @@ jobs:
             exit 1
           fi
           
+          # Verify src is in the package
+          if ! tar -tzf deployment.tar.gz | grep -q "^src/"; then
+            echo "ERROR: src folder not included in deployment package!"
+            exit 1
+          fi
+          
           echo "✅ Deployment package created successfully"
           echo "Package size: $(du -h deployment.tar.gz | cut -f1)"
+          echo "Package contents preview:"
+          tar -tzf deployment.tar.gz | head -10
 
       - name: Configure SSH
         run: |
@@ -266,19 +281,23 @@ jobs:
             cd "\$APP_DIR"
             
             # Clean old files (keep backups safe)
-            rm -rf .next public node_modules 2>/dev/null || true
+            rm -rf .next public src node_modules 2>/dev/null || true
             
             # Extract deployment package
+            echo "Extracting deployment package..."
             tar -xzf /tmp/deployment.tar.gz
             
-            # Verify .next folder exists after extraction
+            # Verify extraction
             if [ ! -d ".next" ]; then
               echo "ERROR: .next folder not found after extraction!"
               echo "Listing extracted files:"
               ls -la
-              echo "Package contents:"
-              tar -tzf /tmp/deployment.tar.gz | head -20
-              echo "Rebuilding on EC2 as fallback..."
+              echo "Checking package integrity..."
+              if ! tar -tzf /tmp/deployment.tar.gz > /dev/null 2>&1; then
+                echo "ERROR: Package is corrupted!"
+                exit 1
+              fi
+              echo "Package is valid, but .next missing. Rebuilding..."
               # Install all dependencies (including dev) for build
               npm ci
               npm run build
@@ -286,14 +305,11 @@ jobs:
               npm ci --production
             else
               echo "✅ .next folder extracted successfully"
-              # Only install production dependencies if node_modules is missing or incomplete
-              if [ ! -d "node_modules" ] || [ ! -f "node_modules/.package-lock.json" ]; then
-                echo "Installing production dependencies..."
-                npm ci --production
-              else
-                echo "✅ node_modules already present, skipping npm install"
-              fi
             fi
+            
+            # Always install production dependencies (node_modules not in package)
+            echo "Installing production dependencies..."
+            npm ci --production
             
             # Create .env.production file if environment variables are provided
             if [ -n "\$API_BASE_URL" ]; then
