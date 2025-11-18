@@ -279,7 +279,7 @@ jobs:
             echo "✅ File integrity verified"
           VERIFYEOF
           
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
             set -e
             
             # Variables
