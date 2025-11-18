@@ -411,7 +411,7 @@ jobs:
             echo "        proxy_pass http://localhost:3000;" | sudo tee -a /etc/nginx/conf.d/tumlinson-frontend.conf > /dev/null
             echo "        proxy_http_version 1.1;" | sudo tee -a /etc/nginx/conf.d/tumlinson-frontend.conf > /dev/null
             echo "        proxy_set_header Upgrade \$http_upgrade;" | sudo tee -a /etc/nginx/conf.d/tumlinson-frontend.conf > /dev/null
-            echo "        proxy_set_header Connection \"upgrade\";" | sudo tee -a /etc/nginx/conf.d/tumlinson-frontend.conf > /dev/null
+            echo '        proxy_set_header Connection "upgrade";' | sudo tee -a /etc/nginx/conf.d/tumlinson-frontend.conf > /dev/null
             echo "        proxy_set_header Host \$host;" | sudo tee -a /etc/nginx/conf.d/tumlinson-frontend.conf > /dev/null
             echo "        proxy_cache_bypass \$http_upgrade;" | sudo tee -a /etc/nginx/conf.d/tumlinson-frontend.conf > /dev/null
             echo "        proxy_set_header X-Real-IP \$remote_addr;" | sudo tee -a /etc/nginx/conf.d/tumlinson-frontend.conf > /dev/null
