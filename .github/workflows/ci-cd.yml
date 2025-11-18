@@ -1,0 +1,173 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+env:
+  NODE_VERSION: '20.x'
+
+jobs:
+  # Build and Test Job
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+          NEXT_PUBLIC_API_BASE_URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL || '' }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: |
+            .next
+            public
+            package.json
+            package-lock.json
+            node_modules
+          retention-days: 1
+
+  # Deploy to EC2 (only on main branch)
+  deploy:
+    name: Deploy to AWS EC2
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: .
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install production dependencies
+        run: npm ci --production
+
+      - name: Create deployment package
+        run: |
+          tar -czf deployment.tar.gz \
+            .next \
+            public \
+            package.json \
+            package-lock.json \
+            node_modules \
+            next.config.ts \
+            tsconfig.json \
+            .env.production 2>/dev/null || true
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to EC2
+        run: |
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no deployment.tar.gz ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/tmp/
+          
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
+            set -e
+            
+            # Variables
+            APP_DIR="${{ secrets.EC2_APP_DIR }}"
+            API_BASE_URL="${{ secrets.NEXT_PUBLIC_API_BASE_URL }}"
+            BACKUP_DIR="/tmp/backup-$(date +%Y%m%d-%H%M%S)"
+            
+            # Create app directory if it doesn't exist (with proper permissions)
+            if [ ! -d "\$APP_DIR" ]; then
+              echo "Creating application directory: \$APP_DIR"
+              # Try to create with sudo if needed, fallback to user directory
+              sudo mkdir -p "\$APP_DIR" 2>/dev/null || mkdir -p "\$APP_DIR"
+              # Set ownership to current user
+              sudo chown -R \$USER:\$USER "\$APP_DIR" 2>/dev/null || chown -R \$USER:\$USER "\$APP_DIR" 2>/dev/null || true
+            fi
+            
+            # Create backup
+            if [ -d "\$APP_DIR" ] && [ "\$(ls -A \$APP_DIR 2>/dev/null)" ]; then
+              echo "Creating backup..."
+              mkdir -p "\$BACKUP_DIR"
+              cp -r "\$APP_DIR" "\$BACKUP_DIR/" || true
+            fi
+            
+            # Extract deployment package
+            echo "Extracting deployment package..."
+            cd "\$APP_DIR"
+            tar -xzf /tmp/deployment.tar.gz
+            
+            # Create .env.production file if environment variables are provided
+            if [ -n "\$API_BASE_URL" ]; then
+              echo "Creating .env.production file..."
+              cat > .env.production << ENVEOF
+NODE_ENV=production
+NEXT_PUBLIC_API_BASE_URL=\$API_BASE_URL
+ENVEOF
+            fi
+            
+            # Install/update dependencies
+            echo "Installing dependencies..."
+            npm ci --production
+            
+            # Restart application using PM2
+            echo "Restarting application..."
+            if pm2 list | grep -q "tumlinson-frontend"; then
+              pm2 restart tumlinson-frontend
+            else
+              pm2 start npm --name "tumlinson-frontend" -- start
+              pm2 save
+            fi
+            
+            # Cleanup
+            rm -f /tmp/deployment.tar.gz
+            echo "Deployment completed successfully!"
+          EOF
+
+      - name: Verify deployment
+        run: |
+          sleep 5
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'ENDSSH'
+            if pm2 list | grep -q "tumlinson-frontend.*online"; then
+              echo "✅ Application is running successfully!"
+              pm2 status
+            else
+              echo "❌ Application failed to start"
+              pm2 logs tumlinson-frontend --lines 50
+              exit 1
+            fi
+          ENDSSH
+
