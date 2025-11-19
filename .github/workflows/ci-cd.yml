@@ -23,6 +23,8 @@ jobs:
         run: npm ci
 
       - name: Build Next.js Project
+        env:
+          NEXT_PUBLIC_API_BASE_URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL }}
         run: npm run build
 
       - name: Verify Build Output
