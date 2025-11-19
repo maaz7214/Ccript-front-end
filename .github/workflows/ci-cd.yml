@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18"
+          cache: "npm"
 
       - name: Install Dependencies
         run: npm ci
@@ -24,8 +25,18 @@ jobs:
       - name: Build Next.js Project
         run: npm run build
 
+      - name: Verify Build Output
+        run: |
+          if [ ! -d ".next" ]; then
+            echo "Error: .next directory not found after build"
+            exit 1
+          fi
+          echo "Build output verified"
+
       - name: Package Build Files
-        run: tar -czf deployment.tar.gz .next package.json package-lock.json next.config.ts public
+        run: |
+          tar -czf deployment.tar.gz .next package.json package-lock.json next.config.ts public
+          ls -lh deployment.tar.gz
 
       - name: Copy Files to EC2
         uses: appleboy/scp-action@v0.1.7
@@ -35,6 +46,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "deployment.tar.gz"
           target: "/home/ec2-user/Tumlinson-Frontend"
+          strip_components: 0
 
       - name: Deploy on EC2
         uses: appleboy/ssh-action@v1.0.3
@@ -44,10 +56,34 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             set -e
-            cd /home/ec2-user/Tumlinson-Frontend
+            echo "Starting deployment..."
+            cd /home/ec2-user/Tumlinson-Frontend || { echo "Error: Directory not found"; exit 1; }
+            
+            echo "Extracting deployment package..."
+            if [ ! -f "deployment.tar.gz" ]; then
+              echo "Error: deployment.tar.gz not found"
+              exit 1
+            fi
             tar -xzf deployment.tar.gz
             rm -f deployment.tar.gz
+            
+            echo "Cleaning up old node_modules..."
             rm -rf node_modules
-            npm install --omit=dev
-            pm2 restart tumlinson-frontend || pm2 start npm --name "tumlinson-frontend" -- start
+            
+            echo "Installing production dependencies..."
+            npm install --omit=dev --prefer-offline --no-audit
+            
+            echo "Checking PM2 status..."
+            if pm2 list | grep -q "tumlinson-frontend"; then
+              echo "Restarting existing PM2 process..."
+              pm2 restart tumlinson-frontend
+            else
+              echo "Starting new PM2 process..."
+              pm2 start npm --name "tumlinson-frontend" -- start
+            fi
+            
+            echo "Saving PM2 configuration..."
             pm2 save
+            
+            echo "Deployment completed successfully!"
+            pm2 list
