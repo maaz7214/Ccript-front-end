@@ -45,7 +45,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "deployment.tar.gz"
-          target: "/home/ec2-user/Tumlinson-Frontend"
+          target: "/var/www/Tumlinson-Frontend"
           strip_components: 0
 
       - name: Deploy on EC2
@@ -57,7 +57,7 @@ jobs:
           script: |
             set -e
             echo "Starting deployment..."
-            cd /home/ec2-user/Tumlinson-Frontend || { echo "Error: Directory not found"; exit 1; }
+            cd /var/www/Tumlinson-Frontend || { echo "Error: Directory not found"; exit 1; }
             
             echo "Extracting deployment package..."
             if [ ! -f "deployment.tar.gz" ]; then
@@ -71,7 +71,7 @@ jobs:
             rm -rf node_modules
             
             echo "Installing production dependencies..."
-            npm install --omit=dev --prefer-offline --no-audit
+            npm ci --omit=dev --prefer-offline --no-audit --progress=false || npm install --omit=dev --prefer-offline --no-audit --progress=false
             
             echo "Checking PM2 status..."
             if pm2 list | grep -q "tumlinson-frontend"; then
