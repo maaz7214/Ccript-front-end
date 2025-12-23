@@ -20,6 +20,13 @@ const sidebarItems: SidebarItem[] = [
     activeIcon: '/dashboard-icon-active.svg',
   },
   {
+    id: 'quantity-take-off',
+    label: 'Qto',
+    href: '/quantity-take-off',
+    icon: '/qto.svg',
+    activeIcon: '/qto-active.svg',
+  },
+  {
     id: 'tracking',
     label: 'Tracking',
     href: '/tracking',
@@ -39,6 +46,9 @@ export default function Sidebar() {
   const isActive = (href: string) => {
     if (href === '/dashboard') {
       return pathname === '/dashboard';
+    }
+    if (href === '/quantity-take-off') {
+      return pathname === '/quantity-take-off';
     }
     if (href === '/tracking') {
       return pathname === '/tracking';
