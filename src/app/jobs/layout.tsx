@@ -2,11 +2,11 @@ import { Header, Sidebar } from '@/features/dashboard';
 import ProtectedRoute from '@/features/dashboard/components/ProtectedRoute';
 import { JobsProvider } from '@/contexts/JobsContext';
 
-interface QuantityTakeOffLayoutProps {
+interface JobsLayoutProps {
   children: React.ReactNode;
 }
 
-export default function QuantityTakeOffLayout({ children }: QuantityTakeOffLayoutProps) {
+export default function JobsLayout({ children }: JobsLayoutProps) {
   return (
     <ProtectedRoute>
       <JobsProvider>
