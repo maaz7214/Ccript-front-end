@@ -11,6 +11,7 @@ A modern, full-featured file management dashboard built with Next.js 16, featuri
 - **Icons:** [Lucide React](https://lucide.dev/)
 - **State Management:** React Hooks (useState, useEffect, useCallback)
 - **Real-time:** WebSocket for upload progress tracking
+- **Excel Export:** [SheetJS](https://sheetjs.com/) for .xlsx file generation
 - **Development:** ESLint for code quality
 
 ## ✨ Features
@@ -31,6 +32,15 @@ A modern, full-featured file management dashboard built with Next.js 16, featuri
 - **Pagination:** Customizable items per page (10, 25, 50, 100, All)
 - **Navigation History:** Browser-like back/forward navigation
 - **Visual Feedback:** Loading states, error handling, empty states
+
+### 📊 Quantity Take-Off Management
+- **Interactive Tables:** Responsive data tables with horizontal scroll optimization
+- **Excel Export:** Download complete table data in Excel format (.xlsx)
+- **Data Editing:** In-line editing capabilities for table cells
+- **Folder Navigation:** Browse through quantity take-off folder structures
+- **Real-time Updates:** Live data updates with optimistic UI
+- **Responsive Design:** Mobile-first table design with proper column sizing
+- **Drag & Drop:** File upload with drag-and-drop interface
 
 ### 📊 Tracking Page
 - CSV data visualization in table format
@@ -64,6 +74,14 @@ src/
 │   ├── dashboard/                 # Dashboard page
 │   │   ├── layout.tsx
 │   │   └── page.tsx
+│   ├── jobs/                      # Jobs management page
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── quantity-take-off/         # Quantity Take-Off pages
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── [folderId]/
+│   │       └── page.tsx           # Dynamic folder view
 │   ├── tracking/                  # Tracking page
 │   │   └── page.tsx
 │   ├── globals.css
@@ -71,6 +89,7 @@ src/
 │   └── page.tsx                   # Home page
 ├── components/
 │   ├── ui/                        # Reusable UI components
+│   │   ├── accordion.tsx
 │   │   ├── alert-dialog.tsx
 │   │   ├── button.tsx
 │   │   ├── card.tsx
@@ -97,9 +116,25 @@ src/
 │   │   │   └── UserAvatar.tsx
 │   │   └── utils/
 │   │       └── userUtils.ts
+│   ├── jobs/                      # Jobs management feature
+│   │   └── components/
+│   │       ├── JobCard.tsx
+│   │       ├── JobFilters.tsx
+│   │       ├── JobList.tsx
+│   │       └── JobsContent.tsx
+│   ├── quantity-take-off/         # Quantity Take-Off feature
+│   │   └── components/
+│   │       ├── DragDropFolder.tsx
+│   │       ├── FolderCard.tsx
+│   │       ├── FolderDetailsContent.tsx
+│   │       ├── FolderDetailsTable.tsx
+│   │       ├── FolderGrid.tsx
+│   │       └── QuantityTakeOffContent.tsx
 │   └── tracking/                  # Tracking feature
 │       └── components/
 │           └── TrackingTable.tsx
+├── contexts/
+│   └── JobsContext.tsx            # Jobs state management
 ├── hooks/
 │   └── useAuth.ts                 # Authentication hook
 ├── lib/
@@ -110,6 +145,7 @@ src/
 └── types/
     ├── api.ts                     # API type definitions
     ├── dashboard.ts               # Dashboard type definitions
+    ├── jobs.ts                    # Jobs type definitions
     └── global.d.ts                # Global types
 ```
 
@@ -132,6 +168,12 @@ src/
    ```bash
    npm install
    ```
+   
+   **Key Dependencies:**
+   - `xlsx` - Excel file generation and manipulation
+   - `@radix-ui/react-*` - UI component primitives
+   - `lucide-react` - Icon library
+   - `tailwindcss` - Utility-first CSS framework
 
 3. **Set up environment variables**
    
@@ -168,13 +210,20 @@ src/
 
 The application integrates with the following API endpoints:
 
+**General:**
 - `GET /api/config` - Get storage configuration
 - `GET /api/structure?page=1&limit=50&search=query` - Get file/folder structure
+
+**File Management:**
 - `POST /api/upload-multiple` - Upload multiple files
 - `DELETE /api/files/:path` - Delete a file
 - `DELETE /api/folders/:path` - Delete a folder
-- `GET /api/tracking?search=query` - Get tracking data
 - `WS /ws/:clientId` - WebSocket for upload progress
+
+**Tracking & Jobs:**
+- `GET /api/tracking?search=query` - Get tracking data
+
+**Authentication:**
 - `GET /api/auth/me` - Get current user info
 - `POST /api/auth/login` - User login
 - `POST /api/auth/logout` - User logout
@@ -220,6 +269,36 @@ The application integrates with the following API endpoints:
 4. Use Forward/Back buttons to scroll horizontally through columns
 5. Refresh data using the refresh button
 
+### Quantity Take-Off
+
+1. **Navigate to Quantity Take-Off:**
+   - Use the sidebar to navigate to `/quantity-take-off`
+   - Browse through available folders in grid view
+
+2. **Folder Management:**
+   - View folders as interactive cards with hover effects
+   - Click on any folder to enter and view its contents
+   - Use breadcrumb navigation to navigate back to parent folders
+
+3. **Table View & Data Management:**
+   - View structured data in responsive tables optimized for horizontal viewing
+   - Tables automatically adjust to fit screen width while maintaining readability
+   - Scroll horizontally through all columns without layout issues
+   - Edit data directly in table cells with inline editing functionality
+
+4. **Excel Export Feature:**
+   - Click the "Export to Excel" button in folder detail views
+   - Downloads complete table data including all columns and rows
+   - Exported file includes: Item Code, Description, Unit, Rate, Job quantities, Running totals
+   - File format: Excel (.xlsx) with proper column headers and data formatting
+   - Filename automatically generated with folder name and timestamp
+
+5. **Responsive Design:**
+   - Tables scale properly on different screen sizes
+   - Mobile-optimized layout with touch-friendly interactions
+   - Compact column spacing for better data visibility
+   - Proper padding and margins for improved readability
+
 ### Authentication
 
 - All dashboard routes are protected
@@ -256,6 +335,19 @@ The application integrates with the following API endpoints:
 
 ## 🚀 Recent Updates
 
+### Quantity Take-Off Feature Implementation
+- **Excel Export:** Added comprehensive Excel export functionality using SheetJS library
+- **Responsive Tables:** Optimized table layouts for horizontal viewing across all screen sizes
+- **Data Management:** Implemented inline editing capabilities for table cells
+- **Folder Navigation:** Added hierarchical folder navigation with breadcrumb support
+- **Mobile Optimization:** Enhanced mobile responsiveness with touch-friendly interactions
+
+### Table Responsiveness Improvements
+- **Horizontal Fit:** Fixed tables to fit perfectly within screen boundaries
+- **Column Optimization:** Improved column width distribution for better space utilization
+- **Compact Design:** Reduced padding and optimized spacing for better data density
+- **Scroll Optimization:** Enhanced horizontal scrolling experience with proper constraints
+
 ### Server Actions Implementation
 - **Tracking Page:** Converted to server component with server actions
 - **Data Fetching:** Server-side data fetching with Suspense for better performance
@@ -291,9 +383,17 @@ The application integrates with the following API endpoints:
 - **Cause:** CSV file not found in storage
 - **Fix:** Ensure the tracking CSV file exists in the configured storage location
 
-### Issue: Page not rendering or taking too long
-- **Cause:** Server action or API call is slow
-- **Fix:** Check network tab for failed requests, verify API is accessible
+### Issue: Excel export not working or downloads empty file
+- **Cause:** Data not properly formatted or SheetJS library not loaded
+- **Fix:** Check browser console for errors, ensure xlsx package is installed
+
+### Issue: Table not fitting horizontally on screen
+- **Cause:** CSS conflicts or improper responsive design
+- **Fix:** Check viewport settings, ensure Tailwind CSS classes are applied correctly
+
+### Issue: Inline table editing not saving
+- **Cause:** API endpoint not responding or data format mismatch
+- **Fix:** Check network requests, verify data structure matches API expectations
 
 ## 🧩 Component Architecture
 

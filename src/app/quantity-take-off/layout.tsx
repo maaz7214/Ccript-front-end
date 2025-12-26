@@ -14,8 +14,8 @@ export default function QuantityTakeOffLayout({ children }: QuantityTakeOffLayou
           <Header />
           <div className="flex">
             <Sidebar />
-            <main className="flex-1 p-6 ml-20">
-              <div className="">
+            <main className="flex-1 p-4 ml-20 overflow-hidden">
+              <div className="w-full max-w-none">
                 {children}
               </div>
             </main>

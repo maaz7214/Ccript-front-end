@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import FolderDetailsTable from './FolderDetailsTable';
 import type { FolderTableRow } from './FolderDetailsTable';
+import * as XLSX from 'xlsx';
 
 interface FolderDetailsContentProps {
   folderId: string;
@@ -240,17 +241,94 @@ export default function FolderDetailsContent({
   };
 
   const handleDownload = () => {
-    console.log('Download clicked');
-    // Add download logic here
+    try {
+      // Filter data based on search query if there is one
+      const dataToExport = searchQuery 
+        ? filteredData 
+        : (isEditMode ? editedData : tableData);
+
+      // Prepare data for Excel export with all table columns
+      const exportData = dataToExport.map((row, index) => ({
+        'S.No': index + 1,
+        'ID': row.id,
+        'Description': row.description,
+        'Date': row.date,
+        'Trade Price': row.tradePrice,
+        'Unit': row.unit,
+        'Disc %': row.discPercent || '',
+        'Link Price': row.linkPrice || '',
+        'Cost Adj %': row.costAdjPercent || '',
+        'Net Cost': row.netCost || '',
+        'DB Labor': row.dbLabor || '',
+        'Labor': row.labor || '',
+        'Unit 2': row.unit2 || '',
+        'Lab Adj %': row.labAdjPercent || '',
+        'Total Material': row.totalMaterial || '',
+        'Total Hours': row.totalHours || ''
+      }));
+
+      // Create a new workbook and worksheet
+      const workbook = XLSX.utils.book_new();
+      const worksheet = XLSX.utils.json_to_sheet(exportData);
+
+      // Set column widths for better formatting
+      const columnWidths = [
+        { wch: 8 },   // S.No
+        { wch: 12 },  // ID
+        { wch: 30 },  // Description
+        { wch: 12 },  // Date
+        { wch: 12 },  // Trade Price
+        { wch: 8 },   // Unit
+        { wch: 10 },  // Disc %
+        { wch: 12 },  // Link Price
+        { wch: 12 },  // Cost Adj %
+        { wch: 12 },  // Net Cost
+        { wch: 12 },  // DB Labor
+        { wch: 10 },  // Labor
+        { wch: 8 },   // Unit 2
+        { wch: 12 },  // Lab Adj %
+        { wch: 15 },  // Total Material
+        { wch: 12 }   // Total Hours
+      ];
+      worksheet['!cols'] = columnWidths;
+
+      // Style the header row
+      const range = XLSX.utils.decode_range(worksheet['!ref'] || 'A1');
+      for (let col = range.s.c; col <= range.e.c; col++) {
+        const cellAddress = XLSX.utils.encode_cell({ r: 0, c: col });
+        if (!worksheet[cellAddress]) continue;
+        
+        worksheet[cellAddress].s = {
+          font: { bold: true, color: { rgb: "FFFFFF" } },
+          fill: { fgColor: { rgb: "009689" } },
+          alignment: { horizontal: "center", vertical: "center" }
+        };
+      }
+
+      // Add the worksheet to the workbook
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Quantity Take-Off');
+
+      // Generate filename with current date and folder name
+      const currentDate = new Date().toISOString().split('T')[0];
+      const filename = `${folderName}_QuantityTakeOff_${currentDate}.xlsx`;
+
+      // Save the file
+      XLSX.writeFile(workbook, filename);
+
+      console.log(`Excel file downloaded: ${filename}`);
+    } catch (error) {
+      console.error('Error exporting to Excel:', error);
+      // You could add a toast notification here to inform the user of the error
+    }
   };
 
   return (
-    <div className="space-y-6 w-full max-w-full overflow-hidden">
+    <div className="space-y-4 w-full max-w-none overflow-hidden">
       {/* Welcome Header */}
       <h1 className="text-2xl font-bold text-gray-900">
         Welcome {userName}
       </h1>
-      <div className="flex items-center justify-between w-full">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between w-full gap-4">
         {/* Breadcrumb */}
         <div className="flex items-center text-sm text-gray-600">
           <button 
@@ -264,9 +342,9 @@ export default function FolderDetailsContent({
         </div>
 
         {/* Action Bar */}
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           {/* Search */}
-          <div className="relative w-64">
+          <div className="relative w-full sm:w-64">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
               type="text"
@@ -277,44 +355,47 @@ export default function FolderDetailsContent({
             />
           </div>
 
-          {/* Download Button */}
-          <Button
-            variant="outline"
-            onClick={handleDownload}
-            className="flex items-center gap-2"
-          >
-            <Download className="h-4 w-4" />
-          </Button>
+          <div className="flex items-center gap-2">
+            {/* Download Button */}
+            <Button
+              variant="outline"
+              onClick={handleDownload}
+              className="flex items-center gap-2"
+            >
+              <Download className="h-4 w-4" />
+              <span className="hidden sm:inline">Export to Excel</span>
+            </Button>
 
-          {/* Edit/Save Button */}
-          {isEditMode ? (
-            <>
-              <Button
-                onClick={handleCancel}
-                variant="outline"
-                className="border-gray-300"
-              >
-                Cancel
-              </Button>
+            {/* Edit/Save Button */}
+            {isEditMode ? (
+              <>
+                <Button
+                  onClick={handleCancel}
+                  variant="outline"
+                  className="border-gray-300"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleEdit}
+                  className="bg-[#009689] hover:bg-[#007f75] text-white"
+                >
+                  Save
+                </Button>
+              </>
+            ) : (
               <Button
                 onClick={handleEdit}
                 className="bg-[#009689] hover:bg-[#007f75] text-white"
               >
-                Save
+                Edit
               </Button>
-            </>
-          ) : (
-            <Button
-              onClick={handleEdit}
-              className="bg-[#009689] hover:bg-[#007f75] text-white"
-            >
-              Edit
-            </Button>
-          )}
+            )}
+          </div>
         </div>
       </div>
       {/* Table */}
-      <div className="w-full max-w-[1700px]">
+      <div className="w-full overflow-hidden">
         <FolderDetailsTable 
           data={filteredData} 
           isEditMode={isEditMode}

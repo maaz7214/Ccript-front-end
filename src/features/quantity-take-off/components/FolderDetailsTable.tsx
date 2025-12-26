@@ -100,12 +100,12 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
           type="text"
           value={value || ''}
           onChange={(e) => onCellChange(rowId, field, e.target.value)}
-          className={`h-8 px-2 text-sm border-gray-300 focus:border-[#009689] focus:ring-[#009689] ${className}`}
+          className={`h-7 px-2 text-xs border-gray-300 focus:border-[#009689] focus:ring-[#009689] w-full ${className}`}
           onClick={(e) => e.stopPropagation()}
         />
       );
     }
-    return <span className={className}>{value || ''}</span>;
+    return <span className={`${className} block truncate`} title={value}>{value || ''}</span>;
   };
 
   const columns = [
@@ -165,7 +165,7 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
   return (
     <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
       {/* Table Container - Prevents horizontal overflow */}
-      <div className="w-full max-w-full overflow-hidden">
+      <div className="w-full overflow-hidden">
         {/* Table Scroll Container */}
         <div 
           ref={tableScrollRef}
@@ -173,31 +173,100 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
           onScroll={updateScrollButtons}
           style={{ scrollbarWidth: 'thin' }}
         >
-          <table style={{ minWidth: '1200px' }}>
+          <table className="w-full table-fixed" style={{ minWidth: 'max(1200px, 100vw - 200px)' }}>
           {/* Header */}
           <thead className="bg-gray-50 border-b border-gray-200 sticky top-0 z-10">
             <tr>
-              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider bg-gray-50 border-r border-gray-200">
+              <th className="w-12 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider bg-gray-50 border-r border-gray-200">
                 <div className="flex items-center gap-1">
                   #
                   <ArrowDown className="h-3 w-3 text-gray-400" />
                 </div>
               </th>
-              {columns.map((column, colIndex) => (
-                <th
-                  key={column.key}
-                  className={`px-5 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50 ${
-                    colIndex < columns.length - 1 ? 'border-r border-gray-200' : ''
-                  }`}
-                >
-                  <div className="flex items-center gap-1">
-                    {column.label}
-                    {column.sortable && (
-                      <ArrowDown className="h-3 w-3 text-gray-400" />
-                    )}
-                  </div>
-                </th>
-              ))}
+              <th className="w-64 px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider bg-gray-50 border-r border-gray-200">
+                <div className="flex items-center gap-1">
+                  Description
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
+              <th className="w-24 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50 border-r border-gray-200">
+                <div className="flex items-center gap-1">
+                  Date
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
+              <th className="w-24 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50 border-r border-gray-200">
+                <div className="flex items-center gap-1">
+                  Trade Price
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
+              <th className="w-16 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50 border-r border-gray-200">
+                <div className="flex items-center gap-1">
+                  Unit
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
+              <th className="w-20 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50 border-r border-gray-200">
+                <div className="flex items-center gap-1">
+                  Disc %
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
+              <th className="w-24 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50 border-r border-gray-200">
+                <div className="flex items-center gap-1">
+                  Link Price
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
+              <th className="w-24 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50 border-r border-gray-200">
+                <div className="flex items-center gap-1">
+                  Cost Adj %
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
+              <th className="w-24 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50 border-r border-gray-200">
+                <div className="flex items-center gap-1">
+                  Net Cost
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
+              <th className="w-24 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50 border-r border-gray-200">
+                <div className="flex items-center gap-1">
+                  DB Labor
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
+              <th className="w-20 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50 border-r border-gray-200">
+                <div className="flex items-center gap-1">
+                  Labor
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
+              <th className="w-16 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50 border-r border-gray-200">
+                <div className="flex items-center gap-1">
+                  Unit
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
+              <th className="w-24 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50 border-r border-gray-200">
+                <div className="flex items-center gap-1">
+                  Lab Adj %
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
+              <th className="w-28 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50 border-r border-gray-200">
+                <div className="flex items-center gap-1">
+                  Total Material
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
+              <th className="w-24 px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap bg-gray-50">
+                <div className="flex items-center gap-1">
+                  Total Hours
+                  <ArrowDown className="h-3 w-3 text-gray-400" />
+                </div>
+              </th>
             </tr>
           </thead>
 
@@ -205,56 +274,58 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
           <tbody className="divide-y divide-gray-100">
             {paginatedData.length === 0 ? (
               <tr>
-                <td colSpan={columns.length + 1} className="px-5 py-8 text-center text-gray-500">
+                <td colSpan={15} className="px-4 py-8 text-center text-gray-500">
                   No data found
                 </td>
               </tr>
             ) : (
               paginatedData.map((row, index) => (
                 <tr key={row.id} className={`hover:bg-gray-50 ${isEditMode ? 'bg-blue-50/30' : ''}`}>
-                  <td className="px-5 py-4 text-sm text-gray-500 border-r border-gray-200">
+                  <td className="px-3 py-3 text-sm text-gray-500 border-r border-gray-200">
                     {startIndex + index + 1}
                   </td>
-                  <td className="px-5 py-4 border-r border-gray-200">
-                    {renderEditableCell(row.description, row.id, 'description', 'text-sm text-gray-900')}
+                  <td className="px-4 py-3 border-r border-gray-200">
+                    <div className="truncate max-w-xs" title={row.description}>
+                      {renderEditableCell(row.description, row.id, 'description', 'text-sm text-gray-900')}
+                    </div>
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap border-r border-gray-200">
+                  <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
                     {renderEditableCell(row.date, row.id, 'date', 'text-sm text-gray-900')}
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap border-r border-gray-200">
+                  <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
                     {renderEditableCell(row.tradePrice, row.id, 'tradePrice', 'text-sm text-gray-900')}
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap border-r border-gray-200">
+                  <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
                     {renderEditableCell(row.unit, row.id, 'unit', 'text-sm text-gray-900')}
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap border-r border-gray-200">
+                  <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
                     {renderEditableCell(row.discPercent || '', row.id, 'discPercent', 'text-sm text-gray-900')}
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap border-r border-gray-200">
+                  <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
                     {renderEditableCell(row.linkPrice, row.id, 'linkPrice', 'text-sm text-gray-900')}
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap border-r border-gray-200">
+                  <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
                     {renderEditableCell(row.costAdjPercent, row.id, 'costAdjPercent', 'text-sm text-gray-900')}
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap border-r border-gray-200">
+                  <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
                     {renderEditableCell(row.netCost, row.id, 'netCost', 'text-sm text-gray-900')}
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap border-r border-gray-200">
+                  <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
                     {renderEditableCell(row.dbLabor, row.id, 'dbLabor', 'text-sm text-gray-900')}
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap border-r border-gray-200">
+                  <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
                     {renderEditableCell(row.labor, row.id, 'labor', 'text-sm text-gray-900')}
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap border-r border-gray-200">
+                  <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
                     {renderEditableCell(row.unit2, row.id, 'unit2', 'text-sm text-gray-900')}
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap border-r border-gray-200">
+                  <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
                     {renderEditableCell(row.labAdjPercent, row.id, 'labAdjPercent', 'text-sm text-gray-900')}
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap border-r border-gray-200">
+                  <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
                     {renderEditableCell(row.totalMaterial, row.id, 'totalMaterial', 'text-sm text-gray-900')}
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap">
+                  <td className="px-3 py-3 whitespace-nowrap">
                     {renderEditableCell(row.totalHours, row.id, 'totalHours', 'text-sm text-gray-900')}
                   </td>
                 </tr>
@@ -265,7 +336,7 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
         </div>
 
         {/* Scroll Navigation Buttons */}
-        <div className="flex items-center justify-center gap-4 py-4 border-t border-gray-200 bg-gray-50">
+        <div className="flex items-center justify-center gap-4 py-3 border-t border-gray-200 bg-gray-50">
           <Button
             variant="outline"
             size="sm"
@@ -291,7 +362,7 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2 px-5 py-4 border-t border-gray-200 bg-gray-50">
+        <div className="flex items-center justify-center gap-2 px-4 py-3 border-t border-gray-200 bg-gray-50">
           <Button
             variant="ghost"
             size="sm"
