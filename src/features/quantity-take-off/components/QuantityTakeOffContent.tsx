@@ -8,6 +8,7 @@ import DragDropFolder from './DragDropFolder';
 import FolderGrid from './FolderGrid';
 import type { FolderCardData } from './FolderCard';
 import { useJobs } from '@/contexts/JobsContext';
+import { uploadFolder, loadFolders } from '@/services/qtoService';
 
 interface QuantityTakeOffContentProps {
   initialFolders: FolderCardData[];
@@ -62,6 +63,8 @@ function getFolderName(files: FileList): string {
 export default function QuantityTakeOffContent({ initialFolders, userName }: QuantityTakeOffContentProps) {
   const router = useRouter();
   const [folders, setFolders] = useState<FolderCardData[]>(initialFolders);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const { addJob, getJobCounts } = useJobs();
   const jobCounts = getJobCounts();
 
@@ -86,51 +89,76 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
     }
   }, [initialFolders]);
 
-  const handleFolderUpload = useCallback((files: FileList) => {
+  const handleFolderUpload = useCallback(async (files: FileList) => {
     if (files.length === 0) return;
 
-    // Calculate folder info
-    const folderName = getFolderName(files);
-    const totalSize = calculateTotalSize(files);
-    const formattedSize = formatFileSize(totalSize);
-    const currentDate = formatDate(new Date());
+    setIsUploading(true);
+    setUploadError(null);
 
-    // Create new folder entry
-    const folderId = `folder-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    const newFolder: FolderCardData = {
-      id: folderId,
-      name: folderName,
-      date: currentDate,
-      size: formattedSize,
-      isNew: true,
-    };
+    try {
+      // Get folder name from files
+      const folderName = getFolderName(files);
+      
+      // Upload to API
+      const response = await uploadFolder(folderName, files);
+      
+      // Calculate folder info for display
+      const totalSize = calculateTotalSize(files);
+      const formattedSize = formatFileSize(totalSize);
+      const currentDate = formatDate(new Date());
 
-    // Store folder data in localStorage for retrieval on details page
-    if (typeof window !== 'undefined') {
-      const storedFolders = localStorage.getItem('qtoFolders');
-      const foldersMap = storedFolders ? JSON.parse(storedFolders) : {};
-      foldersMap[folderId] = {
-        name: folderName,
+      // Create new folder entry with API response data
+      const newFolder: FolderCardData = {
+        id: response.folder_id.toString(),
+        name: response.folder_name,
         date: currentDate,
         size: formattedSize,
+        isNew: true,
       };
-      localStorage.setItem('qtoFolders', JSON.stringify(foldersMap));
+
+      // Store folder data in localStorage for retrieval on details page
+      if (typeof window !== 'undefined') {
+        const storedFolders = localStorage.getItem('qtoFolders');
+        const foldersMap = storedFolders ? JSON.parse(storedFolders) : {};
+        foldersMap[newFolder.id] = {
+          name: newFolder.name,
+          date: newFolder.date,
+          size: newFolder.size,
+        };
+        localStorage.setItem('qtoFolders', JSON.stringify(foldersMap));
+      }
+
+      // Add to the beginning of the list (most recent first)
+      setFolders((prev) => [newFolder, ...prev]);
+
+      // Create a job for this upload
+      addJob(folderName);
+
+      // Optionally refresh folder list from server to get latest data
+      // This ensures we have the most up-to-date folder information
+      try {
+        const refreshedFolders = await loadFolders();
+        setFolders(refreshedFolders);
+      } catch (refreshError) {
+        console.error('Error refreshing folder list:', refreshError);
+        // Don't show error to user, we already added the folder locally
+      }
+
+      // Remove "New" badge after 5 seconds
+      setTimeout(() => {
+        setFolders((prev) =>
+          prev.map((folder) =>
+            folder.id === newFolder.id ? { ...folder, isNew: false } : folder
+          )
+        );
+      }, 5000);
+    } catch (error) {
+      console.error('Error uploading folder:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Failed to upload folder';
+      setUploadError(errorMessage);
+    } finally {
+      setIsUploading(false);
     }
-
-    // Add to the beginning of the list (most recent first)
-    setFolders((prev) => [newFolder, ...prev]);
-
-    // Create a job for this upload
-    addJob(folderName);
-
-    // Remove "New" badge after 5 seconds (optional)
-    setTimeout(() => {
-      setFolders((prev) =>
-        prev.map((folder) =>
-          folder.id === newFolder.id ? { ...folder, isNew: false } : folder
-        )
-      );
-    }, 5000);
   }, [addJob]);
 
   const handleFolderClick = useCallback((folder: FolderCardData) => {
@@ -168,7 +196,16 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
         </div>
         
         <div className="space-y-8">
-          <DragDropFolder onFolderUpload={handleFolderUpload} />
+          <DragDropFolder 
+            onFolderUpload={handleFolderUpload}
+            isUploading={isUploading}
+          />
+          
+          {uploadError && (
+            <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded">
+              {uploadError}
+            </div>
+          )}
           
           <FolderGrid 
             folders={folders}

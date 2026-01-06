@@ -6,9 +6,10 @@ import { Button } from '@/components/ui/button';
 
 interface DragDropFolderProps {
   onFolderUpload?: (files: FileList) => void;
+  isUploading?: boolean;
 }
 
-export default function DragDropFolder({ onFolderUpload }: DragDropFolderProps) {
+export default function DragDropFolder({ onFolderUpload, isUploading = false }: DragDropFolderProps) {
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -29,6 +30,8 @@ export default function DragDropFolder({ onFolderUpload }: DragDropFolderProps) 
     e.stopPropagation();
     setIsDragging(false);
 
+    if (isUploading) return;
+
     const files = e.dataTransfer.files;
     if (files && files.length > 0) {
       onFolderUpload?.(files);
@@ -44,6 +47,8 @@ export default function DragDropFolder({ onFolderUpload }: DragDropFolderProps) 
   };
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isUploading) return;
+
     const files = e.target.files;
     if (files && files.length > 0) {
       onFolderUpload?.(files);
@@ -57,7 +62,9 @@ export default function DragDropFolder({ onFolderUpload }: DragDropFolderProps) 
       <div
         className={`
           w-full border-2 border-dashed rounded-lg p-12 text-center transition-colors
-          ${isDragging 
+          ${isUploading 
+            ? 'border-gray-300 bg-gray-50 opacity-50 cursor-not-allowed'
+            : isDragging 
             ? 'border-[#009689] bg-[#009689]/5' 
             : 'border-gray-300 hover:border-gray-400 bg-white'
           }
@@ -77,13 +84,14 @@ export default function DragDropFolder({ onFolderUpload }: DragDropFolderProps) 
             />
           </div>
           <p className="text-lg text-gray-600">
-            Drag and drop folder here
+            {isUploading ? 'Uploading folder...' : 'Drag and drop folder here'}
           </p>
           <Button
             onClick={handleChooseFile}
-            className="bg-[#009689] hover:bg-[#007f75] text-white"
+            disabled={isUploading}
+            className="bg-[#009689] hover:bg-[#007f75] text-white disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Choose File
+            {isUploading ? 'Uploading...' : 'Choose File'}
           </Button>
         </div>
       </div>
