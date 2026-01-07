@@ -10,11 +10,10 @@ interface TrackingPageProps {
 }
 
 export default async function TrackingPage({ searchParams }: TrackingPageProps) {
-  // Await searchParams as it's now a Promise in Next.js 15+
+
   const params = await searchParams;
   const search = params.search || '';
 
-  // Load data server-side using server action
   const data = await loadTrackingAction(search);
 
   return (

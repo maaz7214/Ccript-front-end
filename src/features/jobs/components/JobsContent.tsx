@@ -1,37 +1,63 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Search, Trash2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
-import { useJobs } from '@/contexts/JobsContext';
 import JobList from './JobList';
 import JobFilters from './JobFilters';
-import type { JobStatus } from '@/types/jobs';
+import type { JobStatus, Job } from '@/types/jobs';
+import { getJobStatus } from '@/lib/jobUtils';
 
 interface JobsContentProps {
   userName: string;
+  initialJobs: Job[];
 }
 
-export default function JobsContent({ userName }: JobsContentProps) {
+export default function JobsContent({ userName, initialJobs }: JobsContentProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilter, setSelectedFilter] = useState<JobStatus | 'all'>('all');
   const [showClearDialog, setShowClearDialog] = useState(false);
-  const { getJobsByStatus, getJobCounts, clearJobs } = useJobs();
+  const [jobs, setJobs] = useState<Job[]>(initialJobs);
 
-  const jobs = getJobsByStatus(selectedFilter);
+  // Sync jobs when initialJobs changes (from server re-render)
+  useEffect(() => {
+    setJobs(initialJobs);
+  }, [initialJobs]);
+
+  // Filter jobs by status
+  const getJobsByStatus = (status: JobStatus | 'all'): Job[] => {
+    if (status === 'all') return jobs;
+    return jobs.filter((job) => getJobStatus(job) === status);
+  };
+
+  // Get job counts
+  const getJobCounts = () => {
+    return {
+      all: jobs.length,
+      'in-progress': jobs.filter((job) => getJobStatus(job) === 'in-progress').length,
+      queued: jobs.filter((job) => getJobStatus(job) === 'queued').length,
+      completed: jobs.filter((job) => getJobStatus(job) === 'completed').length,
+      failed: jobs.filter((job) => getJobStatus(job) === 'failed').length,
+    };
+  };
+
+  const filteredJobs = getJobsByStatus(selectedFilter);
   const counts = getJobCounts();
 
   // Filter jobs by search query
-  const filteredJobs = jobs.filter(
+  const searchFilteredJobs = filteredJobs.filter(
     (job) =>
-      job.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.jobId.toLowerCase().includes(searchQuery.toLowerCase())
+      job.folder_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      `job-${String(job.job_id).padStart(3, '0')}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      job.uploaded_by.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const handleClearJobs = () => {
-    clearJobs();
+    // Note: This would need a delete API endpoint to actually clear jobs
+    // For now, we'll just clear the local state
+    setJobs([]);
     setShowClearDialog(false);
   };
 
@@ -75,7 +101,7 @@ export default function JobsContent({ userName }: JobsContentProps) {
       />
 
       {/* Job List */}
-      <JobList jobs={filteredJobs} />
+      <JobList jobs={searchFilteredJobs} />
 
       {/* Clear Jobs Confirmation Dialog */}
       <AlertDialog open={showClearDialog} onOpenChange={setShowClearDialog}>

@@ -1,6 +1,5 @@
 'use client';
 
-import { Clock, CheckCircle2, XCircle, Loader2, ChevronDown } from 'lucide-react';
 import type { Job } from '@/types/jobs';
 import JobCard from './JobCard';
 
@@ -9,6 +8,7 @@ interface JobListProps {
 }
 
 export default function JobList({ jobs }: JobListProps) {
+
   if (jobs.length === 0) {
     return (
       <div className="text-center py-12 text-gray-500">
@@ -21,7 +21,7 @@ export default function JobList({ jobs }: JobListProps) {
   return (
     <div className="space-y-3">
       {jobs.map((job) => (
-        <JobCard key={job.id} job={job} />
+        <JobCard key={job.job_id} job={job} />
       ))}
     </div>
   );
