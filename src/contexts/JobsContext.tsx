@@ -16,7 +16,18 @@
  */
 
 import { createContext, useContext, useState, useCallback, useEffect, ReactNode, useRef } from 'react';
-import type { Job, JobStatus } from '@/types/jobs';
+import type { JobStatus } from '@/types/jobs';
+
+export interface Job {
+  id: string;
+  jobId: string;
+  name: string;
+  status: JobStatus;
+  progress?: number;
+  createdAt: Date;
+  completedAt?: Date;
+  error?: string;
+}
 
 // Constants for job simulation
 const STORAGE_KEY = 'jobs';
