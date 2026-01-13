@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import FolderDetailsTable from './FolderDetailsTable';
 import type { FolderTableRow } from './FolderDetailsTable';
+import { loadFolderCsvDataAction } from '@/app/actions/folders';
 import * as XLSX from 'xlsx';
 
 interface FolderDetailsContentProps {
@@ -40,162 +41,33 @@ export default function FolderDetailsContent({
 
   const folderName = getFolderName();
 
-  // TODO: Replace with actual data from API
-  const [tableData, setTableData] = useState<FolderTableRow[]>([
-    {
-      id: '1',
-      description: 'K1 (EXTERIOR WALL MOUNT IP066 RATED)',
-      date: '2/11/2014',
-      tradePrice: '75.90',
-      unit: 'E',
-      discPercent: '',
-      linkPrice: '71.00',
-      costAdjPercent: '10.00',
-      netCost: '83.49',
-      dbLabor: '95.00',
-      labor: '1.00',
-      unit2: 'E',
-      labAdjPercent: '29.00',
-      totalMaterial: '200.34',
-      totalHours: '5.16',
-    },
-    {
-      id: '2',
-      description: "A/E MANHOLE (8'x10'x6')",
-      date: '9/2/2016',
-      tradePrice: '130.18',
-      unit: 'C',
-      discPercent: '',
-      linkPrice: '60.11',
-      costAdjPercent: '10.00',
-      netCost: '71.99',
-      dbLabor: '13.00',
-      labor: '96.00',
-      unit2: 'E',
-      labAdjPercent: '29.00',
-      totalMaterial: '13.23',
-      totalHours: '122.55',
-    },
-    {
-      id: '3',
-      description: 'Chairs',
-      date: '9/2/2016',
-      tradePrice: '12 MB',
-      unit: 'D',
-      discPercent: '',
-      linkPrice: '60.11',
-      costAdjPercent: '10.00',
-      netCost: '65.00',
-      dbLabor: '27.50',
-      labor: '2.00',
-      unit2: 'E',
-      labAdjPercent: '29.00',
-      totalMaterial: '57.89',
-      totalHours: '78.34',
-    },
-    {
-      id: '4',
-      description: "S3 (STORAGE SHED 10'x12)",
-      date: '8/15/2016',
-      tradePrice: '250.00',
-      unit: 'E',
-      discPercent: '',
-      linkPrice: '200.00',
-      costAdjPercent: '15.00',
-      netCost: '230.00',
-      dbLabor: '150.00',
-      labor: '3.50',
-      unit2: 'E',
-      labAdjPercent: '29.00',
-      totalMaterial: '380.00',
-      totalHours: '4.52',
-    },
-    {
-      id: '5',
-      description: 'F4 (FIRE PIT)',
-      date: '7/20/2016',
-      tradePrice: '180.50',
-      unit: 'C',
-      discPercent: '',
-      linkPrice: '140.00',
-      costAdjPercent: '12.00',
-      netCost: '156.80',
-      dbLabor: '85.00',
-      labor: '2.25',
-      unit2: 'E',
-      labAdjPercent: '29.00',
-      totalMaterial: '241.80',
-      totalHours: '2.90',
-    },
-    {
-      id: '6',
-      description: 'W1 (WATER FOUNTAIN)',
-      date: '6/10/2016',
-      tradePrice: '320.75',
-      unit: 'E',
-      discPercent: '',
-      linkPrice: '250.00',
-      costAdjPercent: '20.00',
-      netCost: '300.00',
-      dbLabor: '200.00',
-      labor: '4.00',
-      unit2: 'E',
-      labAdjPercent: '29.00',
-      totalMaterial: '500.00',
-      totalHours: '5.16',
-    },
-    {
-      id: '7',
-      description: 'D1 (DECKING MATERIAL)',
-      date: '5/5/2016',
-      tradePrice: '95.25',
-      unit: 'D',
-      discPercent: '',
-      linkPrice: '75.00',
-      costAdjPercent: '8.00',
-      netCost: '81.00',
-      dbLabor: '50.00',
-      labor: '1.50',
-      unit2: 'E',
-      labAdjPercent: '29.00',
-      totalMaterial: '131.00',
-      totalHours: '1.94',
-    },
-    {
-      id: '8',
-      description: 'P2 (PERGOLA STRUCTURE)',
-      date: '4/18/2016',
-      tradePrice: '450.00',
-      unit: 'E',
-      discPercent: '',
-      linkPrice: '350.00',
-      costAdjPercent: '25.00',
-      netCost: '437.50',
-      dbLabor: '300.00',
-      labor: '6.00',
-      unit2: 'E',
-      labAdjPercent: '29.00',
-      totalMaterial: '737.50',
-      totalHours: '7.74',
-    },
-    {
-      id: '9',
-      description: 'E1 (ELECTRICAL SUPPLY BOX)',
-      date: '3/12/2016',
-      tradePrice: '125.50',
-      unit: 'C',
-      discPercent: '',
-      linkPrice: '100.00',
-      costAdjPercent: '11.00',
-      netCost: '111.00',
-      dbLabor: '75.00',
-      labor: '1.75',
-      unit2: 'E',
-      labAdjPercent: '29.00',
-      totalMaterial: '186.00',
-      totalHours: '2.26',
-    },
-  ]);
+  const [tableData, setTableData] = useState<FolderTableRow[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch CSV data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      setError(null);
+      
+      try {
+        console.log('Fetching folder CSV data for folderId:', folderId);
+        const data = await loadFolderCsvDataAction(folderId);
+        setTableData(data);
+      } catch (err) {
+        console.error('Error fetching folder CSV data:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load folder data');
+        setTableData([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (folderId) {
+      fetchData();
+    }
+  }, [folderId]);
 
   // Initialize edited data when entering edit mode
   useEffect(() => {
@@ -206,14 +78,14 @@ export default function FolderDetailsContent({
 
   const filteredData = (isEditMode ? editedData : tableData).filter(row =>
     row.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    row.date.includes(searchQuery) ||
-    row.tradePrice.includes(searchQuery)
+    row.takeoff_date.includes(searchQuery) ||
+    row.trade_price.includes(searchQuery)
   );
 
   const handleBack = () => {
     router.push('/quantity-take-off');
   };
-
+  console.log(editedData);
   const handleEdit = () => {
     if (isEditMode) {
       // Save changes
@@ -235,7 +107,7 @@ export default function FolderDetailsContent({
   const handleCellChange = (rowId: string, field: keyof FolderTableRow, value: string) => {
     setEditedData(prev => 
       prev.map(row => 
-        row.id === rowId ? { ...row, [field]: value } : row
+        row.id.toString() === rowId ? { ...row, [field]: value } : row
       )
     );
   };
@@ -252,19 +124,19 @@ export default function FolderDetailsContent({
         'S.No': index + 1,
         'ID': row.id,
         'Description': row.description,
-        'Date': row.date,
-        'Trade Price': row.tradePrice,
+        'Date': row.takeoff_date,
+        'Trade Price': row.trade_price,
         'Unit': row.unit,
-        'Disc %': row.discPercent || '',
-        'Link Price': row.linkPrice || '',
-        'Cost Adj %': row.costAdjPercent || '',
-        'Net Cost': row.netCost || '',
-        'DB Labor': row.dbLabor || '',
+        'Disc %': row.discount_percent || '',
+        'Link Price': row.link_price || '',
+        'Cost Adj %': row.cost_adjust_percent || '',
+        'Net Cost': row.net_cost || '',
+        'DB Labor': row.db_labor || '',
         'Labor': row.labor || '',
-        'Unit 2': row.unit2 || '',
-        'Lab Adj %': row.labAdjPercent || '',
-        'Total Material': row.totalMaterial || '',
-        'Total Hours': row.totalHours || ''
+        'Unit 2': row.labor_unit || '',
+        'Lab Adj %': row.labor_adjust_percent || '',
+        'Total Material': row.total_material || '',
+        'Total Hours': row.total_hours || ''
       }));
 
       // Create a new workbook and worksheet
@@ -396,11 +268,21 @@ export default function FolderDetailsContent({
       </div>
       {/* Table */}
       <div className="w-full overflow-hidden">
-        <FolderDetailsTable 
-          data={filteredData} 
-          isEditMode={isEditMode}
-          onCellChange={handleCellChange}
-        />
+        {isLoading ? (
+          <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
+            <p className="text-gray-500">Loading folder data...</p>
+          </div>
+        ) : error ? (
+          <div className="bg-white rounded-lg border border-red-200 p-8 text-center">
+            <p className="text-red-600">Error: {error}</p>
+          </div>
+        ) : (
+          <FolderDetailsTable 
+            data={filteredData} 
+            isEditMode={isEditMode}
+            onCellChange={handleCellChange}
+          />
+        )}
       </div>
     </div>
   );

@@ -8,6 +8,7 @@
 import { cookies } from 'next/headers';
 import { getApiUrl } from '@/lib/api';
 import type { FolderCardData } from '@/features/quantity-take-off/components/FolderCard';
+import type { FolderTableRow } from '@/features/quantity-take-off/components/FolderDetailsTable';
 import { redirect } from 'next/dist/server/api-utils';
 
 /**
@@ -126,3 +127,49 @@ export async function loadFoldersAction(): Promise<FolderCardData[]> {
   }
 }
 
+/**
+ * API Response type for quantity takeoff CSV data endpoint
+ */
+
+/**
+ * Format date from ISO string to M/D/YYYY format for table display
+ */
+function formatTableDate(dateString: string): string {
+  try {
+    const date = new Date(dateString);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+  } catch {
+    return dateString;
+  }
+}
+
+export async function loadFolderCsvDataAction(folderId: string): Promise<FolderTableRow[]> {
+  const url = getApiUrl(`/api/quantity_takeoffs/folder/${folderId}`);
+  const headers = await getServerAuthHeaders();
+
+  try {
+    const response = await fetch(url, {
+      headers,
+      cache: 'no-store',
+    });
+    console.log('Response:', response);
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Session expired. Please login again.');
+      }
+      const errorData = await response.json().catch(() => ({ detail: response.statusText }));
+      throw new Error(errorData.detail || `Failed to load folder data: ${response.statusText}`);
+    }
+
+    const data: FolderTableRow[] = await response.json();
+    
+    return data.map(item => ({ ...item, takeoff_date: formatTableDate(item.takeoff_date) }));
+  } catch (error) {
+    console.error('Error loading folder CSV data:', error);
+    
+    return [];
+  }
+}

@@ -5,22 +5,26 @@ import { ChevronLeft, ChevronRight, ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
+// API Response type - matches the API structure directly
 export interface FolderTableRow {
-  id: string;
+  id: number;
+  created_at: string;
+  updated_at: string;
+  folder_id: number;
   description: string;
-  date: string;
-  tradePrice: string;
+  takeoff_date: string;
+  trade_price: string;
+  link_price: string;
+  net_cost: string;
+  total_material: string;
   unit: string;
-  discPercent: string;
-  linkPrice: string;
-  costAdjPercent: string;
-  netCost: string;
-  dbLabor: string;
+  discount_percent: string | null;
+  cost_adjust_percent: string;
+  db_labor: string;
   labor: string;
-  unit2: string;
-  labAdjPercent: string;
-  totalMaterial: string;
-  totalHours: string;
+  labor_unit: string;
+  labor_adjust_percent: string;
+  total_hours: string;
 }
 
 interface FolderDetailsTableProps {
@@ -110,19 +114,19 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
 
   const columns = [
     { key: 'description', label: 'Description', sortable: true },
-    { key: 'date', label: 'Date', sortable: true },
-    { key: 'tradePrice', label: 'Trade Price', sortable: true },
+    { key: 'takeoff_date', label: 'Date', sortable: true },
+    { key: 'trade_price', label: 'Trade Price', sortable: true },
     { key: 'unit', label: 'Unit', sortable: true },
-    { key: 'discPercent', label: 'Disc %', sortable: true },
-    { key: 'linkPrice', label: 'Link Price', sortable: true },
-    { key: 'costAdjPercent', label: 'Cost Adj %', sortable: true },
-    { key: 'netCost', label: 'Net Cost', sortable: true },
-    { key: 'dbLabor', label: 'DB Labor', sortable: true },
+    { key: 'discount_percent', label: 'Disc %', sortable: true },
+    { key: 'link_price', label: 'Link Price', sortable: true },
+    { key: 'cost_adjust_percent', label: 'Cost Adj %', sortable: true },
+    { key: 'net_cost', label: 'Net Cost', sortable: true },
+    { key: 'db_labor', label: 'DB Labor', sortable: true },
     { key: 'labor', label: 'Labor', sortable: true },
-    { key: 'unit2', label: 'Unit', sortable: true },
-    { key: 'labAdjPercent', label: 'Lab Adj %', sortable: true },
-    { key: 'totalMaterial', label: 'Total Material', sortable: true },
-    { key: 'totalHours', label: 'Total Hours', sortable: true },
+    { key: 'labor_unit', label: 'Unit', sortable: true },
+    { key: 'labor_adjust_percent', label: 'Lab Adj %', sortable: true },
+    { key: 'total_material', label: 'Total Material', sortable: true },
+    { key: 'total_hours', label: 'Total Hours', sortable: true },
   ];
 
   // Generate page numbers for pagination
@@ -282,51 +286,51 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
               paginatedData.map((row, index) => (
                 <tr key={row.id} className={`hover:bg-gray-50 ${isEditMode ? 'bg-blue-50/30' : ''}`}>
                   <td className="px-3 py-3 text-sm text-gray-500 border-r border-gray-200">
-                    {startIndex + index + 1}
+                     {renderEditableCell(row?.id.toString(), (startIndex + index + 1).toString(), 'id', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-4 py-3 border-r border-gray-200">
                     <div className="truncate max-w-xs" title={row.description}>
-                      {renderEditableCell(row.description, row.id, 'description', 'text-sm text-gray-900')}
+                      {renderEditableCell(row.description, row.id.toString(), 'description', 'text-sm text-gray-900')}
                     </div>
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
-                    {renderEditableCell(row.date, row.id, 'date', 'text-sm text-gray-900')}
+                    {renderEditableCell(row.takeoff_date, row.id.toString(), 'takeoff_date', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
-                    {renderEditableCell(row.tradePrice, row.id, 'tradePrice', 'text-sm text-gray-900')}
+                    {renderEditableCell(row.trade_price, row.id.toString(), 'trade_price', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
-                    {renderEditableCell(row.unit, row.id, 'unit', 'text-sm text-gray-900')}
+                    {renderEditableCell(row.unit, row.id.toString(), 'unit', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
-                    {renderEditableCell(row.discPercent || '', row.id, 'discPercent', 'text-sm text-gray-900')}
+                    {renderEditableCell(row.discount_percent || '', row.id.toString(), 'discount_percent', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
-                    {renderEditableCell(row.linkPrice, row.id, 'linkPrice', 'text-sm text-gray-900')}
+                    {renderEditableCell(row.link_price, row.id.toString(), 'link_price', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
-                    {renderEditableCell(row.costAdjPercent, row.id, 'costAdjPercent', 'text-sm text-gray-900')}
+                    {renderEditableCell(row.cost_adjust_percent, row.id.toString(), 'cost_adjust_percent', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
-                    {renderEditableCell(row.netCost, row.id, 'netCost', 'text-sm text-gray-900')}
+                    {renderEditableCell(row.net_cost, row.id.toString(), 'net_cost', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
-                    {renderEditableCell(row.dbLabor, row.id, 'dbLabor', 'text-sm text-gray-900')}
+                    {renderEditableCell(row.db_labor, row.id.toString(), 'db_labor', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
-                    {renderEditableCell(row.labor, row.id, 'labor', 'text-sm text-gray-900')}
+                    {renderEditableCell(row.labor, row.id.toString(), 'labor', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
-                    {renderEditableCell(row.unit2, row.id, 'unit2', 'text-sm text-gray-900')}
+                    {renderEditableCell(row.labor_unit, row.id.toString(), 'labor_unit', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
-                    {renderEditableCell(row.labAdjPercent, row.id, 'labAdjPercent', 'text-sm text-gray-900')}
+                    {renderEditableCell(row.labor_adjust_percent, row.id.toString(), 'labor_adjust_percent', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap border-r border-gray-200">
-                    {renderEditableCell(row.totalMaterial, row.id, 'totalMaterial', 'text-sm text-gray-900')}
+                    {renderEditableCell(row.total_material, row.id.toString(), 'total_material', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap">
-                    {renderEditableCell(row.totalHours, row.id, 'totalHours', 'text-sm text-gray-900')}
+                    {renderEditableCell(row.total_hours, row.id.toString(), 'total_hours', 'text-sm text-gray-900')}
                   </td>
                 </tr>
               ))
