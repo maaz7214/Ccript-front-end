@@ -6,10 +6,10 @@
  */
 
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { getApiUrl } from '@/lib/api';
 import type { FolderCardData } from '@/features/quantity-take-off/components/FolderCard';
 import type { FolderTableRow } from '@/features/quantity-take-off/components/FolderDetailsTable';
-import { redirect } from 'next/dist/server/api-utils';
 
 /**
  * API Response type for folder list endpoint
@@ -46,6 +46,18 @@ async function getServerAuthHeaders(): Promise<HeadersInit> {
   }
   
   return headers;
+}
+
+/**
+ * Handle 401 Unauthorized errors by redirecting to login
+ * Note: Cookies cannot be modified when called from Server Components,
+ * so we redirect to login page where cookies can be cleared if needed.
+ * The cookies are already invalid (that's why we got 401), so they're harmless.
+ */
+async function handleUnauthorized(): Promise<never> {
+  // Redirect to login page
+  // Cookies will be cleared when user logs in again or can be handled on login page
+  redirect('/login');
 }
 
 /**
@@ -111,7 +123,10 @@ export async function loadFoldersAction(): Promise<FolderCardData[]> {
 
     if (!response.ok) {
       if (response.status === 401) {
-        throw new Error('Session expired. Please login again.');
+        // Clear cookies and redirect to login
+        // redirect() throws a special error that Next.js uses for redirects
+        // We need to let it propagate, so we call it outside the try-catch
+        await handleUnauthorized();
       }
       const errorData = await response.json().catch(() => ({ detail: response.statusText }));
       throw new Error(errorData.detail || `Failed to load folders: ${response.statusText}`);
@@ -121,6 +136,12 @@ export async function loadFoldersAction(): Promise<FolderCardData[]> {
     
     return folders.map(mapFolderToCardData);
   } catch (error) {
+    // Check if this is a Next.js redirect error - if so, re-throw it
+    if (error && typeof error === 'object' && 'digest' in error && 
+        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+      throw error;
+    }
+    
     console.error('Error loading folders:', error);
     
     return [];
@@ -158,7 +179,10 @@ export async function loadFolderCsvDataAction(folderId: string): Promise<FolderT
     console.log('Response:', response);
     if (!response.ok) {
       if (response.status === 401) {
-        throw new Error('Session expired. Please login again.');
+        // Clear cookies and redirect to login
+        // redirect() throws a special error that Next.js uses for redirects
+        // We need to let it propagate, so we call it outside the try-catch
+        await handleUnauthorized();
       }
       const errorData = await response.json().catch(() => ({ detail: response.statusText }));
       throw new Error(errorData.detail || `Failed to load folder data: ${response.statusText}`);
@@ -168,8 +192,78 @@ export async function loadFolderCsvDataAction(folderId: string): Promise<FolderT
     
     return data.map(item => ({ ...item, takeoff_date: formatTableDate(item.takeoff_date) }));
   } catch (error) {
+    // Check if this is a Next.js redirect error - if so, re-throw it
+    if (error && typeof error === 'object' && 'digest' in error && 
+        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+      throw error;
+    }
+    
     console.error('Error loading folder CSV data:', error);
     
     return [];
+  }
+}
+
+/**
+ * Upload folder response type
+ */
+export interface UploadFolderResponse {
+  status: boolean;
+  message: string;
+  folder_id: number;
+  folder_name: string;
+}
+
+/**
+ * Server Action: Upload folder with files
+ * @param formData - FormData containing folder_name and files
+ * @returns UploadFolderResponse with folder_id and folder_name
+ */
+export async function uploadFolderAction(formData: FormData): Promise<UploadFolderResponse> {
+  const url = getApiUrl('/api/upload-multiple');
+  const token = await getServerAuthToken();
+  
+  // Create headers without Content-Type to let fetch set it automatically with boundary
+  const headers: HeadersInit = {
+    'ngrok-skip-browser-warning': 'true',
+  };
+  
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: formData,
+      cache: 'no-store',
+    });
+    console.log('Response:', response);
+    if (!response.ok) {
+      if (response.status === 401) {
+        // Clear cookies and redirect to login
+        // redirect() throws a special error that Next.js uses for redirects
+        // We need to let it propagate, so we call it outside the try-catch
+        await handleUnauthorized();
+      }
+      const errorData = await response.json().catch(() => ({ detail: response.statusText }));
+      throw new Error(errorData.detail || `Failed to upload folder: ${response.statusText}`);
+    }
+
+    return await response.json() as UploadFolderResponse;
+  } catch (error) {
+    // Check if this is a Next.js redirect error - if so, re-throw it
+    if (error && typeof error === 'object' && 'digest' in error && 
+        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+      throw error;
+    }
+    
+    console.error('Error uploading folder:', error);
+    
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error('An unexpected error occurred during folder upload');
   }
 }

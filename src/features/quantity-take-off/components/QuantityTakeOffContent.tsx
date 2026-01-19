@@ -8,7 +8,7 @@ import DragDropFolder from './DragDropFolder';
 import FolderGrid from './FolderGrid';
 import type { FolderCardData } from './FolderCard';
 import { useJobs } from '@/contexts/JobsContext';
-import { uploadFolder, loadFolders } from '@/services/qtoService';
+import { uploadFolderAction, loadFoldersAction } from '@/app/actions/folders';
 
 interface QuantityTakeOffContentProps {
   initialFolders: FolderCardData[];
@@ -99,8 +99,17 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
       // Get folder name from files
       const folderName = getFolderName(files);
       
-      // Upload to API
-      const response = await uploadFolder(folderName, files);
+      // Create FormData for server action
+      const formData = new FormData();
+      formData.append('folder_name', folderName);
+      
+      // Append all files
+      Array.from(files).forEach(file => {
+        formData.append('files', file);
+      });
+      
+      // Upload to API via server action (runs on server, avoids mixed content issue)
+      const response = await uploadFolderAction(formData);
       
       // Calculate folder info for display
       const totalSize = calculateTotalSize(files);
@@ -137,7 +146,7 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
       // Optionally refresh folder list from server to get latest data
       // This ensures we have the most up-to-date folder information
       try {
-        const refreshedFolders = await loadFolders();
+        const refreshedFolders = await loadFoldersAction();
         setFolders(refreshedFolders);
       } catch (refreshError) {
         console.error('Error refreshing folder list:', refreshError);

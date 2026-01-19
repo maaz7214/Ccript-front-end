@@ -65,8 +65,8 @@ export default function DragDropFolder({ onFolderUpload, isUploading = false }: 
           ${isUploading 
             ? 'border-gray-300 bg-gray-50 opacity-50 cursor-not-allowed'
             : isDragging 
-            ? 'border-[#009689] bg-[#009689]/5' 
-            : 'border-gray-300 hover:border-gray-400 bg-white'
+            ? 'border-[#009689] bg-[#009689]/5 cursor-pointer' 
+            : 'border-gray-300 hover:border-gray-400 bg-white cursor-pointer'
           }
         `}
         onDragOver={handleDragOver}

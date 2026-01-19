@@ -20,7 +20,10 @@ interface FolderCardProps {
 
 export default function FolderCard({ folder, onCardClick, onMenuClick }: FolderCardProps) {
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow relative">
+    <div 
+      className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow relative cursor-pointer"
+      onClick={() => onCardClick?.(folder)}
+    >
       {/* New Badge */}
       {folder.isNew && (
         <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-medium px-2 py-0.5 rounded">
@@ -42,10 +45,7 @@ export default function FolderCard({ folder, onCardClick, onMenuClick }: FolderC
       </div>
 
       {/* Folder Name */}
-      <div 
-        className="cursor-pointer"
-        onClick={() => onCardClick?.(folder)}
-      >
+      <div>
         <h3 className="font-semibold text-gray-900 text-sm mb-2 line-clamp-2 min-h-10">
           {folder.name}
         </h3>
@@ -61,7 +61,7 @@ export default function FolderCard({ folder, onCardClick, onMenuClick }: FolderC
           <Button
           variant="ghost"
           size="icon"
-          className="h-8 w-8"
+          className="h-8 w-8 cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
             onMenuClick?.(folder);

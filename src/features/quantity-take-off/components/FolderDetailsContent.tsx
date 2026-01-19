@@ -7,8 +7,58 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import FolderDetailsTable from './FolderDetailsTable';
 import type { FolderTableRow } from './FolderDetailsTable';
+import ImageMappingPanel from './ImageMappingPanel';
+import type { ImageMapping } from './ImageMappingPanel';
 import { loadFolderCsvDataAction } from '@/app/actions/folders';
 import * as XLSX from 'xlsx';
+
+// Sample data for testing - replace with actual API data
+const SAMPLE_IMAGE_DATA: ImageMapping[] = [
+  {
+    id: '1',
+    imageUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&h=800&fit=crop',
+    title: 'Floor Plan - Level 1',
+    tableData: [
+      { id: '1', item: 'Conduit 3/4"', quantity: '250 ft' },
+      { id: '2', item: 'Junction Box 4x4', quantity: '15 units' },
+      { id: '3', item: 'Wire #12 AWG', quantity: '500 ft' },
+      { id: '4', item: 'Outlets 120V', quantity: '24 units' },
+      { id: '5', item: 'Light Fixtures', quantity: '12 units' },
+    ],
+  },
+  {
+    id: '2',
+    imageUrl: 'https://images.unsplash.com/photo-1574359411659-15573a27fd0c?w=1200&h=800&fit=crop',
+    title: 'Electrical Panel Layout',
+    tableData: [
+      { id: '1', item: 'Panel Box 200A', quantity: '1 unit' },
+      { id: '2', item: 'Circuit Breaker 20A', quantity: '24 units' },
+      { id: '3', item: 'Ground Bar', quantity: '2 units' },
+      { id: '4', item: 'Neutral Bar', quantity: '2 units' },
+    ],
+  },
+  {
+    id: '3',
+    imageUrl: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=800&fit=crop',
+    title: 'Exterior Connections',
+    tableData: [
+      { id: '1', item: 'Weatherproof Box', quantity: '8 units' },
+      { id: '2', item: 'PVC Conduit 1"', quantity: '150 ft' },
+      { id: '3', item: 'Exterior Lights', quantity: '6 units' },
+    ],
+  },
+  {
+    id: '4',
+    imageUrl: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200&h=800&fit=crop',
+    title: 'HVAC Electrical Diagram',
+    tableData: [
+      { id: '1', item: 'Disconnect Switch 60A', quantity: '2 units' },
+      { id: '2', item: 'Wire #6 AWG', quantity: '100 ft' },
+      { id: '3', item: 'Conduit 1-1/4"', quantity: '50 ft' },
+      { id: '4', item: 'Thermostat Wire', quantity: '200 ft' },
+    ],
+  },
+];
 
 interface FolderDetailsContentProps {
   folderId: string;
@@ -205,7 +255,7 @@ export default function FolderDetailsContent({
         <div className="flex items-center text-sm text-gray-600">
           <button 
             onClick={handleBack}
-            className="hover:text-gray-900 transition-colors"
+            className="hover:text-gray-900 transition-colors cursor-pointer"
           >
             All Folders
           </button>
@@ -266,6 +316,13 @@ export default function FolderDetailsContent({
           </div>
         </div>
       </div>
+      {/* Image Mapping Panel */}
+      <ImageMappingPanel 
+        images={SAMPLE_IMAGE_DATA} 
+        isCollapsible={true}
+        defaultCollapsed={false}
+      />
+
       {/* Table */}
       <div className="w-full overflow-hidden">
         {isLoading ? (
