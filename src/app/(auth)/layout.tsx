@@ -37,7 +37,6 @@
 import React from 'react'
 import Image from 'next/image'
 import loginImage from '../../../public/bannerTumlinson.png'
-import Footer from '@/components/Footer'
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -58,7 +57,9 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
                 <div className='flex-1 flex items-center justify-center'>
                     {children}
                 </div>
-                <Footer />
+                <p className="text-center text-sm text-muted-foreground pb-8">
+                    © Tumlinson Electric. All rights reserved.
+                </p>
             </section>
         </main>
     )
