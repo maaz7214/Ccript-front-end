@@ -105,7 +105,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-[489px] mx-auto">
       <div className="text-left mb-10">
         <h1 className="text-3xl font-bold text-foreground mb-3">Welcome Back</h1>
         <p className="text-lg text-muted-foreground">Sign in to your Account to continue</p>
@@ -133,7 +133,7 @@ export default function LoginForm() {
             placeholder="Enter Email"
             value={formData.email}
             onChange={handleInputChange}
-            className={errors.email ? "border-destructive focus-visible:ring-destructive h-12 text-base" : "h-12 text-base"}
+            className={errors.email ? "border-destructive focus-visible:ring-destructive h-12 text-base rounded-full" : "h-12 text-base rounded-full"}
           />
           {errors.email && (
             <p className="text-sm text-destructive">{errors.email}</p>
@@ -150,7 +150,7 @@ export default function LoginForm() {
               placeholder="Enter Password"
               value={formData.password}
               onChange={handleInputChange}
-              className={errors.password ? "border-destructive focus-visible:ring-destructive pr-10 h-12 text-base" : "pr-10 h-12 text-base"}
+              className={errors.password ? "border-destructive focus-visible:ring-destructive pr-10 h-12 text-base rounded-full" : "pr-10 h-12 text-base rounded-full"}
             />
             <button
               type="button"
@@ -198,17 +198,18 @@ export default function LoginForm() {
             <p className="text-sm text-destructive">{errors.password}</p>
           )}
         </div>
-      </div>
-
-      <Button
+        <Button
         type="submit"
         variant="default"
         size="lg"
-        className="mt-16 w-full gap-x-4 bg-[#009689] hover:bg-[#007f75] cursor-pointer h-12 text-base font-semibold"
+        className="w-full gap-x-4 rounded-full bg-[#009689] hover:bg-[#007f75] cursor-pointer h-12 text-base font-semibold"
         disabled={isLoading}
       >
         {isLoading ? 'Signing in...' : 'Get Started'}
       </Button>
+      </div>
+          
+     
     </form>
     </div>
   );
