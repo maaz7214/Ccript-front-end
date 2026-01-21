@@ -40,8 +40,8 @@ import loginImage from '../../../public/bannerTumlinson.png'
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <main className='grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-1 2xl:max-w-7xl mx-auto h-screen overflow-hidden bg-white dark:bg-background'>
-            <div className='md:block 2xl:hidden hidden relative h-full overflow-hidden '>
+        <main className='grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-1 3xl:max-w-7xl mx-auto h-screen overflow-hidden bg-white dark:bg-background'>
+            <div className='md:block 3xl:hidden hidden relative h-full overflow-hidden '>
                 <Image
                     src={loginImage}
                     alt="auth image"

@@ -205,7 +205,7 @@ export default function LoginForm() {
         className="w-full gap-x-4 rounded-full bg-[#009689] hover:bg-[#007f75] cursor-pointer h-12 text-base font-semibold"
         disabled={isLoading}
       >
-        {isLoading ? 'Signing in...' : 'Get Started'}
+        {isLoading ? 'Signing in...' : 'Sign In'}
       </Button>
       </div>
           
