@@ -1,4 +1,4 @@
-import { getCurrentUser } from '@/app/actions/auth';
+import { getCurrentUser } from '../../_actions/auth';
 import FolderDetailsContent from '@/features/quantity-take-off/components/FolderDetailsContent';
 
 interface FolderDetailsPageProps {
@@ -14,9 +14,6 @@ export default async function FolderDetailsPage({ params }: FolderDetailsPagePro
     ? (user.full_name || user.username || 'User')
     : 'User';
 
-  // TODO: Fetch folder data from API using folderId
-  // For now, extract folder name from localStorage or use a fallback
-  // The FolderDetailsContent component will handle retrieving the name from localStorage
 
   return (
     <FolderDetailsContent 

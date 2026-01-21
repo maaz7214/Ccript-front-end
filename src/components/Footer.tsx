@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <div className="flex items-center justify-end gap-2 px-6 pt-6 pb-4">
+    <div className="flex fixed bottom-0 left-0 right-0  items-center justify-end gap-2 px-6 pt-6 pb-4">
       <span className="text-sm text-muted-foreground">Powered by</span>
       <Image
         src="/Neuralogic Logo.svg"

@@ -9,7 +9,7 @@ import FolderDetailsTable from './FolderDetailsTable';
 import type { FolderTableRow } from './FolderDetailsTable';
 import ImageMappingPanel from './ImageMappingPanel';
 import type { ImageMapping } from './ImageMappingPanel';
-import { loadFolderCsvDataAction } from '@/app/actions/folders';
+import { loadFolderCsvDataAction } from '../../../app/(main)/_actions/folders';
 import * as XLSX from 'xlsx';
 
 // Sample data for testing - replace with actual API data
@@ -245,26 +245,26 @@ export default function FolderDetailsContent({
   };
 
   return (
-    <div className="space-y-4 w-full max-w-none overflow-hidden">
+    <div className="space-y-4 w-full min-w-0 overflow-x-hidden">
       {/* Welcome Header */}
       <h1 className="text-2xl font-bold text-gray-900">
         Welcome {userName}
       </h1>
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between w-full gap-4">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between w-full gap-4 min-w-0">
         {/* Breadcrumb */}
-        <div className="flex items-center text-sm text-gray-600">
+        <div className="flex items-center text-sm text-gray-600 min-w-0">
           <button 
             onClick={handleBack}
-            className="hover:text-gray-900 transition-colors cursor-pointer"
+            className="hover:text-gray-900 transition-colors cursor-pointer whitespace-nowrap"
           >
             All Folders
           </button>
-          <ChevronRight className="h-4 w-4 mx-2" />
-          <span className="text-gray-900 font-medium">{folderName}</span>
+          <ChevronRight className="h-4 w-4 mx-2 flex-shrink-0" />
+          <span className="text-gray-900 font-medium truncate">{folderName}</span>
         </div>
 
         {/* Action Bar */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 min-w-0 flex-shrink-0">
           {/* Search */}
           <div className="relative w-full sm:w-64">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -277,12 +277,12 @@ export default function FolderDetailsContent({
             />
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-shrink-0">
             {/* Download Button */}
             <Button
               variant="outline"
               onClick={handleDownload}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 whitespace-nowrap"
             >
               <Download className="h-4 w-4" />
               <span className="hidden sm:inline">Export to Excel</span>
@@ -294,13 +294,13 @@ export default function FolderDetailsContent({
                 <Button
                   onClick={handleCancel}
                   variant="outline"
-                  className="border-gray-300"
+                  className="border-gray-300 whitespace-nowrap"
                 >
                   Cancel
                 </Button>
                 <Button
                   onClick={handleEdit}
-                  className="bg-[#009689] hover:bg-[#007f75] text-white"
+                  className="bg-[#009689] hover:bg-[#007f75] text-white whitespace-nowrap"
                 >
                   Save
                 </Button>
@@ -308,7 +308,7 @@ export default function FolderDetailsContent({
             ) : (
               <Button
                 onClick={handleEdit}
-                className="bg-[#009689] hover:bg-[#007f75] text-white"
+                className="bg-[#009689] hover:bg-[#007f75] text-white whitespace-nowrap"
               >
                 Edit
               </Button>
@@ -317,14 +317,16 @@ export default function FolderDetailsContent({
         </div>
       </div>
       {/* Image Mapping Panel */}
-      <ImageMappingPanel 
-        images={SAMPLE_IMAGE_DATA} 
-        isCollapsible={true}
-        defaultCollapsed={false}
-      />
+      <div className="w-full min-w-0">
+        <ImageMappingPanel 
+          images={SAMPLE_IMAGE_DATA} 
+          isCollapsible={true}
+          defaultCollapsed={false}
+        />
+      </div>
 
       {/* Table */}
-      <div className="w-full overflow-hidden">
+      <div className="w-full min-w-0 overflow-x-hidden">
         {isLoading ? (
           <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
             <p className="text-gray-500">Loading folder data...</p>

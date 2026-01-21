@@ -1,7 +1,7 @@
 import { Header, Sidebar } from '@/features/dashboard';
 import ProtectedRoute from '@/features/dashboard/components/ProtectedRoute';
 import TrackingTable from '@/features/tracking/components/TrackingTable';
-import { loadTrackingAction } from '@/app/actions/tracking';
+import { loadTrackingAction } from '../_actions/tracking';
 import Footer from '@/components/Footer';
 
 interface TrackingPageProps {

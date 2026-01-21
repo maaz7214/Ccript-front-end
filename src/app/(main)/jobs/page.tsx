@@ -1,5 +1,5 @@
-import { getCurrentUser } from '@/app/actions/auth';
-import { loadJobsAction } from '@/app/actions/jobs';
+import { getCurrentUser } from '../_actions/auth';
+import { loadJobsAction } from '../_actions/jobs';
 import JobsContent from '@/features/jobs/components/JobsContent';
 
 export default async function JobsPage() {

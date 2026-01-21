@@ -1,5 +1,5 @@
-import { getCurrentUser } from '@/app/actions/auth';
-import { loadFoldersAction } from '@/app/actions/folders';
+import { getCurrentUser } from '../_actions/auth';
+import { loadFoldersAction } from '../_actions/folders';
 import QuantityTakeOffContent from '@/features/quantity-take-off/components/QuantityTakeOffContent';
 
 export default async function QuantityTakeOffPage() {

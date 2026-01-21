@@ -8,7 +8,7 @@ import DragDropFolder from './DragDropFolder';
 import FolderGrid from './FolderGrid';
 import type { FolderCardData } from './FolderCard';
 import { useJobs } from '@/contexts/JobsContext';
-import { uploadFolderAction, loadFoldersAction } from '@/app/actions/folders';
+import { uploadFolderAction, loadFoldersAction } from '../../../app/(main)/_actions/folders';
 
 interface QuantityTakeOffContentProps {
   initialFolders: FolderCardData[];
@@ -196,11 +196,11 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
           >
             <FileText className="h-4 w-4" />
             Jobs
-            {jobCounts.all > 0 && (
+            {/* {jobCounts.all > 0 && (
               <span className="ml-1 px-2 py-0.5 bg-[#009689] text-white text-xs rounded-full">
                 {jobCounts.all}
               </span>
-            )}
+            )} */}
           </Button>
         </div>
         
@@ -215,12 +215,13 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
               {uploadError}
             </div>
           )}
-          
+          <div className="h-[500px] overflow-y-auto"> 
           <FolderGrid 
             folders={folders}
             onFolderClick={handleFolderClick}
             onMenuClick={handleMenuClick}
           />
+          </div>
         </div>
       </div>
     </div>

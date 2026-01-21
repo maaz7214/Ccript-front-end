@@ -167,9 +167,9 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden w-full min-w-0">
       {/* Table Container - Prevents horizontal overflow */}
-      <div className="w-full overflow-hidden">
+      <div className="w-full min-w-0 overflow-hidden">
         {/* Table Scroll Container */}
         <div 
           ref={tableScrollRef}
@@ -177,7 +177,7 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
           onScroll={updateScrollButtons}
           style={{ scrollbarWidth: 'thin' }}
         >
-          <table className="w-full table-fixed" style={{ minWidth: 'max(1200px, 100vw - 200px)' }}>
+          <table className="w-full table-fixed" style={{ minWidth: '1200px' }}>
           {/* Header */}
           <thead className="bg-gray-50 border-b border-gray-200 sticky top-0 z-10">
             <tr>

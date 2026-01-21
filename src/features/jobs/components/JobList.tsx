@@ -19,7 +19,7 @@ export default function JobList({ jobs }: JobListProps) {
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 h-[500px] overflow-y-auto">
       {jobs.map((job) => (
         <JobCard key={job.job_id} job={job} />
       ))}

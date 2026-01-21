@@ -283,7 +283,7 @@ export default function ImageMappingPanel({
 
   return (
     <div
-      className="bg-white rounded-lg border border-gray-200 overflow-hidden mb-4"
+      className="bg-white rounded-lg border border-gray-200 overflow-hidden mb-4 w-full min-w-0"
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
@@ -323,7 +323,7 @@ export default function ImageMappingPanel({
 
       {/* Content - collapsible */}
       {!isCollapsed && (
-        <div className="p-4">
+        <div className="p-4 w-full min-w-0">
           {/* Image counter */}
           <div className="text-center text-sm text-gray-500 mb-3">
             Image {currentIndex + 1} of {images.length}
@@ -335,7 +335,7 @@ export default function ImageMappingPanel({
           </div>
 
           {/* Main content - side by side on desktop, stacked on mobile */}
-          <div className={`grid gap-4 ${
+          <div className={`grid gap-4 w-full min-w-0 ${
             isFullscreen 
               ? 'grid-cols-1' 
               : 'grid-cols-1 lg:grid-cols-3'
