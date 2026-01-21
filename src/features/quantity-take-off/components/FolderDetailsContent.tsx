@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, Download, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,7 +9,7 @@ import FolderDetailsTable from './FolderDetailsTable';
 import type { FolderTableRow } from './FolderDetailsTable';
 import ImageMappingPanel from './ImageMappingPanel';
 import type { ImageMapping } from './ImageMappingPanel';
-import { loadFolderCsvDataAction } from '../../../app/(main)/_actions/folders';
+import { loadFolderCsvDataAction, updateQuantityTakeoffsAction, type QuantityTakeoffUpdateRow } from '../../../app/(main)/_actions/folders';
 import * as XLSX from 'xlsx';
 
 // Sample data for testing - replace with actual API data
@@ -73,6 +73,12 @@ export default function FolderDetailsContent({
   const [searchQuery, setSearchQuery] = useState('');
   const [isEditMode, setIsEditMode] = useState(false);
   const [editedData, setEditedData] = useState<FolderTableRow[]>([]);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
+  
+  // Store original data when entering edit mode to detect changes
+  const originalDataRef = useRef<FolderTableRow[]>([]);
 
   // Get folder name from localStorage or use fallback
   const getFolderName = (): string => {
@@ -135,32 +141,128 @@ export default function FolderDetailsContent({
   const handleBack = () => {
     router.push('/quantity-take-off');
   };
-  console.log(editedData);
-  const handleEdit = () => {
-    if (isEditMode) {
-      // Save changes
+  // Helper function to detect changed fields between original and edited row
+  const getChangedFields = useCallback((original: FolderTableRow, edited: FolderTableRow): QuantityTakeoffUpdateRow | null => {
+    const editableFields: (keyof FolderTableRow)[] = [
+      'description', 'takeoff_date', 'trade_price', 'unit', 'discount_percent',
+      'link_price', 'cost_adjust_percent', 'net_cost', 'db_labor', 'labor',
+      'labor_unit', 'labor_adjust_percent', 'total_material', 'total_hours'
+    ];
+    
+    const changes: Partial<QuantityTakeoffUpdateRow> = {};
+    let hasChanges = false;
+    
+    for (const field of editableFields) {
+      const originalValue = original[field];
+      const editedValue = edited[field];
+      
+      // Compare as strings to handle type differences
+      if (String(originalValue ?? '') !== String(editedValue ?? '')) {
+        hasChanges = true;
+        (changes as Record<string, unknown>)[field] = editedValue;
+      }
+    }
+    
+    if (hasChanges) {
+      return {
+        id: edited.id,
+        ...changes
+      };
+    }
+    
+    return null;
+  }, []);
+
+  // Get all modified rows with only their changed fields
+  const getModifiedRows = useCallback((): QuantityTakeoffUpdateRow[] => {
+    const modifiedRows: QuantityTakeoffUpdateRow[] = [];
+    
+    for (const editedRow of editedData) {
+      const originalRow = originalDataRef.current.find(r => r.id === editedRow.id);
+      if (originalRow) {
+        const changes = getChangedFields(originalRow, editedRow);
+        if (changes) {
+          modifiedRows.push(changes);
+        }
+      }
+    }
+    
+    return modifiedRows;
+  }, [editedData, getChangedFields]);
+
+  const handleSave = useCallback(async () => {
+    setSaveError(null);
+    setSaveSuccess(null);
+    
+    const modifiedRows = getModifiedRows();
+    console.log("modifiedRows", modifiedRows);
+    if (modifiedRows.length === 0) {
+      // No changes to save
+      setIsEditMode(false);
+      setEditedData([]);
+      originalDataRef.current = [];
+      return;
+    }
+    
+    setIsSaving(true);
+    
+    try {
+      const result = await updateQuantityTakeoffsAction(folderId, modifiedRows);
+      
+      // Update local state with edited data
       setTableData([...editedData]);
       setIsEditMode(false);
       setEditedData([]);
+      originalDataRef.current = [];
+      
+      setSaveSuccess(`Successfully updated ${result.updated_count} row(s)`);
+      
+      // Clear success message after 3 seconds
+      setTimeout(() => setSaveSuccess(null), 3000);
+      
+      // Optionally refresh data from server to ensure consistency
+      try {
+        const refreshedData = await loadFolderCsvDataAction(folderId);
+        setTableData(refreshedData);
+      } catch (refreshError) {
+        console.error('Error refreshing data:', refreshError);
+      }
+    } catch (error) {
+      console.error('Error saving changes:', error);
+      setSaveError(error instanceof Error ? error.message : 'Failed to save changes');
+    } finally {
+      setIsSaving(false);
+    }
+  }, [folderId, editedData, getModifiedRows]);
+
+  const handleEdit = useCallback(() => {
+    if (isEditMode) {
+      // Save changes
+      handleSave();
     } else {
-      // Enter edit mode
+      // Enter edit mode - store original data for comparison
+      originalDataRef.current = [...tableData];
       setIsEditMode(true);
       setEditedData([...tableData]);
+      setSaveError(null);
+      setSaveSuccess(null);
     }
-  };
+  }, [isEditMode, tableData, handleSave]);
 
-  const handleCancel = () => {
+  const handleCancel = useCallback(() => {
     setIsEditMode(false);
     setEditedData([]);
-  };
+    originalDataRef.current = [];
+    setSaveError(null);
+  }, []);
 
-  const handleCellChange = (rowId: string, field: keyof FolderTableRow, value: string) => {
+  const handleCellChange = useCallback((rowId: string, field: keyof FolderTableRow, value: string) => {
     setEditedData(prev => 
       prev.map(row => 
         row.id.toString() === rowId ? { ...row, [field]: value } : row
       )
     );
-  };
+  }, []);
 
   const handleDownload = () => {
     try {
@@ -294,21 +396,23 @@ export default function FolderDetailsContent({
                 <Button
                   onClick={handleCancel}
                   variant="outline"
-                  className="border-gray-300 whitespace-nowrap"
+                  className="border-gray-300 whitespace-nowrap cursor-pointer"
+                  disabled={isSaving}
                 >
                   Cancel
                 </Button>
                 <Button
                   onClick={handleEdit}
-                  className="bg-[#009689] hover:bg-[#007f75] text-white whitespace-nowrap"
+                  className="bg-[#009689] hover:bg-[#007f75] text-white whitespace-nowrap cursor-pointer"
+                  disabled={isSaving}
                 >
-                  Save
+                  {isSaving ? 'Saving...' : 'Save'}
                 </Button>
               </>
             ) : (
               <Button
                 onClick={handleEdit}
-                className="bg-[#009689] hover:bg-[#007f75] text-white whitespace-nowrap"
+                className="bg-[#009689] hover:bg-[#007f75] text-white whitespace-nowrap cursor-pointer"
               >
                 Edit
               </Button>
@@ -316,6 +420,31 @@ export default function FolderDetailsContent({
           </div>
         </div>
       </div>
+      {/* Success/Error Messages */}
+      {saveSuccess && (
+        <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded flex items-center justify-between">
+          <span>{saveSuccess}</span>
+          <button 
+            onClick={() => setSaveSuccess(null)}
+            className="text-green-600 hover:text-green-800 cursor-pointer"
+          >
+            ×
+          </button>
+        </div>
+      )}
+      
+      {saveError && (
+        <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded flex items-center justify-between">
+          <span>{saveError}</span>
+          <button 
+            onClick={() => setSaveError(null)}
+            className="text-red-600 hover:text-red-800 cursor-pointer"
+          >
+            ×
+          </button>
+        </div>
+      )}
+
       {/* Image Mapping Panel */}
       <div className="w-full min-w-0">
         <ImageMappingPanel 

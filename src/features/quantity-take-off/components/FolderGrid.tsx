@@ -8,10 +8,10 @@ import FolderCard, { type FolderCardData } from './FolderCard';
 interface FolderGridProps {
   folders: FolderCardData[];
   onFolderClick?: (folder: FolderCardData) => void;
-  onMenuClick?: (folder: FolderCardData) => void;
+  onDelete?: (folder: FolderCardData) => void;
 }
 
-export default function FolderGrid({ folders, onFolderClick, onMenuClick }: FolderGridProps) {
+export default function FolderGrid({ folders, onFolderClick, onDelete }: FolderGridProps) {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Filter folders based on search query
@@ -53,7 +53,7 @@ export default function FolderGrid({ folders, onFolderClick, onMenuClick }: Fold
               key={folder.id}
               folder={folder}
               onCardClick={onFolderClick}
-              onMenuClick={onMenuClick}
+              onDelete={onDelete}
             />
           ))}
         </div>

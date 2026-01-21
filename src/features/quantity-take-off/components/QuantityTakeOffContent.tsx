@@ -6,9 +6,10 @@ import { Button } from '@/components/ui/button';
 import { FileText } from 'lucide-react';
 import DragDropFolder from './DragDropFolder';
 import FolderGrid from './FolderGrid';
+import DeleteFolderDialog from './DeleteFolderDialog';
 import type { FolderCardData } from './FolderCard';
 import { useJobs } from '@/contexts/JobsContext';
-import { uploadFolderAction, loadFoldersAction } from '../../../app/(main)/_actions/folders';
+import { uploadFolderAction, loadFoldersAction, deleteFolderAction } from '../../../app/(main)/_actions/folders';
 
 interface QuantityTakeOffContentProps {
   initialFolders: FolderCardData[];
@@ -65,6 +66,9 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
   const [folders, setFolders] = useState<FolderCardData[]>(initialFolders);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [folderToDelete, setFolderToDelete] = useState<FolderCardData | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const { addJob, getJobCounts } = useJobs();
   const jobCounts = getJobCounts();
 
@@ -175,10 +179,51 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
     router.push(`/quantity-take-off/${folder.id}`);
   }, [router]);
 
-  const handleMenuClick = useCallback((folder: FolderCardData) => {
-    console.log('Menu clicked for folder:', folder);
-    // Add your menu action logic here
+  const handleDeleteClick = useCallback((folder: FolderCardData) => {
+    setFolderToDelete(folder);
+    setDeleteDialogOpen(true);
   }, []);
+
+  const handleDeleteConfirm = useCallback(async () => {
+    if (!folderToDelete) return;
+
+    setIsDeleting(true);
+    try {
+      await deleteFolderAction(folderToDelete.id);
+      
+      // Remove folder from local state
+      setFolders((prev) => prev.filter((f) => f.id !== folderToDelete.id));
+      
+      // Remove from localStorage
+      if (typeof window !== 'undefined') {
+        const storedFolders = localStorage.getItem('qtoFolders');
+        if (storedFolders) {
+          const foldersMap = JSON.parse(storedFolders);
+          delete foldersMap[folderToDelete.id];
+          localStorage.setItem('qtoFolders', JSON.stringify(foldersMap));
+        }
+      }
+
+      // Refresh folder list from server
+      try {
+        const refreshedFolders = await loadFoldersAction();
+        setFolders(refreshedFolders);
+      } catch (refreshError) {
+        console.error('Error refreshing folder list:', refreshError);
+      }
+
+      setDeleteDialogOpen(false);
+      setFolderToDelete(null);
+    } catch (error) {
+      console.error('Error deleting folder:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Failed to delete folder';
+      setUploadError(errorMessage);
+      setDeleteDialogOpen(false);
+      setFolderToDelete(null);
+    } finally {
+      setIsDeleting(false);
+    }
+  }, [folderToDelete]);
 
   return (
     <div className="space-y-8">
@@ -192,7 +237,7 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
           <Button
             variant="outline"
             onClick={() => router.push('/jobs')}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 cursor-pointer"
           >
             <FileText className="h-4 w-4" />
             Jobs
@@ -219,11 +264,20 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
           <FolderGrid 
             folders={folders}
             onFolderClick={handleFolderClick}
-            onMenuClick={handleMenuClick}
+            onDelete={handleDeleteClick}
           />
           </div>
         </div>
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      <DeleteFolderDialog
+        open={deleteDialogOpen}
+        onOpenChange={setDeleteDialogOpen}
+        folder={folderToDelete}
+        isDeleting={isDeleting}
+        onConfirm={handleDeleteConfirm}
+      />
     </div>
   );
 }

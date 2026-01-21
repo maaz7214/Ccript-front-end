@@ -267,3 +267,142 @@ export async function uploadFolderAction(formData: FormData): Promise<UploadFold
     throw new Error('An unexpected error occurred during folder upload');
   }
 }
+
+/**
+ * Delete folder response type
+ */
+export interface DeleteFolderResponse {
+  status: boolean;
+  message: string;
+  folder_id: number;
+  deleted_files_count: number;
+}
+
+/**
+ * Server Action: Delete a folder
+ * @param folderId - The ID of the folder to delete
+ * @returns DeleteFolderResponse with status and message
+ */
+export async function deleteFolderAction(folderId: string): Promise<DeleteFolderResponse> {
+  const url = getApiUrl(`/api/delete-folder/${folderId}`);
+  const headers = await getServerAuthHeaders();
+
+  try {
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers,
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        await handleUnauthorized();
+      }
+      const errorData = await response.json().catch(() => ({ detail: response.statusText }));
+      throw new Error(errorData.detail || `Failed to delete folder: ${response.statusText}`);
+    }
+
+    return await response.json() as DeleteFolderResponse;
+  } catch (error) {
+    // Check if this is a Next.js redirect error - if so, re-throw it
+    if (error && typeof error === 'object' && 'digest' in error && 
+        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+      throw error;
+    }
+    
+    console.error('Error deleting folder:', error);
+    
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error('An unexpected error occurred during folder deletion');
+  }
+}
+
+/**
+ * Type for quantity takeoff row update - only id is required, all other fields are optional
+ */
+export interface QuantityTakeoffUpdateRow {
+  id: number;
+  description?: string;
+  takeoff_date?: string;
+  trade_price?: string | number;
+  unit?: string;
+  discount_percent?: string | number | null;
+  link_price?: string | number;
+  cost_adjust_percent?: string | number;
+  net_cost?: string | number;
+  db_labor?: string | number;
+  labor?: string | number;
+  labor_unit?: string;
+  labor_adjust_percent?: string | number;
+  total_material?: string | number;
+  total_hours?: string | number;
+}
+
+/**
+ * Update quantity takeoffs response type
+ */
+export interface UpdateQuantityTakeoffsResponse {
+  message: string;
+  folder_id: number;
+  updated_count: number;
+  updated_ids: number[];
+  skipped_ids: number[];
+  updated_by: string;
+}
+
+/**
+ * Server Action: Update quantity takeoffs for a folder
+ * @param folderId - The ID of the folder
+ * @param updates - Array of row updates with id and changed fields
+ * @returns UpdateQuantityTakeoffsResponse with update results
+ */
+export async function updateQuantityTakeoffsAction(
+  folderId: string,
+  updates: QuantityTakeoffUpdateRow[]
+): Promise<UpdateQuantityTakeoffsResponse> {
+  const url = getApiUrl(`/api/quantity_takeoffs/${folderId}`);
+  const token = await getServerAuthToken();
+  
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+    'ngrok-skip-browser-warning': 'true',
+  };
+  
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  try {
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(updates),
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        await handleUnauthorized();
+      }
+      const errorData = await response.json().catch(() => ({ detail: response.statusText }));
+      throw new Error(errorData.detail || `Failed to update quantity takeoffs: ${response.statusText}`);
+    }
+
+    return await response.json() as UpdateQuantityTakeoffsResponse;
+  } catch (error) {
+    // Check if this is a Next.js redirect error - if so, re-throw it
+    if (error && typeof error === 'object' && 'digest' in error && 
+        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+      throw error;
+    }
+    
+    console.error('Error updating quantity takeoffs:', error);
+    
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error('An unexpected error occurred during quantity takeoff update');
+  }
+}

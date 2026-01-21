@@ -69,7 +69,7 @@ export default function JobsContent({ userName, initialJobs }: JobsContentProps)
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Jobs</h1>
           <p className="text-gray-600">Monitor and manage all your processing jobs</p>
         </div>
-        {counts.all > 0 && (
+        {/* {counts.all > 0 && (
           <Button
             variant="outline"
             onClick={() => setShowClearDialog(true)}
@@ -78,7 +78,7 @@ export default function JobsContent({ userName, initialJobs }: JobsContentProps)
             <Trash2 className="h-4 w-4" />
             Clear All Jobs
           </Button>
-        )}
+        )} */}
       </div>
 
       {/* Search Bar */}
@@ -104,7 +104,7 @@ export default function JobsContent({ userName, initialJobs }: JobsContentProps)
       <JobList jobs={searchFilteredJobs} />
 
       {/* Clear Jobs Confirmation Dialog */}
-      <AlertDialog open={showClearDialog} onOpenChange={setShowClearDialog}>
+      {/* <AlertDialog open={showClearDialog} onOpenChange={setShowClearDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Clear All Jobs?</AlertDialogTitle>
@@ -122,7 +122,7 @@ export default function JobsContent({ userName, initialJobs }: JobsContentProps)
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
-      </AlertDialog>
+      </AlertDialog> */}
     </div>
   );
 }

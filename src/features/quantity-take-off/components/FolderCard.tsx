@@ -1,8 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { MoreVertical } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import FolderMenu from './FolderMenu';
 
 export interface FolderCardData {
   id: string;
@@ -15,10 +14,10 @@ export interface FolderCardData {
 interface FolderCardProps {
   folder: FolderCardData;
   onCardClick?: (folder: FolderCardData) => void;
-  onMenuClick?: (folder: FolderCardData) => void;
+  onDelete?: (folder: FolderCardData) => void;
 }
 
-export default function FolderCard({ folder, onCardClick, onMenuClick }: FolderCardProps) {
+export default function FolderCard({ folder, onCardClick, onDelete }: FolderCardProps) {
   return (
     <div 
       className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow relative cursor-pointer"
@@ -26,7 +25,7 @@ export default function FolderCard({ folder, onCardClick, onMenuClick }: FolderC
     >
       {/* New Badge */}
       {folder.isNew && (
-        <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-medium px-2 py-0.5 rounded">
+        <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-medium px-2 py-0.5 rounded z-10">
           New
         </span>
       )}
@@ -54,22 +53,13 @@ export default function FolderCard({ folder, onCardClick, onMenuClick }: FolderC
         <div className="text-xs text-gray-500 space-y-1">
           <p>{folder.date}</p>
           <p>{folder.size}</p>
-
         </div>
       </div>
-          <div className="absolute bottom-2 right-2">
-          <Button
-          variant="ghost"
-          size="icon"
-          className="h-8 w-8 cursor-pointer"
-          onClick={(e) => {
-            e.stopPropagation();
-            onMenuClick?.(folder);
-          }}
-        >
-            <MoreVertical className="h-4 w-4 text-gray-600" />
-        </Button>
-          </div>
+
+      {/* Menu Button */}
+      <div className="absolute bottom-2 right-2" onClick={(e) => e.stopPropagation()}>
+        <FolderMenu folder={folder} onDelete={onDelete || (() => {})} />
+      </div>
     </div>
   );
 }
