@@ -7,9 +7,10 @@ import { FileText } from 'lucide-react';
 import DragDropFolder from './DragDropFolder';
 import FolderGrid from './FolderGrid';
 import DeleteFolderDialog from './DeleteFolderDialog';
+import InferenceStatusModal from './InferenceStatusModal';
 import type { FolderCardData } from './FolderCard';
 import { useJobs } from '@/contexts/JobsContext';
-import { uploadFolderAction, loadFoldersAction, deleteFolderAction } from '../../../app/(main)/_actions/folders';
+import { uploadFolderAction, loadFoldersAction, deleteFolderAction, getInferenceStatusAction } from '../../../app/(main)/_actions/folders';
 
 interface QuantityTakeOffContentProps {
   initialFolders: FolderCardData[];
@@ -69,6 +70,8 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [folderToDelete, setFolderToDelete] = useState<FolderCardData | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [statusModalOpen, setStatusModalOpen] = useState(false);
+  const [selectedFolder, setSelectedFolder] = useState<FolderCardData | null>(null);
   const { addJob, getJobCounts } = useJobs();
   const jobCounts = getJobCounts();
 
@@ -174,9 +177,32 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
     }
   }, [addJob]);
 
-  const handleFolderClick = useCallback((folder: FolderCardData) => {
-    // Navigate to folder details page
-    router.push(`/quantity-take-off/${folder.id}`);
+  const handleFolderClick = useCallback(async (folder: FolderCardData) => {
+    console.log('[handleFolderClick] Clicked folder:', folder.name, '| ID:', folder.id);
+    
+    try {
+      // Check inference job status
+      console.log('[handleFolderClick] Checking inference status...');
+      const status = await getInferenceStatusAction(folder.name);
+      
+      console.log('[handleFolderClick] Status received:', status.status);
+      
+      if (status.status === 'completed') {
+        // Navigate directly if already completed
+        console.log('[handleFolderClick] ✅ Job completed - navigating to folder details');
+        router.push(`/quantity-take-off/${folder.id}`);
+      } else {
+        // Show polling modal if not completed
+        console.log('[handleFolderClick] ⏳ Job not completed - opening polling modal');
+        setSelectedFolder(folder);
+        setStatusModalOpen(true);
+      }
+    } catch (error) {
+      console.error('[handleFolderClick] ⚠️ Error checking inference status:', error);
+      // If status check fails, try to navigate anyway (might be a new folder without inference)
+      console.log('[handleFolderClick] Navigating to folder anyway (fallback)');
+      router.push(`/quantity-take-off/${folder.id}`);
+    }
   }, [router]);
 
   const handleDeleteClick = useCallback((folder: FolderCardData) => {
@@ -224,6 +250,17 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
       setIsDeleting(false);
     }
   }, [folderToDelete]);
+
+  const handleStatusModalClose = useCallback(() => {
+    setStatusModalOpen(false);
+    setSelectedFolder(null);
+  }, []);
+
+  const handleStatusCompleted = useCallback((folderId: string) => {
+    setStatusModalOpen(false);
+    setSelectedFolder(null);
+    router.push(`/quantity-take-off/${folderId}`);
+  }, [router]);
 
   return (
     <div className="space-y-8">
@@ -278,6 +315,17 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
         isDeleting={isDeleting}
         onConfirm={handleDeleteConfirm}
       />
+
+      {/* Inference Status Modal */}
+      {selectedFolder && (
+        <InferenceStatusModal
+          folderName={selectedFolder.name}
+          folderId={selectedFolder.id}
+          isOpen={statusModalOpen}
+          onClose={handleStatusModalClose}
+          onCompleted={handleStatusCompleted}
+        />
+      )}
     </div>
   );
 }

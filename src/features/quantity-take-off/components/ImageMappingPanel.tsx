@@ -14,13 +14,17 @@ import {
   RotateCcw,
   Maximize2,
   Minimize2,
-  Image as ImageIcon,
+  FileText,
   ChevronUp,
   ChevronDown,
+  Loader2,
+  AlertCircle,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import SymbolList from './SymbolList';
+import { useInferenceResults } from '../hooks/useInferenceResults';
 
-// Types for image mapping data
+// Legacy types for backward compatibility
 export interface ImageTableRow {
   id: string;
   item: string;
@@ -36,7 +40,7 @@ export interface ImageMapping {
 }
 
 interface ImageMappingPanelProps {
-  images: ImageMapping[];
+  folderId: string;
   isCollapsible?: boolean;
   defaultCollapsed?: boolean;
 }
@@ -78,8 +82,8 @@ function ZoomControls() {
   );
 }
 
-// Image viewer component
-function ImageViewer({ 
+// Annotated image viewer component
+function AnnotatedImageViewer({ 
   imageUrl, 
   title,
   isFullscreen,
@@ -110,7 +114,7 @@ function ImageViewer({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imageUrl}
-              alt={title || 'Blueprint image'}
+              alt={title || 'Annotated blueprint image'}
               className="max-w-full max-h-full object-contain"
               draggable={false}
             />
@@ -123,7 +127,7 @@ function ImageViewer({
         variant="ghost"
         size="sm"
         onClick={onToggleFullscreen}
-        className="absolute top-3 right-3 h-8 w-8 p-0 bg-white/90 backdrop-blur-sm shadow-md hover:bg-white"
+        className="absolute top-3 right-3 h-8 w-8 p-0 bg-white/90 backdrop-blur-sm shadow-md hover:bg-white z-10"
         title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
       >
         {isFullscreen ? (
@@ -135,7 +139,7 @@ function ImageViewer({
       
       {/* Image title */}
       {title && (
-        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-sm font-medium text-gray-700">
+        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-sm font-medium text-gray-700 z-10 max-w-[60%] truncate">
           {title}
         </div>
       )}
@@ -143,20 +147,23 @@ function ImageViewer({
   );
 }
 
-// Navigation dots component
-function ImageNavigation({
+// Navigation component
+function DrawingNavigation({
   currentIndex,
-  totalImages,
+  totalDrawings,
   onPrevious,
   onNext,
   onDotClick,
 }: {
   currentIndex: number;
-  totalImages: number;
+  totalDrawings: number;
   onPrevious: () => void;
   onNext: () => void;
   onDotClick: (index: number) => void;
 }) {
+  const maxDots = 10;
+  const showDots = totalDrawings <= maxDots;
+  
   return (
     <div className="flex items-center justify-center gap-4 mt-3">
       <Button
@@ -170,27 +177,32 @@ function ImageNavigation({
         Prev
       </Button>
       
-      {/* Dot indicators */}
-      <div className="flex items-center gap-2">
-        {Array.from({ length: totalImages }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => onDotClick(index)}
-            className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
-              index === currentIndex
-                ? 'bg-[#009689] scale-125'
-                : 'bg-gray-300 hover:bg-gray-400'
-            }`}
-            aria-label={`Go to image ${index + 1}`}
-          />
-        ))}
-      </div>
+      {showDots ? (
+        <div className="flex items-center gap-2">
+          {Array.from({ length: totalDrawings }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => onDotClick(index)}
+              className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
+                index === currentIndex
+                  ? 'bg-[#009689] scale-125'
+                  : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              aria-label={`Go to drawing ${index + 1}`}
+            />
+          ))}
+        </div>
+      ) : (
+        <span className="text-sm text-gray-600 min-w-[80px] text-center">
+          {currentIndex + 1} of {totalDrawings}
+        </span>
+      )}
       
       <Button
         variant="outline"
         size="sm"
         onClick={onNext}
-        disabled={currentIndex === totalImages - 1}
+        disabled={currentIndex === totalDrawings - 1}
         className="flex items-center gap-1"
       >
         Next
@@ -200,85 +212,77 @@ function ImageNavigation({
   );
 }
 
-// Data table component
-function ImageDataTable({ data }: { data: ImageTableRow[] }) {
-  return (
-    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden h-full">
-      <div className="bg-gray-50 border-b border-gray-200 px-4 py-2">
-        <h3 className="text-sm font-semibold text-gray-700">Image Details</h3>
-      </div>
-      <div className="overflow-auto max-h-[250px]">
-        <table className="w-full">
-          <thead className="bg-gray-50 sticky top-0">
-            <tr>
-              <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b border-gray-200">
-                Item
-              </th>
-              <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b border-gray-200">
-                Quantity
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            {data.length === 0 ? (
-              <tr>
-                <td colSpan={2} className="px-4 py-4 text-center text-gray-500 text-sm">
-                  No data for this image
-                </td>
-              </tr>
-            ) : (
-              data.map((row) => (
-                <tr key={row.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-2 text-sm text-gray-900">{row.item}</td>
-                  <td className="px-4 py-2 text-sm text-gray-900">{row.quantity}</td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
 // Main ImageMappingPanel component
 export default function ImageMappingPanel({
-  images,
+  folderId,
   isCollapsible = true,
   defaultCollapsed = false,
 }: ImageMappingPanelProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  const currentImage = images[currentIndex];
-
-  const handlePrevious = useCallback(() => {
-    setCurrentIndex((prev) => Math.max(0, prev - 1));
-  }, []);
-
-  const handleNext = useCallback(() => {
-    setCurrentIndex((prev) => Math.min(images.length - 1, prev + 1));
-  }, [images.length]);
-
-  const handleDotClick = useCallback((index: number) => {
-    setCurrentIndex(index);
-  }, []);
+  const {
+    inferenceData,
+    currentDrawing,
+    currentIndex,
+    totalDrawings,
+    symbolColors,
+    isLoading,
+    error,
+    setCurrentIndex,
+    goToNext,
+    goToPrevious,
+  } = useInferenceResults(folderId);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === 'ArrowLeft') {
-        handlePrevious();
+        goToPrevious();
       } else if (e.key === 'ArrowRight') {
-        handleNext();
+        goToNext();
       }
     },
-    [handlePrevious, handleNext]
+    [goToPrevious, goToNext]
   );
 
-  // Don't render if no images
-  if (images.length === 0) {
-    return null;
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden mb-4 w-full min-w-0">
+        <div className="flex items-center justify-between px-4 py-3 bg-gray-50 border-b border-gray-200">
+          <div className="flex items-center gap-2">
+            <FileText className="h-5 w-5 text-[#009689]" />
+            <span className="font-medium text-gray-900">Blueprint Images</span>
+          </div>
+        </div>
+        <div className="flex items-center justify-center py-12">
+          <div className="flex flex-col items-center gap-3 text-gray-500">
+            <Loader2 className="h-8 w-8 animate-spin" />
+            <span>Loading inference results...</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Error or no data state
+  if (error || !inferenceData || totalDrawings === 0) {
+    return (
+      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden mb-4 w-full min-w-0">
+        <div className="flex items-center justify-between px-4 py-3 bg-gray-50 border-b border-gray-200">
+          <div className="flex items-center gap-2">
+            <FileText className="h-5 w-5 text-[#009689]" />
+            <span className="font-medium text-gray-900">Blueprint Images</span>
+          </div>
+        </div>
+        <div className="flex items-center justify-center py-12">
+          <div className="flex flex-col items-center gap-3 text-gray-500">
+            <AlertCircle className="h-8 w-8" />
+            <span>{error || 'No inference results available for this folder'}</span>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -287,15 +291,15 @@ export default function ImageMappingPanel({
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {/* Header - always visible */}
+      {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 bg-gray-50 border-b border-gray-200">
         <div className="flex items-center gap-2">
-          <ImageIcon className="h-5 w-5 text-[#009689]" />
+          <FileText className="h-5 w-5 text-[#009689]" />
           <span className="font-medium text-gray-900">
             Blueprint Images
           </span>
           <span className="text-sm text-gray-500">
-            ({images.length} {images.length === 1 ? 'image' : 'images'})
+            ({totalDrawings} {totalDrawings === 1 ? 'image' : 'images'} • {inferenceData.total_symbols} symbols)
           </span>
         </div>
         
@@ -321,58 +325,72 @@ export default function ImageMappingPanel({
         )}
       </div>
 
-      {/* Content - collapsible */}
+      {/* Content */}
       {!isCollapsed && (
         <div className="p-4 w-full min-w-0">
-          {/* Image counter */}
+          {/* Drawing counter */}
           <div className="text-center text-sm text-gray-500 mb-3">
-            Image {currentIndex + 1} of {images.length}
-            {currentImage?.title && (
+            Image {currentIndex + 1} of {totalDrawings}
+            {currentDrawing?.pdf_name && (
               <span className="ml-2 text-gray-700 font-medium">
-                - {currentImage.title}
+                - {currentDrawing.pdf_name}
               </span>
             )}
           </div>
 
-          {/* Main content - side by side on desktop, stacked on mobile */}
+          {/* Main content */}
           <div className={`grid gap-4 w-full min-w-0 ${
             isFullscreen 
               ? 'grid-cols-1' 
               : 'grid-cols-1 lg:grid-cols-3'
           }`}>
-            {/* Image viewer - takes 2/3 on desktop */}
+            {/* Image viewer */}
             <div className={isFullscreen ? '' : 'lg:col-span-2'}>
-              <ImageViewer
-                imageUrl={currentImage?.imageUrl || ''}
-                title={currentImage?.title}
-                isFullscreen={isFullscreen}
-                onToggleFullscreen={() => setIsFullscreen(!isFullscreen)}
-              />
+              {currentDrawing && (
+                <AnnotatedImageViewer
+                  imageUrl={currentDrawing.image_url}
+                  title={currentDrawing.pdf_name}
+                  isFullscreen={isFullscreen}
+                  onToggleFullscreen={() => setIsFullscreen(!isFullscreen)}
+                />
+              )}
             </div>
 
-            {/* Data table - takes 1/3 on desktop, hidden in fullscreen */}
-            {!isFullscreen && (
+            {/* Symbol list */}
+            {!isFullscreen && currentDrawing && (
               <div className="lg:col-span-1">
-                <ImageDataTable data={currentImage?.tableData || []} />
+                <SymbolList
+                  symbolCounts={currentDrawing.symbol_counts || {}}
+                  symbolColors={symbolColors}
+                  activeSymbol={null}
+                  onSymbolClick={() => {}} // No filtering needed for annotated images
+                  totalSymbols={currentDrawing.total_symbols}
+                />
               </div>
             )}
           </div>
 
           {/* Navigation */}
-          {images.length > 1 && (
-            <ImageNavigation
+          {totalDrawings > 1 && (
+            <DrawingNavigation
               currentIndex={currentIndex}
-              totalImages={images.length}
-              onPrevious={handlePrevious}
-              onNext={handleNext}
-              onDotClick={handleDotClick}
+              totalDrawings={totalDrawings}
+              onPrevious={goToPrevious}
+              onNext={goToNext}
+              onDotClick={setCurrentIndex}
             />
           )}
 
-          {/* Table shown below in fullscreen mode */}
-          {isFullscreen && (
+          {/* Symbol list below in fullscreen */}
+          {isFullscreen && currentDrawing && (
             <div className="mt-4">
-              <ImageDataTable data={currentImage?.tableData || []} />
+              <SymbolList
+                symbolCounts={currentDrawing.symbol_counts || {}}
+                symbolColors={symbolColors}
+                activeSymbol={null}
+                onSymbolClick={() => {}}
+                totalSymbols={currentDrawing.total_symbols}
+              />
             </div>
           )}
         </div>

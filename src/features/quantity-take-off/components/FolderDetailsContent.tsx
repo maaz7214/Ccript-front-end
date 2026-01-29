@@ -8,12 +8,25 @@ import { Input } from '@/components/ui/input';
 import FolderDetailsTable from './FolderDetailsTable';
 import type { FolderTableRow } from './FolderDetailsTable';
 import ImageMappingPanel from './ImageMappingPanel';
-import type { ImageMapping } from './ImageMappingPanel';
 import { loadFolderCsvDataAction, updateQuantityTakeoffsAction, type QuantityTakeoffUpdateRow } from '../../../app/(main)/_actions/folders';
 import * as XLSX from 'xlsx';
 
-// Sample data for testing - replace with actual API data
-const SAMPLE_IMAGE_DATA: ImageMapping[] = [
+// Legacy type - keeping for compatibility but not used
+interface ImageTableRow {
+  id: string;
+  item: string;
+  quantity: string;
+}
+
+interface ImageMapping {
+  id: string;
+  imageUrl: string;
+  title?: string;
+  tableData: ImageTableRow[];
+}
+
+// Remove sample data - now fetching from API
+const _SAMPLE_IMAGE_DATA: ImageMapping[] = [
   {
     id: '1',
     imageUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&h=800&fit=crop',
@@ -448,7 +461,7 @@ export default function FolderDetailsContent({
       {/* Image Mapping Panel */}
       <div className="w-full min-w-0">
         <ImageMappingPanel 
-          images={SAMPLE_IMAGE_DATA} 
+          folderId={folderId}
           isCollapsible={true}
           defaultCollapsed={false}
         />

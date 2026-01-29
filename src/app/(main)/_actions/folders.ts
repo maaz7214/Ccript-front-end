@@ -406,3 +406,146 @@ export async function updateQuantityTakeoffsAction(
     throw new Error('An unexpected error occurred during quantity takeoff update');
   }
 }
+
+// ============================================
+// Inference Status Types and Actions
+// ============================================
+
+/**
+ * Drawing with image URL from inference-results API
+ */
+export type InferenceDrawing = {
+  pdf_name: string;
+  image_url: string;
+  total_symbols: number;
+  symbol_counts: { [key: string]: number };
+};
+
+/**
+ * Inference results response from /api/inference-results/{folder_id}
+ */
+export type InferenceResultsResponse = {
+  folder_id: number;
+  folder_name: string;
+  job_id: string;
+  status: string;
+  total_drawings: number;
+  total_symbols: number;
+  symbol_counts: { [key: string]: number };
+  drawings: InferenceDrawing[];
+};
+
+/**
+ * Server Action: Get inference results for a folder by ID
+ * @param folderId - The folder ID
+ * @returns InferenceResultsResponse with drawings and symbol counts
+ */
+export async function getInferenceResultsAction(folderId: string) {
+  const url = getApiUrl(`/api/inference-results/${folderId}`);
+  const headers = await getServerAuthHeaders();
+
+  try {
+    const response = await fetch(url, {
+      headers,
+      cache: 'no-store',
+    });
+    
+    console.log('[getInferenceResultsAction] Response status:', response.status);
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        await handleUnauthorized();
+      }
+      const errorText = await response.text().catch(() => response.statusText);
+      console.error('[getInferenceResultsAction] API error:', errorText);
+      return null;
+    }
+
+    const data = await response.json();
+    console.log('[getInferenceResultsAction] Success, drawings:', data.drawings?.length || 0);
+    
+    // Return a plain object to ensure serializability
+    return {
+      folder_id: data.folder_id,
+      folder_name: data.folder_name,
+      job_id: data.job_id,
+      status: data.status,
+      total_drawings: data.total_drawings,
+      total_symbols: data.total_symbols,
+      symbol_counts: data.symbol_counts,
+      drawings: data.drawings,
+    };
+  } catch (error) {
+    // Check if this is a Next.js redirect error - if so, re-throw it
+    if (error && typeof error === 'object' && 'digest' in error && 
+        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+      throw error;
+    }
+    
+    console.error('[getInferenceResultsAction] Error:', error);
+    
+    return null;
+  }
+}
+
+/**
+ * Inference job status response
+ */
+export interface InferenceStatusResponse {
+  folder_name: string;
+  job_id: string;
+  status: 'queued' | 'processing' | 'completed' | 'failed';
+  total_drawings: number;
+  total_symbols: number;
+  created_at: string;
+  completed_at: string | null;
+  error: string | null;
+}
+
+/**
+ * Server Action: Get inference job status for a folder
+ * @param folderName - The name of the folder
+ * @returns InferenceStatusResponse with job status
+ */
+export async function getInferenceStatusAction(folderName: string): Promise<InferenceStatusResponse> {
+  const url = getApiUrl(`/api/inference/status/${encodeURIComponent(folderName)}`);
+  console.log('[getInferenceStatusAction] Fetching status for:', folderName, '| URL:', url);
+  
+  const headers = await getServerAuthHeaders();
+
+  try {
+    const response = await fetch(url, {
+      headers,
+      cache: 'no-store',
+    });
+
+    console.log('[getInferenceStatusAction] Response status:', response.status);
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        await handleUnauthorized();
+      }
+      const errorData = await response.json().catch(() => ({ detail: response.statusText }));
+      console.error('[getInferenceStatusAction] API error:', errorData);
+      throw new Error(errorData.detail || `Failed to get inference status: ${response.statusText}`);
+    }
+
+    const data = await response.json() as InferenceStatusResponse;
+    console.log('[getInferenceStatusAction] Status data:', data);
+    
+    return data;
+  } catch (error) {
+    // Check if this is a Next.js redirect error - if so, re-throw it
+    if (error && typeof error === 'object' && 'digest' in error && 
+        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+      throw error;
+    }
+    
+    console.error('[getInferenceStatusAction] Error:', error);
+    
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error('An unexpected error occurred while getting inference status');
+  }
+}
