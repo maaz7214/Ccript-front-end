@@ -22,7 +22,6 @@
 
 # misc
 .DS_Store
-*.pem
 
 # debug
 npm-debug.log*
@@ -30,11 +29,23 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files - exclude all environment files
+# Ignore all .env files by default
 .env*
+# Allow .env.example as a template (optional - uncomment next line if you want to commit .env.example)
+# !.env.example
 
 # vercel
 .vercel
+
+# AWS
+.aws/
+*.pem
+*.key
+aws-credentials.json
+aws-config.json
+*.p12
+*.pfx
 
 # typescript
 *.tsbuildinfo
