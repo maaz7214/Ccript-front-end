@@ -2,13 +2,13 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, Download, ChevronRight } from 'lucide-react';
+import { Search, Download, ChevronRight, DollarSign, Clock, Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import FolderDetailsTable from './FolderDetailsTable';
 import type { FolderTableRow } from './FolderDetailsTable';
 import ImageMappingPanel from './ImageMappingPanel';
-import { loadFolderCsvDataAction, updateQuantityTakeoffsAction, type QuantityTakeoffUpdateRow } from '../../../app/(main)/_actions/folders';
+import { loadFolderCsvDataAction, updateQuantityTakeoffsAction, type QuantityTakeoffUpdateRow, type FolderCsvDataResult } from '../../../app/(main)/_actions/folders';
 import * as XLSX from 'xlsx';
 
 // Legacy type - keeping for compatibility but not used
@@ -111,6 +111,11 @@ export default function FolderDetailsContent({
   const folderName = getFolderName();
 
   const [tableData, setTableData] = useState<FolderTableRow[]>([]);
+  const [summaryData, setSummaryData] = useState({
+    totalMaterialExtension: 0,
+    totalLaborHours: 0,
+    finalEstimatedBid: 0,
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -122,8 +127,13 @@ export default function FolderDetailsContent({
       
       try {
         console.log('Fetching folder CSV data for folderId:', folderId);
-        const data = await loadFolderCsvDataAction(folderId);
-        setTableData(data);
+        const result = await loadFolderCsvDataAction(folderId);
+        setTableData(result.items);
+        setSummaryData({
+          totalMaterialExtension: result.totalMaterialExtension,
+          totalLaborHours: result.totalLaborHours,
+          finalEstimatedBid: result.finalEstimatedBid,
+        });
       } catch (err) {
         console.error('Error fetching folder CSV data:', err);
         setError(err instanceof Error ? err.message : 'Failed to load folder data');
@@ -147,8 +157,8 @@ export default function FolderDetailsContent({
 
   const filteredData = (isEditMode ? editedData : tableData).filter(row =>
     row.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    row.takeoff_date.includes(searchQuery) ||
-    row.trade_price.includes(searchQuery)
+    String(row.takeoff_date).includes(searchQuery) ||
+    String(row.trade_price).includes(searchQuery)
   );
 
   const handleBack = () => {
@@ -235,8 +245,13 @@ export default function FolderDetailsContent({
       
       // Optionally refresh data from server to ensure consistency
       try {
-        const refreshedData = await loadFolderCsvDataAction(folderId);
-        setTableData(refreshedData);
+        const refreshedResult = await loadFolderCsvDataAction(folderId);
+        setTableData(refreshedResult.items);
+        setSummaryData({
+          totalMaterialExtension: refreshedResult.totalMaterialExtension,
+          totalLaborHours: refreshedResult.totalLaborHours,
+          finalEstimatedBid: refreshedResult.finalEstimatedBid,
+        });
       } catch (refreshError) {
         console.error('Error refreshing data:', refreshError);
       }
@@ -466,6 +481,56 @@ export default function FolderDetailsContent({
           defaultCollapsed={false}
         />
       </div>
+
+      {/* Summary Cards */}
+      {!isLoading && !error && (summaryData.totalMaterialExtension > 0 || summaryData.totalLaborHours > 0 || summaryData.finalEstimatedBid > 0) && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          {/* Total Material Extension */}
+          <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-blue-50 rounded-lg">
+                <DollarSign className="h-5 w-5 text-blue-600" />
+              </div>
+              <div>
+                <p className="text-sm text-gray-500 font-medium">Total Material Extension</p>
+                <p className="text-xl font-bold text-gray-900">
+                  ${summaryData.totalMaterialExtension.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Total Labor Hours */}
+          <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-amber-50 rounded-lg">
+                <Clock className="h-5 w-5 text-amber-600" />
+              </div>
+              <div>
+                <p className="text-sm text-gray-500 font-medium">Total Labor Hours</p>
+                <p className="text-xl font-bold text-gray-900">
+                  {summaryData.totalLaborHours.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} hrs
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Final Estimated Bid */}
+          <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-green-50 rounded-lg">
+                <Calculator className="h-5 w-5 text-green-600" />
+              </div>
+              <div>
+                <p className="text-sm text-gray-500 font-medium">Final Estimated Bid</p>
+                <p className="text-xl font-bold text-[#009689]">
+                  ${summaryData.finalEstimatedBid.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Table */}
       <div className="w-full min-w-0 overflow-x-hidden">

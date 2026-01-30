@@ -28,7 +28,15 @@ export default function DeleteFolderDialog({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel disabled={isDeleting} className="cursor-pointer">
+          <AlertDialogCancel 
+            disabled={isDeleting} 
+            className="cursor-pointer"
+            onClick={() => {
+              if (!isDeleting) {
+                onOpenChange(false);
+              }
+            }}
+          >
             Cancel
           </AlertDialogCancel>
           <AlertDialogAction

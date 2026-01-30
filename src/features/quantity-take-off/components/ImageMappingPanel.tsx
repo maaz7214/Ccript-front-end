@@ -82,6 +82,12 @@ function ZoomControls() {
   );
 }
 
+// Helper function to get proxied image URL
+function getProxiedImageUrl(imageUrl: string): string {
+  // Use the proxy API to fetch authenticated S3 images
+  return `/api/image-proxy?url=${encodeURIComponent(imageUrl)}`;
+}
+
 // Annotated image viewer component
 function AnnotatedImageViewer({ 
   imageUrl, 
@@ -94,6 +100,8 @@ function AnnotatedImageViewer({
   isFullscreen: boolean;
   onToggleFullscreen: () => void;
 }) {
+  const proxiedUrl = getProxiedImageUrl(imageUrl);
+  
   return (
     <div className={`relative bg-gray-100 rounded-lg overflow-hidden ${
       isFullscreen ? 'h-[500px]' : 'h-[300px]'
@@ -101,9 +109,10 @@ function AnnotatedImageViewer({
       <TransformWrapper
         initialScale={1}
         minScale={0.5}
-        maxScale={4}
-        wheel={{ step: 0.1 }}
+        maxScale={20}
+        wheel={{ step: 0.2 }}
         doubleClick={{ mode: 'toggle' }}
+        pinch={{ step: 5 }}
       >
         <ZoomControls />
         <TransformComponent
@@ -113,7 +122,7 @@ function AnnotatedImageViewer({
           <div className="w-full h-full flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={imageUrl}
+              src={proxiedUrl}
               alt={title || 'Annotated blueprint image'}
               className="max-w-full max-h-full object-contain"
               draggable={false}

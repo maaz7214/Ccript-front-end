@@ -151,6 +151,22 @@ export async function loadFoldersAction(): Promise<FolderCardData[]> {
 /**
  * API Response type for quantity takeoff CSV data endpoint
  */
+interface QuantityTakeoffApiResponse {
+  items: FolderTableRow[];
+  total_material_extension: number;
+  total_labor_hours: number;
+  final_estimated_bid: number;
+}
+
+/**
+ * Response type for folder CSV data with summary
+ */
+export interface FolderCsvDataResult {
+  items: FolderTableRow[];
+  totalMaterialExtension: number;
+  totalLaborHours: number;
+  finalEstimatedBid: number;
+}
 
 /**
  * Format date from ISO string to M/D/YYYY format for table display
@@ -167,7 +183,7 @@ function formatTableDate(dateString: string): string {
   }
 }
 
-export async function loadFolderCsvDataAction(folderId: string): Promise<FolderTableRow[]> {
+export async function loadFolderCsvDataAction(folderId: string): Promise<FolderCsvDataResult> {
   const url = getApiUrl(`/api/quantity_takeoffs/folder/${folderId}`);
   const headers = await getServerAuthHeaders();
 
@@ -188,9 +204,21 @@ export async function loadFolderCsvDataAction(folderId: string): Promise<FolderT
       throw new Error(errorData.detail || `Failed to load folder data: ${response.statusText}`);
     }
 
-    const data: FolderTableRow[] = await response.json();
+    const data: QuantityTakeoffApiResponse = await response.json();
     
-    return data.map(item => ({ ...item, takeoff_date: formatTableDate(item.takeoff_date) }));
+    // Handle both old format (array) and new format (object with items)
+    const items = Array.isArray(data) ? data : (data.items || []);
+    const formattedItems = items.map((item: FolderTableRow) => ({ 
+      ...item, 
+      takeoff_date: formatTableDate(item.takeoff_date) 
+    }));
+    
+    return {
+      items: formattedItems,
+      totalMaterialExtension: Array.isArray(data) ? 0 : (data.total_material_extension || 0),
+      totalLaborHours: Array.isArray(data) ? 0 : (data.total_labor_hours || 0),
+      finalEstimatedBid: Array.isArray(data) ? 0 : (data.final_estimated_bid || 0),
+    };
   } catch (error) {
     // Check if this is a Next.js redirect error - if so, re-throw it
     if (error && typeof error === 'object' && 'digest' in error && 
@@ -200,7 +228,12 @@ export async function loadFolderCsvDataAction(folderId: string): Promise<FolderT
     
     console.error('Error loading folder CSV data:', error);
     
-    return [];
+    return {
+      items: [],
+      totalMaterialExtension: 0,
+      totalLaborHours: 0,
+      finalEstimatedBid: 0,
+    };
   }
 }
 
@@ -419,6 +452,7 @@ export type InferenceDrawing = {
   image_url: string;
   total_symbols: number;
   symbol_counts: { [key: string]: number };
+  legend_colors?: { [key: string]: string };
 };
 
 /**
@@ -432,6 +466,7 @@ export type InferenceResultsResponse = {
   total_drawings: number;
   total_symbols: number;
   symbol_counts: { [key: string]: number };
+  legend_colors?: { [key: string]: string };
   drawings: InferenceDrawing[];
 };
 

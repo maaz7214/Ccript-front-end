@@ -756,7 +756,16 @@ export default function DashboardSection() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel disabled={isDeleting}>Cancel</AlertDialogCancel>
+            <AlertDialogCancel 
+              disabled={isDeleting}
+              onClick={() => {
+                if (!isDeleting) {
+                  setDeleteDialogOpen(false);
+                }
+              }}
+            >
+              Cancel
+            </AlertDialogCancel>
             <AlertDialogAction
               onClick={confirmDelete}
               disabled={isDeleting}

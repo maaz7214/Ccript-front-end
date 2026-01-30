@@ -76,10 +76,13 @@ export async function loginAction(formData: FormData): Promise<AuthActionResult>
     }
 
     // Store authentication token in httpOnly cookies for security
+    // Note: secure should only be true when using HTTPS
+    const useSecureCookies = process.env.SECURE_COOKIES === 'true';
+    
     const cookieStore = await cookies();
     cookieStore.set('auth-token', response.access_token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: useSecureCookies,
       sameSite: 'lax',
       maxAge: 24 * 60 * 60, // 24 hours
       path: '/',
@@ -96,7 +99,7 @@ export async function loginAction(formData: FormData): Promise<AuthActionResult>
         is_superuser: response.user.is_superuser,
       }), {
         httpOnly: false, // Allow client-side access for user info
-        secure: process.env.NODE_ENV === 'production',
+        secure: useSecureCookies,
         sameSite: 'lax',
         maxAge: 24 * 60 * 60,
         path: '/',

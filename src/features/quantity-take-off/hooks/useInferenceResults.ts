@@ -65,6 +65,7 @@ export function useInferenceResults(folderId: string): UseInferenceResultsReturn
       
       const response = await fetch(`/api/inference-results/${folderId}`, {
         cache: 'no-store',
+        credentials: 'include',
       });
 
       console.log('[useInferenceResults] Response status:', response.status);
@@ -83,12 +84,7 @@ export function useInferenceResults(folderId: string): UseInferenceResultsReturn
       } else {
         setInferenceData(data);
         setCurrentIndex(0);
-        
-        // Generate colors for all symbols
-        if (data.symbol_counts) {
-          const colors = generateSymbolColors(data.symbol_counts);
-          setSymbolColors(colors);
-        }
+        // Colors will be set by useEffect when currentDrawing is available
       }
     } catch (err) {
       console.error('Error fetching inference results:', err);
@@ -108,6 +104,21 @@ export function useInferenceResults(folderId: string): UseInferenceResultsReturn
   const drawings = inferenceData?.drawings || [];
   const totalDrawings = drawings.length;
   const currentDrawing = drawings[currentIndex] || null;
+
+  // Update symbol colors when current drawing changes or when data is loaded
+  useEffect(() => {
+    if (currentDrawing) {
+      // Priority: current drawing legend_colors > top-level legend_colors > generated colors
+      const colors = currentDrawing.legend_colors 
+        || inferenceData?.legend_colors 
+        || (currentDrawing.symbol_counts ? generateSymbolColors(currentDrawing.symbol_counts) : {});
+      setSymbolColors(colors);
+    } else if (inferenceData?.symbol_counts) {
+      // Fallback to top-level legend_colors or generated colors
+      const colors = inferenceData.legend_colors || generateSymbolColors(inferenceData.symbol_counts);
+      setSymbolColors(colors);
+    }
+  }, [currentDrawing, inferenceData]);
 
   // Navigation actions
   const goToNext = useCallback(() => {

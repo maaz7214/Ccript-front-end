@@ -23,7 +23,7 @@ export default async function TrackingPage({ searchParams }: TrackingPageProps) 
         <Header />
         <div className="flex flex-1">
           <Sidebar />
-          <main className="flex-1 p-6 ml-20 overflow-hidden flex flex-col">
+          <main className="flex-1 mb-10 p-6 ml-20 overflow-hidden flex flex-col">
             <div className="space-y-6 max-w-full flex-1 overflow-y-auto">
               <TrackingTable initialData={data} initialSearch={search} />
             </div>

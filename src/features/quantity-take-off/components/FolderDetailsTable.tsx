@@ -13,18 +13,21 @@ export interface FolderTableRow {
   folder_id: number;
   description: string;
   takeoff_date: string;
-  trade_price: string;
-  link_price: string;
-  net_cost: string;
-  total_material: string;
+  trade_price: string | number;
+  link_price: string | number;
+  net_cost: string | number;
+  total_material: string | number;
   unit: string;
-  discount_percent: string | null;
-  cost_adjust_percent: string;
-  db_labor: string;
-  labor: string;
+  discount_percent: string | number | null;
+  cost_adjust_percent: string | number;
+  db_labor: string | number;
+  labor: string | number;
   labor_unit: string;
-  labor_adjust_percent: string;
-  total_hours: string;
+  labor_adjust_percent: string | number;
+  total_hours: string | number;
+  // Additional fields from API
+  created_by_id?: number | null;
+  updated_by_id?: number | null;
 }
 
 interface FolderDetailsTableProps {
@@ -91,25 +94,26 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
     }
   };
 
-  // Render editable cell
+  // Render editable cell - handles both string and number values
   const renderEditableCell = (
-    value: string,
+    value: string | number | null | undefined,
     rowId: string,
     field: keyof FolderTableRow,
     className: string = ''
   ) => {
+    const stringValue = value != null ? String(value) : '';
     if (isEditMode && onCellChange) {
       return (
         <Input
           type="text"
-          value={value || ''}
+          value={stringValue}
           onChange={(e) => onCellChange(rowId, field, e.target.value)}
           className={`h-7 px-2 text-xs border-gray-300 focus:border-[#009689] focus:ring-[#009689] w-full ${className}`}
           onClick={(e) => e.stopPropagation()}
         />
       );
     }
-    return <span className={`${className} block truncate`} title={value}>{value || ''}</span>;
+    return <span className={`${className} block truncate`} title={stringValue}>{stringValue}</span>;
   };
 
   const columns = [
@@ -289,7 +293,7 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
                      {renderEditableCell(row?.id.toString(), (startIndex + index + 1).toString(), 'id', 'text-sm text-gray-900')}
                   </td>
                   <td className="px-4 py-3 border-r border-gray-200">
-                    <div className="truncate max-w-xs" title={row.description}>
+                    <div className="truncate max-w-xs" title={String(row.description)}>
                       {renderEditableCell(row.description, row.id.toString(), 'description', 'text-sm text-gray-900')}
                     </div>
                   </td>

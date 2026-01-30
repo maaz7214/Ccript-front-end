@@ -48,7 +48,8 @@ export default function Sidebar() {
       return pathname === '/dashboard';
     }
     if (href === '/quantity-take-off') {
-      return pathname === '/quantity-take-off';
+      // Match both /quantity-take-off and /quantity-take-off/[folderId]
+      return pathname.startsWith('/quantity-take-off');
     }
     if (href === '/tracking') {
       return pathname === '/tracking';
