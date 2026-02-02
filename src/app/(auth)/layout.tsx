@@ -1,7 +1,7 @@
 
 import React from 'react'
 import Image from 'next/image'
-import loginImage from '../../../public/bannerTumlinson.png'
+import loginImage from '../../../public/bannerNeura.png'
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -14,7 +14,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
                     fill
                 />
                 <div className='absolute bottom-[46px] left-14'>
-                    <h1 className='text-white text-[40px] font-semibold'>Tumlinson Electric</h1>
+                    <h1 className='text-white text-[40px] font-semibold'>Neura</h1>
                     <p className='text-white text-2xl font-normal'>AI Estimation Dashboard</p>
                 </div>
             </div>
@@ -23,7 +23,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
                     {children}
                 </div>
                 <p className="text-center text-sm text-muted-foreground pb-8">
-                    © Tumlinson Electric. All rights reserved.
+                    © Neura. All rights reserved.
                 </p>
             </section>
         </main>

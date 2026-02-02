@@ -47,7 +47,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "deployment.tar.gz"
-          target: "/var/www/Tumlinson-Frontend"
+          target: "/var/www/Neura-Frontend"
           strip_components: 0
 
       - name: Deploy on EC2
@@ -59,7 +59,7 @@ jobs:
           script: |
             set -e
             echo "Starting deployment..."
-            cd /var/www/Tumlinson-Frontend || { echo "Error: Directory not found"; exit 1; }
+            cd /var/www/Neura-Frontend || { echo "Error: Directory not found"; exit 1; }
             
             echo "Extracting deployment package..."
             if [ ! -f "deployment.tar.gz" ]; then
@@ -76,12 +76,12 @@ jobs:
             npm ci --omit=dev --prefer-offline --no-audit --progress=false || npm install --omit=dev --prefer-offline --no-audit --progress=false
             
             echo "Checking PM2 status..."
-            if pm2 list | grep -q "tumlinson-frontend"; then
+            if pm2 list | grep -q "neura-frontend"; then
               echo "Restarting existing PM2 process..."
-              pm2 restart tumlinson-frontend
+              pm2 restart neura-frontend
             else
               echo "Starting new PM2 process..."
-              pm2 start npm --name "tumlinson-frontend" -- start
+              pm2 start npm --name "neura-frontend" -- start
             fi
             
             echo "Saving PM2 configuration..."

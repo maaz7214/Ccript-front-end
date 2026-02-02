@@ -1,4 +1,4 @@
-# Tumlinson Frontend - Production Hosting
+# Neura Frontend - Production Hosting
 
 ## Live Application
 
@@ -15,12 +15,12 @@
 ### Application Status
 ```bash
 pm2 status
-pm2 logs tumlinson-frontend
+pm2 logs neura-frontend
 ```
 
 ### Restart Application
 ```bash
-pm2 restart tumlinson-frontend
+pm2 restart neura-frontend
 ```
 
 ### View Nginx Status
@@ -30,9 +30,9 @@ sudo systemctl status nginx
 
 ### Rebuild and Deploy
 ```bash
-cd /home/ec2-user/tumlinson-frontend
+cd /home/ec2-user/neura-frontend
 npm run build
-pm2 restart tumlinson-frontend
+pm2 restart neura-frontend
 ```
 
 ## Auto-Start on Reboot
@@ -56,6 +56,6 @@ sudo certbot --nginx -d yourdomain.com
 
 ## Configuration Files
 
-- **Nginx config:** `/etc/nginx/conf.d/tumlinson-frontend.conf`
+- **Nginx config:** `/etc/nginx/conf.d/neura-frontend.conf`
 - **PM2 config:** `~/.pm2/dump.pm2`
-- **Environment:** `/home/ec2-user/tumlinson-frontend/.env.local`
+- **Environment:** `/home/ec2-user/neura-frontend/.env.local`

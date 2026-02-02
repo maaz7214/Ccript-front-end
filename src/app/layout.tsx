@@ -9,8 +9,8 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Tumlinson Electric",
-  description: "Tumlinson Electric AI Estimation Dashboard",
+  title: "Neura",
+  description: "Neura AI Estimation Dashboard",
 };
 
 export default function RootLayout({

@@ -523,7 +523,7 @@ export default function DashboardSection() {
             onClick={navigateToRoot}
             className="text-[#009689] font-semibold cursor-pointer hover:underline flex items-center gap-1"
           >
-            Tumlinson Electric Drive
+            Neura Drive
           </span> */}
           {getBreadcrumbParts().map((part, index) => (
             <span key={index} className="flex items-center gap-2">

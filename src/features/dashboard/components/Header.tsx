@@ -105,13 +105,13 @@ export default function Header() {
         <div className="flex items-center space-x-3">
           <Image
             src="/logo.svg"
-            alt="Tumlinson Electric Logo"
+            alt="Neura Logo"
             width={40}
             height={40}
             className="w-10 h-10"
           />
           <h1 className="text-xl font-semibold text-gray-900">
-            Tumlinson Electric
+            Neura
           </h1>
         </div>
 

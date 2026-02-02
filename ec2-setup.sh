@@ -5,7 +5,7 @@
 
 set -e
 
-echo "🚀 Starting EC2 setup for tumlinson-frontend..."
+echo "🚀 Starting EC2 setup for neura-frontend..."
 
 # Update system
 echo "📦 Updating system packages..."
@@ -35,7 +35,7 @@ echo "⚙️  Configuring PM2 startup..."
 pm2 startup | grep -v "PM2" | bash || true
 
 # Create application directory
-APP_DIR="/var/www/tumlinson-frontend"
+APP_DIR="/var/www/neura-frontend"
 echo "📁 Creating application directory at $APP_DIR..."
 sudo mkdir -p "$APP_DIR"
 sudo chown -R $USER:$USER "$APP_DIR"
@@ -49,7 +49,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     
     # Create Nginx config
     echo "⚙️  Creating Nginx configuration..."
-    sudo tee /etc/nginx/sites-available/tumlinson-frontend > /dev/null <<EOF
+    sudo tee /etc/nginx/sites-available/neura-frontend > /dev/null <<EOF
 server {
     listen 80;
     server_name _;
@@ -69,7 +69,7 @@ server {
 EOF
 
     # Enable site
-    sudo ln -sf /etc/nginx/sites-available/tumlinson-frontend /etc/nginx/sites-enabled/
+    sudo ln -sf /etc/nginx/sites-available/neura-frontend /etc/nginx/sites-enabled/
     sudo rm -f /etc/nginx/sites-enabled/default
     
     # Test and restart Nginx
