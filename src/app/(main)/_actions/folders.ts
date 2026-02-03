@@ -40,11 +40,11 @@ async function getServerAuthHeaders(): Promise<HeadersInit> {
   const headers: HeadersInit = {
     'ngrok-skip-browser-warning': 'true',
   };
-  
+
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
-  
+
   return headers;
 }
 
@@ -133,17 +133,17 @@ export async function loadFoldersAction(): Promise<FolderCardData[]> {
     }
 
     const folders: FolderApiResponse[] = await response.json();
-    
+
     return folders.map(mapFolderToCardData);
   } catch (error) {
     // Check if this is a Next.js redirect error - if so, re-throw it
-    if (error && typeof error === 'object' && 'digest' in error && 
-        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+    if (error && typeof error === 'object' && 'digest' in error &&
+      typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
       throw error;
     }
-    
+
     console.error('Error loading folders:', error);
-    
+
     return [];
   }
 }
@@ -183,6 +183,38 @@ function formatTableDate(dateString: string): string {
   }
 }
 
+/**
+ * Parse display date (M/D/YYYY) back to ISO format for API
+ * Returns the original string if parsing fails (might already be ISO or invalid)
+ */
+function parseTableDateToISO(dateString: string): string {
+  if (!dateString) return dateString;
+
+  // If it's already in ISO format (contains 'T' or is a full ISO string), return as-is
+  if (dateString.includes('T') || dateString.match(/^\d{4}-\d{2}-\d{2}/)) {
+    return dateString;
+  }
+
+  // Try to parse M/D/YYYY format
+  const parts = dateString.split('/');
+  if (parts.length === 3) {
+    const month = parseInt(parts[0], 10);
+    const day = parseInt(parts[1], 10);
+    const year = parseInt(parts[2], 10);
+
+    if (!isNaN(month) && !isNaN(day) && !isNaN(year)) {
+      // Create date at noon UTC to avoid timezone issues
+      const date = new Date(Date.UTC(year, month - 1, day, 12, 0, 0));
+      if (!isNaN(date.getTime())) {
+        return date.toISOString();
+      }
+    }
+  }
+
+  // Return original if parsing fails
+  return dateString;
+}
+
 export async function loadFolderCsvDataAction(folderId: string): Promise<FolderCsvDataResult> {
   const url = getApiUrl(`/api/quantity_takeoffs/folder/${folderId}`);
   const headers = await getServerAuthHeaders();
@@ -205,14 +237,14 @@ export async function loadFolderCsvDataAction(folderId: string): Promise<FolderC
     }
 
     const data: QuantityTakeoffApiResponse = await response.json();
-    
+
     // Handle both old format (array) and new format (object with items)
     const items = Array.isArray(data) ? data : (data.items || []);
-    const formattedItems = items.map((item: FolderTableRow) => ({ 
-      ...item, 
-      takeoff_date: formatTableDate(item.takeoff_date) 
+    const formattedItems = items.map((item: FolderTableRow) => ({
+      ...item,
+      takeoff_date: formatTableDate(item.takeoff_date)
     }));
-    
+
     return {
       items: formattedItems,
       totalMaterialExtension: Array.isArray(data) ? 0 : (data.total_material_extension || 0),
@@ -221,13 +253,13 @@ export async function loadFolderCsvDataAction(folderId: string): Promise<FolderC
     };
   } catch (error) {
     // Check if this is a Next.js redirect error - if so, re-throw it
-    if (error && typeof error === 'object' && 'digest' in error && 
-        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+    if (error && typeof error === 'object' && 'digest' in error &&
+      typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
       throw error;
     }
-    
+
     console.error('Error loading folder CSV data:', error);
-    
+
     return {
       items: [],
       totalMaterialExtension: 0,
@@ -255,12 +287,12 @@ export interface UploadFolderResponse {
 export async function uploadFolderAction(formData: FormData): Promise<UploadFolderResponse> {
   const url = getApiUrl('/api/upload-multiple');
   const token = await getServerAuthToken();
-  
+
   // Create headers without Content-Type to let fetch set it automatically with boundary
   const headers: HeadersInit = {
     'ngrok-skip-browser-warning': 'true',
   };
-  
+
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
@@ -287,13 +319,13 @@ export async function uploadFolderAction(formData: FormData): Promise<UploadFold
     return await response.json() as UploadFolderResponse;
   } catch (error) {
     // Check if this is a Next.js redirect error - if so, re-throw it
-    if (error && typeof error === 'object' && 'digest' in error && 
-        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+    if (error && typeof error === 'object' && 'digest' in error &&
+      typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
       throw error;
     }
-    
+
     console.error('Error uploading folder:', error);
-    
+
     if (error instanceof Error) {
       throw error;
     }
@@ -338,13 +370,13 @@ export async function deleteFolderAction(folderId: string): Promise<DeleteFolder
     return await response.json() as DeleteFolderResponse;
   } catch (error) {
     // Check if this is a Next.js redirect error - if so, re-throw it
-    if (error && typeof error === 'object' && 'digest' in error && 
-        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+    if (error && typeof error === 'object' && 'digest' in error &&
+      typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
       throw error;
     }
-    
+
     console.error('Error deleting folder:', error);
-    
+
     if (error instanceof Error) {
       throw error;
     }
@@ -397,21 +429,32 @@ export async function updateQuantityTakeoffsAction(
 ): Promise<UpdateQuantityTakeoffsResponse> {
   const url = getApiUrl(`/api/quantity_takeoffs/${folderId}`);
   const token = await getServerAuthToken();
-  
+
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
     'ngrok-skip-browser-warning': 'true',
   };
-  
+
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
 
   try {
+    // Convert takeoff_date from display format (M/D/YYYY) to ISO format for API
+    const processedUpdates = updates.map(update => {
+      if (update.takeoff_date !== undefined) {
+        return {
+          ...update,
+          takeoff_date: parseTableDateToISO(update.takeoff_date)
+        };
+      }
+      return update;
+    });
+
     const response = await fetch(url, {
       method: 'PUT',
       headers,
-      body: JSON.stringify(updates),
+      body: JSON.stringify(processedUpdates),
       cache: 'no-store',
     });
 
@@ -426,13 +469,13 @@ export async function updateQuantityTakeoffsAction(
     return await response.json() as UpdateQuantityTakeoffsResponse;
   } catch (error) {
     // Check if this is a Next.js redirect error - if so, re-throw it
-    if (error && typeof error === 'object' && 'digest' in error && 
-        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+    if (error && typeof error === 'object' && 'digest' in error &&
+      typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
       throw error;
     }
-    
+
     console.error('Error updating quantity takeoffs:', error);
-    
+
     if (error instanceof Error) {
       throw error;
     }
@@ -484,7 +527,7 @@ export async function getInferenceResultsAction(folderId: string) {
       headers,
       cache: 'no-store',
     });
-    
+
     console.log('[getInferenceResultsAction] Response status:', response.status);
 
     if (!response.ok) {
@@ -498,7 +541,7 @@ export async function getInferenceResultsAction(folderId: string) {
 
     const data = await response.json();
     console.log('[getInferenceResultsAction] Success, drawings:', data.drawings?.length || 0);
-    
+
     // Return a plain object to ensure serializability
     return {
       folder_id: data.folder_id,
@@ -512,13 +555,13 @@ export async function getInferenceResultsAction(folderId: string) {
     };
   } catch (error) {
     // Check if this is a Next.js redirect error - if so, re-throw it
-    if (error && typeof error === 'object' && 'digest' in error && 
-        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+    if (error && typeof error === 'object' && 'digest' in error &&
+      typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
       throw error;
     }
-    
+
     console.error('[getInferenceResultsAction] Error:', error);
-    
+
     return null;
   }
 }
@@ -545,7 +588,7 @@ export interface InferenceStatusResponse {
 export async function getInferenceStatusAction(folderName: string): Promise<InferenceStatusResponse> {
   const url = getApiUrl(`/api/inference/status/${encodeURIComponent(folderName)}`);
   console.log('[getInferenceStatusAction] Fetching status for:', folderName, '| URL:', url);
-  
+
   const headers = await getServerAuthHeaders();
 
   try {
@@ -567,17 +610,17 @@ export async function getInferenceStatusAction(folderName: string): Promise<Infe
 
     const data = await response.json() as InferenceStatusResponse;
     console.log('[getInferenceStatusAction] Status data:', data);
-    
+
     return data;
   } catch (error) {
     // Check if this is a Next.js redirect error - if so, re-throw it
-    if (error && typeof error === 'object' && 'digest' in error && 
-        typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
+    if (error && typeof error === 'object' && 'digest' in error &&
+      typeof error.digest === 'string' && error.digest.startsWith('NEXT_REDIRECT')) {
       throw error;
     }
-    
+
     console.error('[getInferenceStatusAction] Error:', error);
-    
+
     if (error instanceof Error) {
       throw error;
     }

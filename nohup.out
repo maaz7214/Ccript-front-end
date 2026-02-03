@@ -1,0 +1,6553 @@
+nohup: ignoring input
+
+> tumlinson-frontend@0.1.0 start
+> next start
+
+   ▲ Next.js 16.0.1
+   - Local:        http://localhost:3000
+   - Network:      http://172.31.36.195:3000
+
+ ✓ Starting...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Ready in 434ms
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '123',
+    name: 'xyz-folder',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '110',
+    name: 'xyz-folder-2021',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '123',
+    name: 'xyz-folder',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '110',
+    name: 'xyz-folder-2021',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+Login data prepared: { username: 'ali@gmail.com', password: 'alishan123' }
+Making API request to URL: http://51.20.2.115:8000/api/auth/login
+Request options: {
+  method: 'POST',
+  body: '{"username":"ali@gmail.com","password":"alishan123"}'
+}
+API Response received: {
+  access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbGkiLCJleHAiOjE3NzAxMjgxOTN9.dxX6qSOfPo__7Ngor8Lu826EEdC6ISW3hVFVwsdo1gY',
+  token_type: 'bearer',
+  user: {
+    email: 'ali@gmail.com',
+    username: 'ali',
+    full_name: 'alishan',
+    id: 1,
+    is_active: true,
+    is_superuser: false,
+    created_at: '2025-12-30T16:09:47.245834Z',
+    updated_at: '2025-12-30T16:09:47.245834Z'
+  }
+}
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '123',
+    name: 'xyz-folder',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '110',
+    name: 'xyz-folder-2021',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '123',
+    name: 'xyz-folder',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '110',
+    name: 'xyz-folder-2021',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '123',
+    name: 'xyz-folder',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '110',
+    name: 'xyz-folder-2021',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+Response: _Response [Response] {
+  [Symbol(realm)]: null,
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: true,
+    requestIncludesCredentials: true,
+    type: 'default',
+    status: 200,
+    timingInfo: {
+      startTime: 204168.67197692394,
+      redirectStartTime: 0,
+      redirectEndTime: 0,
+      postRedirectStartTime: 204168.67197692394,
+      finalServiceWorkerStartTime: 0,
+      finalNetworkResponseStartTime: 0,
+      finalNetworkRequestStartTime: 0,
+      endTime: 0,
+      encodedBodySize: 136,
+      decodedBodySize: 136,
+      finalConnectionTimingInfo: null
+    },
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [ URL {} ],
+    body: { stream: undefined }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'date' => [Object],
+      'server' => [Object],
+      'content-length' => [Object],
+      'content-type' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'ab60c52f',
+  status: 'completed',
+  total_drawings: 7,
+  total_symbols: 1447,
+  created_at: '2026-02-03T13:46:59.761283',
+  completed_at: '2026-02-03T13:47:49.223564',
+  error: null
+}
+[API inference-results] Fetching: http://51.20.2.115:8000/api/inference-results/124
+Response: _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/quantity_takeoffs/folder/124',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[API inference-results] Response status: 200
+[API inference-results] Success, drawings: 7
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/xyz-folder/images/26e5bae6-9b9b-4437-93dd-c17cf6da6658_E1.01%20-%20LIGHTING%201ST%20FLOOR%20PLAN%20-%20SECTION%201.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T134750Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=86a6d1bc25af11e02d1f8906579f0d9cde64ef73861b942fc6307bc923667696
+[API image-proxy] Response status: 200
+Login data prepared: { username: 'ali@gmail.com', password: 'alishan123' }
+Making API request to URL: http://51.20.2.115:8000/api/auth/login
+Request options: {
+  method: 'POST',
+  body: '{"username":"ali@gmail.com","password":"alishan123"}'
+}
+API Response received: {
+  access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbGkiLCJleHAiOjE3NzAxMzAwNjZ9.KJOoMGCQngDjcb_iZ8z1GMD_iuXL3F6sqSEZOEEInbw',
+  token_type: 'bearer',
+  user: {
+    email: 'ali@gmail.com',
+    username: 'ali',
+    full_name: 'alishan',
+    id: 1,
+    is_active: true,
+    is_superuser: false,
+    created_at: '2025-12-30T16:09:47.245834Z',
+    updated_at: '2025-12-30T16:09:47.245834Z'
+  }
+}
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '124',
+    name: 'xyz-folder',
+    date: 'February 3, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '110',
+    name: 'xyz-folder-2021',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '124',
+    name: 'xyz-folder',
+    date: 'February 3, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '110',
+    name: 'xyz-folder-2021',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+Response: _Response [Response] {
+  [Symbol(realm)]: null,
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: true,
+    requestIncludesCredentials: true,
+    type: 'default',
+    status: 200,
+    timingInfo: {
+      startTime: 2118779.9607259035,
+      redirectStartTime: 0,
+      redirectEndTime: 0,
+      postRedirectStartTime: 2118779.9607259035,
+      finalServiceWorkerStartTime: 0,
+      finalNetworkResponseStartTime: 0,
+      finalNetworkRequestStartTime: 0,
+      endTime: 0,
+      encodedBodySize: 136,
+      decodedBodySize: 136,
+      finalConnectionTimingInfo: null
+    },
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [ URL {} ],
+    body: { stream: undefined }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'date' => [Object],
+      'server' => [Object],
+      'content-length' => [Object],
+      'content-type' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder',
+  job_id: 'a9f80202',
+  status: 'completed',
+  total_drawings: 7,
+  total_symbols: 1447,
+  created_at: '2026-02-03T14:18:54.366413',
+  completed_at: '2026-02-03T14:19:43.523344',
+  error: null
+}
+[API inference-results] Fetching: http://51.20.2.115:8000/api/inference-results/125
+[API inference-results] Response status: 200
+[API inference-results] Success, drawings: 7
+Response: _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/quantity_takeoffs/folder/125',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/xyz-folder/images/26e5bae6-9b9b-4437-93dd-c17cf6da6658_E1.01%20-%20LIGHTING%201ST%20FLOOR%20PLAN%20-%20SECTION%201.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T141944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=fc54d53ad0b27e088870cd3bcea3acda39adf91d2f31b71fd756948b25ddd376
+[API image-proxy] Response status: 200
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/xyz-folder/images/807d5878-e2f6-427a-b2d2-ea4c7d5cfd24_E-101A%201ST%20LEVEL%20POWER%20PLAN%20-AREA%20A.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T141944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=55f0f164b2be6eb315967cb5a1ffa983b2fd8f68b1c297dea7ef92bdb7c82351
+[API image-proxy] Response status: 200
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/xyz-folder/images/8a83ad42-be45-4524-aeee-a284e03426dd_E-101B%201ST%20LEVEL%20POWER%20PLAN%20-AREA%20B.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T141944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=1c93c334eaa5bc8292b0ea4add501e7ff32afada7d0e5df31988994a71b3a123
+[API image-proxy] Response status: 200
+Response: _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/quantity_takeoffs/folder/125',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+Response: _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/quantity_takeoffs/folder/125',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '125',
+    name: 'xyz-folder',
+    date: 'February 3, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-1 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-1
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-1',
+  message: 'No inference job found for this folder'
+}
+Login data prepared: { username: 'warda.fareed@ccript.com', password: 'skpskp1122' }
+Making API request to URL: http://51.20.2.115:8000/api/auth/login
+Request options: {
+  method: 'POST',
+  body: '{"username":"warda.fareed@ccript.com","password":"skpskp1122"}'
+}
+Login action error: Error: HTTP 401: Unauthorized
+    at d (.next/server/chunks/ssr/_09575379._.js:1:20597)
+    at async e (.next/server/chunks/ssr/_e9fc8250._.js:1:484)
+    at async m (.next/server/chunks/ssr/_4aff3909._.js:1:7355)
+    at async p (.next/server/chunks/ssr/_4aff3909._.js:2:2713)
+Login data prepared: { username: 'test@example.com', password: 'test123' }
+Making API request to URL: http://51.20.2.115:8000/api/auth/login
+Request options: {
+  method: 'POST',
+  body: '{"username":"test@example.com","password":"test123"}'
+}
+API Response received: {
+  access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzcwMTMxNTY5fQ.tsbHCmTa1UQCrTKhOBXoiSIy7A47jf0-IgtLEdsITDw',
+  token_type: 'bearer',
+  user: {
+    email: 'test@example.com',
+    username: 'test',
+    full_name: 'John Doe',
+    id: 5,
+    is_active: true,
+    is_superuser: false,
+    created_at: '2026-01-30T13:56:38.523051Z',
+    updated_at: '2026-01-30T13:56:38.523051Z'
+  }
+}
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '125',
+    name: 'xyz-folder',
+    date: 'February 3, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '125',
+    name: 'xyz-folder',
+    date: 'February 3, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+response _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/jobs',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[
+  {
+    job_id: 93,
+    folder_id: 108,
+    folder_name: 'xyz-folder-1',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:05:09.236510',
+    updated_at: '2026-02-02T20:05:09.246109',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 94,
+    folder_id: 109,
+    folder_name: 'xyz-folder-2020',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:18:29.585217',
+    updated_at: '2026-02-02T20:18:29.594790',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 96,
+    folder_id: 111,
+    folder_name: 'xyz-folder-2022',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:25:45.980986',
+    updated_at: '2026-02-02T20:25:47.236015',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 97,
+    folder_id: 112,
+    folder_name: 'xyz-folder-2',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:29:51.642213',
+    updated_at: '2026-02-02T20:29:52.767418',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 98,
+    folder_id: 113,
+    folder_name: 'xyz-folder-2025',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:32:00.098718',
+    updated_at: '2026-02-02T20:32:00.114669',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 99,
+    folder_id: 114,
+    folder_name: 'xyz-folder-2026',
+    folder_size: 5306275,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:37:09.710250',
+    updated_at: '2026-02-02T20:37:10.737274',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 100,
+    folder_id: 115,
+    folder_name: 'xyz-folder-2027',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:43:26.137274',
+    updated_at: '2026-02-02T20:43:27.161781',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 101,
+    folder_id: 116,
+    folder_name: 'xyz-folder-2028',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:44:15.987578',
+    updated_at: '2026-02-02T20:44:15.997033',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 102,
+    folder_id: 117,
+    folder_name: 'xyz-folder-2029',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:52:38.504051',
+    updated_at: '2026-02-02T20:52:39.462306',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 103,
+    folder_id: 118,
+    folder_name: 'xyz-folder-2030',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:58:52.803372',
+    updated_at: '2026-02-02T20:58:52.813284',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 104,
+    folder_id: 119,
+    folder_name: 'xyz-folder-2031',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:00:12.976758',
+    updated_at: '2026-02-02T21:00:12.985944',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 105,
+    folder_id: 120,
+    folder_name: 'xyz-folder-2032',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:12:02.302765',
+    updated_at: '2026-02-02T21:12:02.312775',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 106,
+    folder_id: 121,
+    folder_name: 'xyz-folder-2033',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:16:59.543519',
+    updated_at: '2026-02-02T21:16:59.550114',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 110,
+    folder_id: 125,
+    folder_name: 'xyz-folder',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T14:18:53.905165',
+    updated_at: '2026-02-03T14:18:53.908688',
+    message: 'Folder uploaded successfully'
+  }
+]
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '125',
+    name: 'xyz-folder',
+    date: 'February 3, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+Login data prepared: { username: 'test@example.com', password: 'test123' }
+Making API request to URL: http://51.20.2.115:8000/api/auth/login
+Request options: {
+  method: 'POST',
+  body: '{"username":"test@example.com","password":"test123"}'
+}
+API Response received: {
+  access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzcwMTMyMjEwfQ.rbCI1UErkVe0DvS6aAQsvgzIRoNi4Ad1WOxKw0Ctxgs',
+  token_type: 'bearer',
+  user: {
+    email: 'test@example.com',
+    username: 'test',
+    full_name: 'John Doe',
+    id: 5,
+    is_active: true,
+    is_superuser: false,
+    created_at: '2026-01-30T13:56:38.523051Z',
+    updated_at: '2026-01-30T13:56:38.523051Z'
+  }
+}
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '125',
+    name: 'xyz-folder',
+    date: 'February 3, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '125',
+    name: 'xyz-folder',
+    date: 'February 3, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+Response: _Response [Response] {
+  [Symbol(realm)]: null,
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: true,
+    requestIncludesCredentials: true,
+    type: 'default',
+    status: 200,
+    timingInfo: {
+      startTime: 4912175.693947911,
+      redirectStartTime: 0,
+      redirectEndTime: 0,
+      postRedirectStartTime: 4912175.693947911,
+      finalServiceWorkerStartTime: 0,
+      finalNetworkResponseStartTime: 0,
+      finalNetworkRequestStartTime: 0,
+      endTime: 0,
+      encodedBodySize: 0,
+      decodedBodySize: 0,
+      finalConnectionTimingInfo: null
+    },
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [ URL {} ],
+    body: { stream: undefined }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'date' => [Object],
+      'server' => [Object],
+      'content-length' => [Object],
+      'content-type' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+Response: _Response [Response] {
+  [Symbol(realm)]: null,
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: true,
+    requestIncludesCredentials: true,
+    type: 'default',
+    status: 400,
+    timingInfo: {
+      startTime: 5126872.638513923,
+      redirectStartTime: 0,
+      redirectEndTime: 0,
+      postRedirectStartTime: 5126872.638513923,
+      finalServiceWorkerStartTime: 0,
+      finalNetworkResponseStartTime: 0,
+      finalNetworkRequestStartTime: 0,
+      endTime: 0,
+      encodedBodySize: 81,
+      decodedBodySize: 81,
+      finalConnectionTimingInfo: null
+    },
+    cacheState: '',
+    statusText: 'Bad Request',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [ URL {} ],
+    body: { stream: undefined }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'date' => [Object],
+      'server' => [Object],
+      'content-length' => [Object],
+      'content-type' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+Error uploading folder: Error: Folder name 'testing_pdfs' already exists. Please use a unique name.
+    at l (.next/server/chunks/ssr/_81e6e96c._.js:1:2650)
+    at async m (.next/server/chunks/ssr/_e66ee801._.js:1:7468)
+    at async p (.next/server/chunks/ssr/_e66ee801._.js:2:2713)
+    at async L (.next/server/chunks/ssr/_e66ee801._.js:2:7928)
+ ⨯ Error: Folder name 'testing_pdfs' already exists. Please use a unique name.
+    at l (.next/server/chunks/ssr/_81e6e96c._.js:1:2650)
+    at async m (.next/server/chunks/ssr/_e66ee801._.js:1:7468)
+    at async p (.next/server/chunks/ssr/_e66ee801._.js:2:2713)
+    at async L (.next/server/chunks/ssr/_e66ee801._.js:2:7928) {
+  digest: '4253495867'
+}
+Response: _Response [Response] {
+  [Symbol(realm)]: null,
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: true,
+    requestIncludesCredentials: true,
+    type: 'default',
+    status: 200,
+    timingInfo: {
+      startTime: 5166771.150752902,
+      redirectStartTime: 0,
+      redirectEndTime: 0,
+      postRedirectStartTime: 5166771.150752902,
+      finalServiceWorkerStartTime: 0,
+      finalNetworkResponseStartTime: 0,
+      finalNetworkRequestStartTime: 0,
+      endTime: 0,
+      encodedBodySize: 208,
+      decodedBodySize: 208,
+      finalConnectionTimingInfo: null
+    },
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [ URL {} ],
+    body: { stream: undefined }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'date' => [Object],
+      'server' => [Object],
+      'content-length' => [Object],
+      'content-type' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+Response: _Response [Response] {
+  [Symbol(realm)]: null,
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: true,
+    requestIncludesCredentials: true,
+    type: 'default',
+    status: 400,
+    timingInfo: {
+      startTime: 5236324.424688935,
+      redirectStartTime: 0,
+      redirectEndTime: 0,
+      postRedirectStartTime: 5236324.424688935,
+      finalServiceWorkerStartTime: 0,
+      finalNetworkResponseStartTime: 0,
+      finalNetworkRequestStartTime: 0,
+      endTime: 0,
+      encodedBodySize: 115,
+      decodedBodySize: 115,
+      finalConnectionTimingInfo: null
+    },
+    cacheState: '',
+    statusText: 'Bad Request',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [ URL {} ],
+    body: { stream: undefined }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'date' => [Object],
+      'server' => [Object],
+      'content-length' => [Object],
+      'content-type' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+Error uploading folder: Error: Folder name '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2' already exists. Please use a unique name.
+    at l (.next/server/chunks/ssr/_81e6e96c._.js:1:2650)
+    at async m (.next/server/chunks/ssr/_e66ee801._.js:1:7468)
+    at async p (.next/server/chunks/ssr/_e66ee801._.js:2:2713)
+    at async L (.next/server/chunks/ssr/_e66ee801._.js:2:7928)
+ ⨯ Error: Folder name '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2' already exists. Please use a unique name.
+    at l (.next/server/chunks/ssr/_81e6e96c._.js:1:2650)
+    at async m (.next/server/chunks/ssr/_e66ee801._.js:1:7468)
+    at async p (.next/server/chunks/ssr/_e66ee801._.js:2:2713)
+    at async L (.next/server/chunks/ssr/_e66ee801._.js:2:7928) {
+  digest: '705506587'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-2033 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-2033
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder-2033',
+  job_id: '0e7fc114',
+  status: 'completed',
+  total_drawings: 1,
+  total_symbols: 113,
+  created_at: '2026-02-02T21:16:59.793361',
+  completed_at: '2026-02-02T21:17:06.679794',
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-2032 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-2032
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-2032',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-2032 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-2032
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-2032',
+  message: 'No inference job found for this folder'
+}
+[API inference-results] Fetching: http://51.20.2.115:8000/api/inference-results/121
+Response: _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/quantity_takeoffs/folder/121',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[API inference-results] Response status: 200
+[API inference-results] Success, drawings: 1
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/xyz-folder-2033/images/6f97c3ea-75e3-4573-86ad-d4c6e63bdf96_E0.02%2095_%20CD%20ELECTRICAL%20LIGHTNING%20PROTECTION%20PLAN.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T151331Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=cb218a63af48e6b99adf5391b6301d9b6d7ce0fdf4a6906be63dc5e10081daf5
+[API image-proxy] Response status: 200
+Response: _Response [Response] {
+  [Symbol(realm)]: null,
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: true,
+    requestIncludesCredentials: true,
+    type: 'default',
+    status: 400,
+    timingInfo: {
+      startTime: 5470269.75563097,
+      redirectStartTime: 0,
+      redirectEndTime: 0,
+      postRedirectStartTime: 5470269.75563097,
+      finalServiceWorkerStartTime: 0,
+      finalNetworkResponseStartTime: 0,
+      finalNetworkRequestStartTime: 0,
+      endTime: 0,
+      encodedBodySize: 81,
+      decodedBodySize: 81,
+      finalConnectionTimingInfo: null
+    },
+    cacheState: '',
+    statusText: 'Bad Request',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [ URL {} ],
+    body: { stream: undefined }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'date' => [Object],
+      'server' => [Object],
+      'content-length' => [Object],
+      'content-type' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+Error uploading folder: Error: Folder name 'testing_pdfs' already exists. Please use a unique name.
+    at l (.next/server/chunks/ssr/_81e6e96c._.js:1:2650)
+    at async m (.next/server/chunks/ssr/_e66ee801._.js:1:7468)
+    at async p (.next/server/chunks/ssr/_e66ee801._.js:2:2713)
+    at async L (.next/server/chunks/ssr/_e66ee801._.js:2:7928)
+ ⨯ Error: Folder name 'testing_pdfs' already exists. Please use a unique name.
+    at l (.next/server/chunks/ssr/_81e6e96c._.js:1:2650)
+    at async m (.next/server/chunks/ssr/_e66ee801._.js:1:7468)
+    at async p (.next/server/chunks/ssr/_e66ee801._.js:2:2713)
+    at async L (.next/server/chunks/ssr/_e66ee801._.js:2:7928) {
+  digest: '4253495867'
+}
+Response: _Response [Response] {
+  [Symbol(realm)]: null,
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: true,
+    requestIncludesCredentials: true,
+    type: 'default',
+    status: 200,
+    timingInfo: {
+      startTime: 5525059.461508989,
+      redirectStartTime: 0,
+      redirectEndTime: 0,
+      postRedirectStartTime: 5525059.461508989,
+      finalServiceWorkerStartTime: 0,
+      finalNetworkResponseStartTime: 0,
+      finalNetworkRequestStartTime: 0,
+      endTime: 0,
+      encodedBodySize: 144,
+      decodedBodySize: 144,
+      finalConnectionTimingInfo: null
+    },
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [ URL {} ],
+    body: { stream: undefined }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'date' => [Object],
+      'server' => [Object],
+      'content-length' => [Object],
+      'content-type' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+response _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/jobs',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[
+  {
+    job_id: 93,
+    folder_id: 108,
+    folder_name: 'xyz-folder-1',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:05:09.236510',
+    updated_at: '2026-02-02T20:05:09.246109',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 94,
+    folder_id: 109,
+    folder_name: 'xyz-folder-2020',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:18:29.585217',
+    updated_at: '2026-02-02T20:18:29.594790',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 96,
+    folder_id: 111,
+    folder_name: 'xyz-folder-2022',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:25:45.980986',
+    updated_at: '2026-02-02T20:25:47.236015',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 97,
+    folder_id: 112,
+    folder_name: 'xyz-folder-2',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:29:51.642213',
+    updated_at: '2026-02-02T20:29:52.767418',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 98,
+    folder_id: 113,
+    folder_name: 'xyz-folder-2025',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:32:00.098718',
+    updated_at: '2026-02-02T20:32:00.114669',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 99,
+    folder_id: 114,
+    folder_name: 'xyz-folder-2026',
+    folder_size: 5306275,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:37:09.710250',
+    updated_at: '2026-02-02T20:37:10.737274',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 100,
+    folder_id: 115,
+    folder_name: 'xyz-folder-2027',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:43:26.137274',
+    updated_at: '2026-02-02T20:43:27.161781',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 101,
+    folder_id: 116,
+    folder_name: 'xyz-folder-2028',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:44:15.987578',
+    updated_at: '2026-02-02T20:44:15.997033',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 102,
+    folder_id: 117,
+    folder_name: 'xyz-folder-2029',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:52:38.504051',
+    updated_at: '2026-02-02T20:52:39.462306',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 103,
+    folder_id: 118,
+    folder_name: 'xyz-folder-2030',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:58:52.803372',
+    updated_at: '2026-02-02T20:58:52.813284',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 104,
+    folder_id: 119,
+    folder_name: 'xyz-folder-2031',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:00:12.976758',
+    updated_at: '2026-02-02T21:00:12.985944',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 105,
+    folder_id: 120,
+    folder_name: 'xyz-folder-2032',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:12:02.302765',
+    updated_at: '2026-02-02T21:12:02.312775',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 106,
+    folder_id: 121,
+    folder_name: 'xyz-folder-2033',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:16:59.543519',
+    updated_at: '2026-02-02T21:16:59.550114',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 110,
+    folder_id: 125,
+    folder_name: 'xyz-folder',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T14:18:53.905165',
+    updated_at: '2026-02-03T14:18:53.908688',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 111,
+    folder_id: 126,
+    folder_name: 'testing_pdfs',
+    folder_size: 12614547,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:05:27.328026',
+    updated_at: '2026-02-03T15:05:27.332391',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 112,
+    folder_id: 127,
+    folder_name: '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2',
+    folder_size: 9875794,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:09:41.912917',
+    updated_at: '2026-02-03T15:09:41.916534',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 113,
+    folder_id: 128,
+    folder_name: 'testingfolders',
+    folder_size: 21856963,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:15:40.217520',
+    updated_at: '2026-02-03T15:15:40.221388',
+    message: 'Folder uploaded successfully'
+  }
+]
+Response: _Response [Response] {
+  [Symbol(realm)]: null,
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: true,
+    requestIncludesCredentials: true,
+    type: 'default',
+    status: 200,
+    timingInfo: {
+      startTime: 6322212.847682953,
+      redirectStartTime: 0,
+      redirectEndTime: 0,
+      postRedirectStartTime: 6322212.847682953,
+      finalServiceWorkerStartTime: 0,
+      finalNetworkResponseStartTime: 0,
+      finalNetworkRequestStartTime: 0,
+      endTime: 0,
+      encodedBodySize: 124,
+      decodedBodySize: 124,
+      finalConnectionTimingInfo: null
+    },
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [ URL {} ],
+    body: { stream: undefined }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'date' => [Object],
+      'server' => [Object],
+      'content-length' => [Object],
+      'content-type' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+Response: _Response [Response] {
+  [Symbol(realm)]: null,
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: true,
+    requestIncludesCredentials: true,
+    type: 'default',
+    status: 200,
+    timingInfo: {
+      startTime: 6424012.824229956,
+      redirectStartTime: 0,
+      redirectEndTime: 0,
+      postRedirectStartTime: 6424012.824229956,
+      finalServiceWorkerStartTime: 0,
+      finalNetworkResponseStartTime: 0,
+      finalNetworkRequestStartTime: 0,
+      endTime: 0,
+      encodedBodySize: 132,
+      decodedBodySize: 132,
+      finalConnectionTimingInfo: null
+    },
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [ URL {} ],
+    body: { stream: undefined }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'date' => [Object],
+      'server' => [Object],
+      'content-length' => [Object],
+      'content-type' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+Response: _Response [Response] {
+  [Symbol(realm)]: null,
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: true,
+    requestIncludesCredentials: true,
+    type: 'default',
+    status: 200,
+    timingInfo: {
+      startTime: 6787177.42978394,
+      redirectStartTime: 0,
+      redirectEndTime: 0,
+      postRedirectStartTime: 6787177.42978394,
+      finalServiceWorkerStartTime: 0,
+      finalNetworkResponseStartTime: 0,
+      finalNetworkRequestStartTime: 0,
+      endTime: 0,
+      encodedBodySize: 144,
+      decodedBodySize: 144,
+      finalConnectionTimingInfo: null
+    },
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [ URL {} ],
+    body: { stream: undefined }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'date' => [Object],
+      'server' => [Object],
+      'content-length' => [Object],
+      'content-type' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+Response: _Response [Response] {
+  [Symbol(realm)]: null,
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: true,
+    requestIncludesCredentials: true,
+    type: 'default',
+    status: 200,
+    timingInfo: {
+      startTime: 6847248.242522955,
+      redirectStartTime: 0,
+      redirectEndTime: 0,
+      postRedirectStartTime: 6847248.242522955,
+      finalServiceWorkerStartTime: 0,
+      finalNetworkResponseStartTime: 0,
+      finalNetworkRequestStartTime: 0,
+      endTime: 0,
+      encodedBodySize: 208,
+      decodedBodySize: 208,
+      finalConnectionTimingInfo: null
+    },
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [ URL {} ],
+    body: { stream: undefined }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'date' => [Object],
+      'server' => [Object],
+      'content-length' => [Object],
+      'content-type' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+response _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/jobs',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[
+  {
+    job_id: 115,
+    folder_id: 130,
+    folder_name: 'Bandicam',
+    folder_size: 31064561,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:30:39.210689',
+    updated_at: '2026-02-03T15:30:39.214167',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 116,
+    folder_id: 131,
+    folder_name: 'testingfolders',
+    folder_size: 21856963,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:36:42.349319',
+    updated_at: '2026-02-03T15:36:42.353577',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 117,
+    folder_id: 132,
+    folder_name: '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2',
+    folder_size: 9875794,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:37:42.387222',
+    updated_at: '2026-02-03T15:37:42.390746',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 93,
+    folder_id: 108,
+    folder_name: 'xyz-folder-1',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:05:09.236510',
+    updated_at: '2026-02-02T20:05:09.246109',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 94,
+    folder_id: 109,
+    folder_name: 'xyz-folder-2020',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:18:29.585217',
+    updated_at: '2026-02-02T20:18:29.594790',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 96,
+    folder_id: 111,
+    folder_name: 'xyz-folder-2022',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:25:45.980986',
+    updated_at: '2026-02-02T20:25:47.236015',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 97,
+    folder_id: 112,
+    folder_name: 'xyz-folder-2',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:29:51.642213',
+    updated_at: '2026-02-02T20:29:52.767418',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 98,
+    folder_id: 113,
+    folder_name: 'xyz-folder-2025',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:32:00.098718',
+    updated_at: '2026-02-02T20:32:00.114669',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 99,
+    folder_id: 114,
+    folder_name: 'xyz-folder-2026',
+    folder_size: 5306275,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:37:09.710250',
+    updated_at: '2026-02-02T20:37:10.737274',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 100,
+    folder_id: 115,
+    folder_name: 'xyz-folder-2027',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:43:26.137274',
+    updated_at: '2026-02-02T20:43:27.161781',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 101,
+    folder_id: 116,
+    folder_name: 'xyz-folder-2028',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:44:15.987578',
+    updated_at: '2026-02-02T20:44:15.997033',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 102,
+    folder_id: 117,
+    folder_name: 'xyz-folder-2029',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:52:38.504051',
+    updated_at: '2026-02-02T20:52:39.462306',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 103,
+    folder_id: 118,
+    folder_name: 'xyz-folder-2030',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:58:52.803372',
+    updated_at: '2026-02-02T20:58:52.813284',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 104,
+    folder_id: 119,
+    folder_name: 'xyz-folder-2031',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:00:12.976758',
+    updated_at: '2026-02-02T21:00:12.985944',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 105,
+    folder_id: 120,
+    folder_name: 'xyz-folder-2032',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:12:02.302765',
+    updated_at: '2026-02-02T21:12:02.312775',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 106,
+    folder_id: 121,
+    folder_name: 'xyz-folder-2033',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:16:59.543519',
+    updated_at: '2026-02-02T21:16:59.550114',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 110,
+    folder_id: 125,
+    folder_name: 'xyz-folder',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T14:18:53.905165',
+    updated_at: '2026-02-03T14:18:53.908688',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 111,
+    folder_id: 126,
+    folder_name: 'testing_pdfs',
+    folder_size: 12614547,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:05:27.328026',
+    updated_at: '2026-02-03T15:05:27.332391',
+    message: 'Folder uploaded successfully'
+  }
+]
+response _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/jobs',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[
+  {
+    job_id: 115,
+    folder_id: 130,
+    folder_name: 'Bandicam',
+    folder_size: 31064561,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:30:39.210689',
+    updated_at: '2026-02-03T15:30:39.214167',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 116,
+    folder_id: 131,
+    folder_name: 'testingfolders',
+    folder_size: 21856963,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:36:42.349319',
+    updated_at: '2026-02-03T15:36:42.353577',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 117,
+    folder_id: 132,
+    folder_name: '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2',
+    folder_size: 9875794,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:37:42.387222',
+    updated_at: '2026-02-03T15:37:42.390746',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 93,
+    folder_id: 108,
+    folder_name: 'xyz-folder-1',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:05:09.236510',
+    updated_at: '2026-02-02T20:05:09.246109',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 94,
+    folder_id: 109,
+    folder_name: 'xyz-folder-2020',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:18:29.585217',
+    updated_at: '2026-02-02T20:18:29.594790',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 96,
+    folder_id: 111,
+    folder_name: 'xyz-folder-2022',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:25:45.980986',
+    updated_at: '2026-02-02T20:25:47.236015',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 97,
+    folder_id: 112,
+    folder_name: 'xyz-folder-2',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:29:51.642213',
+    updated_at: '2026-02-02T20:29:52.767418',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 98,
+    folder_id: 113,
+    folder_name: 'xyz-folder-2025',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:32:00.098718',
+    updated_at: '2026-02-02T20:32:00.114669',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 99,
+    folder_id: 114,
+    folder_name: 'xyz-folder-2026',
+    folder_size: 5306275,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:37:09.710250',
+    updated_at: '2026-02-02T20:37:10.737274',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 100,
+    folder_id: 115,
+    folder_name: 'xyz-folder-2027',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:43:26.137274',
+    updated_at: '2026-02-02T20:43:27.161781',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 101,
+    folder_id: 116,
+    folder_name: 'xyz-folder-2028',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:44:15.987578',
+    updated_at: '2026-02-02T20:44:15.997033',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 102,
+    folder_id: 117,
+    folder_name: 'xyz-folder-2029',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:52:38.504051',
+    updated_at: '2026-02-02T20:52:39.462306',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 103,
+    folder_id: 118,
+    folder_name: 'xyz-folder-2030',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:58:52.803372',
+    updated_at: '2026-02-02T20:58:52.813284',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 104,
+    folder_id: 119,
+    folder_name: 'xyz-folder-2031',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:00:12.976758',
+    updated_at: '2026-02-02T21:00:12.985944',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 105,
+    folder_id: 120,
+    folder_name: 'xyz-folder-2032',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:12:02.302765',
+    updated_at: '2026-02-02T21:12:02.312775',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 106,
+    folder_id: 121,
+    folder_name: 'xyz-folder-2033',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:16:59.543519',
+    updated_at: '2026-02-02T21:16:59.550114',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 110,
+    folder_id: 125,
+    folder_name: 'xyz-folder',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T14:18:53.905165',
+    updated_at: '2026-02-03T14:18:53.908688',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 111,
+    folder_id: 126,
+    folder_name: 'testing_pdfs',
+    folder_size: 12614547,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:05:27.328026',
+    updated_at: '2026-02-03T15:05:27.332391',
+    message: 'Folder uploaded successfully'
+  }
+]
+response _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/jobs',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[
+  {
+    job_id: 115,
+    folder_id: 130,
+    folder_name: 'Bandicam',
+    folder_size: 31064561,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:30:39.210689',
+    updated_at: '2026-02-03T15:30:39.214167',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 116,
+    folder_id: 131,
+    folder_name: 'testingfolders',
+    folder_size: 21856963,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:36:42.349319',
+    updated_at: '2026-02-03T15:36:42.353577',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 117,
+    folder_id: 132,
+    folder_name: '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2',
+    folder_size: 9875794,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:37:42.387222',
+    updated_at: '2026-02-03T15:37:42.390746',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 93,
+    folder_id: 108,
+    folder_name: 'xyz-folder-1',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:05:09.236510',
+    updated_at: '2026-02-02T20:05:09.246109',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 94,
+    folder_id: 109,
+    folder_name: 'xyz-folder-2020',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:18:29.585217',
+    updated_at: '2026-02-02T20:18:29.594790',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 96,
+    folder_id: 111,
+    folder_name: 'xyz-folder-2022',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:25:45.980986',
+    updated_at: '2026-02-02T20:25:47.236015',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 97,
+    folder_id: 112,
+    folder_name: 'xyz-folder-2',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:29:51.642213',
+    updated_at: '2026-02-02T20:29:52.767418',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 98,
+    folder_id: 113,
+    folder_name: 'xyz-folder-2025',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:32:00.098718',
+    updated_at: '2026-02-02T20:32:00.114669',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 99,
+    folder_id: 114,
+    folder_name: 'xyz-folder-2026',
+    folder_size: 5306275,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:37:09.710250',
+    updated_at: '2026-02-02T20:37:10.737274',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 100,
+    folder_id: 115,
+    folder_name: 'xyz-folder-2027',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:43:26.137274',
+    updated_at: '2026-02-02T20:43:27.161781',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 101,
+    folder_id: 116,
+    folder_name: 'xyz-folder-2028',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:44:15.987578',
+    updated_at: '2026-02-02T20:44:15.997033',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 102,
+    folder_id: 117,
+    folder_name: 'xyz-folder-2029',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:52:38.504051',
+    updated_at: '2026-02-02T20:52:39.462306',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 103,
+    folder_id: 118,
+    folder_name: 'xyz-folder-2030',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:58:52.803372',
+    updated_at: '2026-02-02T20:58:52.813284',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 104,
+    folder_id: 119,
+    folder_name: 'xyz-folder-2031',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:00:12.976758',
+    updated_at: '2026-02-02T21:00:12.985944',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 105,
+    folder_id: 120,
+    folder_name: 'xyz-folder-2032',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:12:02.302765',
+    updated_at: '2026-02-02T21:12:02.312775',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 106,
+    folder_id: 121,
+    folder_name: 'xyz-folder-2033',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:16:59.543519',
+    updated_at: '2026-02-02T21:16:59.550114',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 110,
+    folder_id: 125,
+    folder_name: 'xyz-folder',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T14:18:53.905165',
+    updated_at: '2026-02-03T14:18:53.908688',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 111,
+    folder_id: 126,
+    folder_name: 'testing_pdfs',
+    folder_size: 12614547,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:05:27.328026',
+    updated_at: '2026-02-03T15:05:27.332391',
+    message: 'Folder uploaded successfully'
+  }
+]
+response _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/jobs',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[
+  {
+    job_id: 115,
+    folder_id: 130,
+    folder_name: 'Bandicam',
+    folder_size: 31064561,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:30:39.210689',
+    updated_at: '2026-02-03T15:30:39.214167',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 116,
+    folder_id: 131,
+    folder_name: 'testingfolders',
+    folder_size: 21856963,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:36:42.349319',
+    updated_at: '2026-02-03T15:36:42.353577',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 117,
+    folder_id: 132,
+    folder_name: '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2',
+    folder_size: 9875794,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:37:42.387222',
+    updated_at: '2026-02-03T15:37:42.390746',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 93,
+    folder_id: 108,
+    folder_name: 'xyz-folder-1',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:05:09.236510',
+    updated_at: '2026-02-02T20:05:09.246109',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 94,
+    folder_id: 109,
+    folder_name: 'xyz-folder-2020',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:18:29.585217',
+    updated_at: '2026-02-02T20:18:29.594790',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 96,
+    folder_id: 111,
+    folder_name: 'xyz-folder-2022',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:25:45.980986',
+    updated_at: '2026-02-02T20:25:47.236015',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 97,
+    folder_id: 112,
+    folder_name: 'xyz-folder-2',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:29:51.642213',
+    updated_at: '2026-02-02T20:29:52.767418',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 98,
+    folder_id: 113,
+    folder_name: 'xyz-folder-2025',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:32:00.098718',
+    updated_at: '2026-02-02T20:32:00.114669',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 99,
+    folder_id: 114,
+    folder_name: 'xyz-folder-2026',
+    folder_size: 5306275,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:37:09.710250',
+    updated_at: '2026-02-02T20:37:10.737274',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 100,
+    folder_id: 115,
+    folder_name: 'xyz-folder-2027',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:43:26.137274',
+    updated_at: '2026-02-02T20:43:27.161781',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 101,
+    folder_id: 116,
+    folder_name: 'xyz-folder-2028',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:44:15.987578',
+    updated_at: '2026-02-02T20:44:15.997033',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 102,
+    folder_id: 117,
+    folder_name: 'xyz-folder-2029',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:52:38.504051',
+    updated_at: '2026-02-02T20:52:39.462306',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 103,
+    folder_id: 118,
+    folder_name: 'xyz-folder-2030',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:58:52.803372',
+    updated_at: '2026-02-02T20:58:52.813284',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 104,
+    folder_id: 119,
+    folder_name: 'xyz-folder-2031',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:00:12.976758',
+    updated_at: '2026-02-02T21:00:12.985944',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 105,
+    folder_id: 120,
+    folder_name: 'xyz-folder-2032',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:12:02.302765',
+    updated_at: '2026-02-02T21:12:02.312775',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 106,
+    folder_id: 121,
+    folder_name: 'xyz-folder-2033',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:16:59.543519',
+    updated_at: '2026-02-02T21:16:59.550114',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 110,
+    folder_id: 125,
+    folder_name: 'xyz-folder',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T14:18:53.905165',
+    updated_at: '2026-02-03T14:18:53.908688',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 111,
+    folder_id: 126,
+    folder_name: 'testing_pdfs',
+    folder_size: 12614547,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:05:27.328026',
+    updated_at: '2026-02-03T15:05:27.332391',
+    message: 'Folder uploaded successfully'
+  }
+]
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '125',
+    name: 'xyz-folder',
+    date: 'February 3, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '126',
+    name: 'testing_pdfs',
+    date: 'February 3, 2026',
+    size: '12.0MB',
+    isNew: true
+  },
+  {
+    id: '130',
+    name: 'Bandicam',
+    date: 'February 3, 2026',
+    size: '29.6MB',
+    isNew: true
+  },
+  {
+    id: '131',
+    name: 'testingfolders',
+    date: 'February 3, 2026',
+    size: '20.8MB',
+    isNew: true
+  },
+  {
+    id: '132',
+    name: '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2',
+    date: 'February 3, 2026',
+    size: '9.4MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+Login data prepared: { username: 'ali@gmail.com', password: 'alishan123' }
+Making API request to URL: http://51.20.2.115:8000/api/auth/login
+Request options: {
+  method: 'POST',
+  body: '{"username":"ali@gmail.com","password":"alishan123"}'
+}
+API Response received: {
+  access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbGkiLCJleHAiOjE3NzAxMzU0MDJ9.7HrPA67MhicDUJEiM5BG7jq7n5jtmWA5rU8Oqsp2mSw',
+  token_type: 'bearer',
+  user: {
+    email: 'ali@gmail.com',
+    username: 'ali',
+    full_name: 'alishan',
+    id: 1,
+    is_active: true,
+    is_superuser: false,
+    created_at: '2025-12-30T16:09:47.245834Z',
+    updated_at: '2025-12-30T16:09:47.245834Z'
+  }
+}
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '125',
+    name: 'xyz-folder',
+    date: 'February 3, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '126',
+    name: 'testing_pdfs',
+    date: 'February 3, 2026',
+    size: '12.0MB',
+    isNew: true
+  },
+  {
+    id: '130',
+    name: 'Bandicam',
+    date: 'February 3, 2026',
+    size: '29.6MB',
+    isNew: true
+  },
+  {
+    id: '131',
+    name: 'testingfolders',
+    date: 'February 3, 2026',
+    size: '20.8MB',
+    isNew: true
+  },
+  {
+    id: '132',
+    name: '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2',
+    date: 'February 3, 2026',
+    size: '9.4MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '125',
+    name: 'xyz-folder',
+    date: 'February 3, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '126',
+    name: 'testing_pdfs',
+    date: 'February 3, 2026',
+    size: '12.0MB',
+    isNew: true
+  },
+  {
+    id: '130',
+    name: 'Bandicam',
+    date: 'February 3, 2026',
+    size: '29.6MB',
+    isNew: true
+  },
+  {
+    id: '131',
+    name: 'testingfolders',
+    date: 'February 3, 2026',
+    size: '20.8MB',
+    isNew: true
+  },
+  {
+    id: '132',
+    name: '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2',
+    date: 'February 3, 2026',
+    size: '9.4MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: 25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2 | URL: http://51.20.2.115:8000/api/inference/status/25.1634.1.26%20SAISD%20Highland%20Hills%20ES.GMP2%2C%20BP2
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2',
+  job_id: 'c3d9425d',
+  status: 'completed',
+  total_drawings: 12,
+  total_symbols: 2523,
+  created_at: '2026-02-03T15:37:43.118246',
+  completed_at: '2026-02-03T15:39:11.651311',
+  error: null
+}
+[API inference-results] Fetching: http://51.20.2.115:8000/api/inference-results/132
+[API inference-results] Response status: 200
+[API inference-results] Success, drawings: 12
+Response: _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/quantity_takeoffs/folder/132',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/25.1634.1.26%20SAISD%20Highland%20Hills%20ES.GMP2%2C%20BP2/images/0b0f4838-4e6e-47d8-881c-a578a42881f7_E2.08%20-%20POWER%202ND%20FLOOR%20PLANS%20-%20SECTIONS%208%20%26%209.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T154713Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=5cb4e927ea919939839ca5b7bf7b5f530be4cb9a6532b045846a91d6ec726ee7
+[API image-proxy] Response status: 200
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/25.1634.1.26%20SAISD%20Highland%20Hills%20ES.GMP2%2C%20BP2/images/1a39ee18-4e29-4fd9-94a1-bf519ecb5fb9_E1.07%20-%20LIGHTING%202ND%20FLOOR%20PLAN%20-%20SECTION%207.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T154713Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=4cd4340ebc8b6449f78132ac5d510cfc2ba3de9b07f1b02aa9105d830f01bd49
+[API image-proxy] Response status: 200
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/25.1634.1.26%20SAISD%20Highland%20Hills%20ES.GMP2%2C%20BP2/images/286a8dfb-ad81-47c2-90c5-9683aa0e387e_E2.04%20-%20POWER%201ST%20FLOOR%20PLAN%20-%20SECTION%204.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T154713Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=4517683be9385ea8662d92e83dfc8f392d098774dc7d0bc301e10b7e9eb10d1e
+[API image-proxy] Response status: 200
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/25.1634.1.26%20SAISD%20Highland%20Hills%20ES.GMP2%2C%20BP2/images/1a39ee18-4e29-4fd9-94a1-bf519ecb5fb9_E1.07%20-%20LIGHTING%202ND%20FLOOR%20PLAN%20-%20SECTION%207.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T154713Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=4cd4340ebc8b6449f78132ac5d510cfc2ba3de9b07f1b02aa9105d830f01bd49
+[API image-proxy] Response status: 200
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: Bandicam | URL: http://51.20.2.115:8000/api/inference/status/Bandicam
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'Bandicam',
+  job_id: '945639f9',
+  status: 'queued',
+  total_drawings: 0,
+  total_symbols: 0,
+  created_at: '2026-02-03T15:30:40.518091',
+  completed_at: null,
+  error: null
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-2020 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-2020
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-2020',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-2020 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-2020
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  status: 'not_found',
+  folder_name: 'xyz-folder-2020',
+  message: 'No inference job found for this folder'
+}
+[getInferenceStatusAction] Fetching status for: xyz-folder-2022 | URL: http://51.20.2.115:8000/api/inference/status/xyz-folder-2022
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'xyz-folder-2022',
+  job_id: 'ae9034da',
+  status: 'completed',
+  total_drawings: 1,
+  total_symbols: 113,
+  created_at: '2026-02-02T20:25:54.007871',
+  completed_at: '2026-02-02T20:26:06.016064',
+  error: null
+}
+[API inference-results] Fetching: http://51.20.2.115:8000/api/inference-results/111
+[API inference-results] Response status: 200
+[API inference-results] Success, drawings: 1
+Response: _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/quantity_takeoffs/folder/111',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/xyz-folder-2022/images/49a9a815-414c-4391-88bc-65c2cbca72eb_E0.02%2095_%20CD%20ELECTRICAL%20LIGHTNING%20PROTECTION%20PLAN.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T155048Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=b33f8e38cdaa158ec01d290d9a87c23ab0c58ae3a95049ad59094558dbb51acb
+[API image-proxy] Response status: 200
+response _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/jobs',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[
+  {
+    job_id: 115,
+    folder_id: 130,
+    folder_name: 'Bandicam',
+    folder_size: 31064561,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:30:39.210689',
+    updated_at: '2026-02-03T15:30:39.214167',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 116,
+    folder_id: 131,
+    folder_name: 'testingfolders',
+    folder_size: 21856963,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:36:42.349319',
+    updated_at: '2026-02-03T15:36:42.353577',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 117,
+    folder_id: 132,
+    folder_name: '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2',
+    folder_size: 9875794,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:37:42.387222',
+    updated_at: '2026-02-03T15:37:42.390746',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 93,
+    folder_id: 108,
+    folder_name: 'xyz-folder-1',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:05:09.236510',
+    updated_at: '2026-02-02T20:05:09.246109',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 94,
+    folder_id: 109,
+    folder_name: 'xyz-folder-2020',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:18:29.585217',
+    updated_at: '2026-02-02T20:18:29.594790',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 96,
+    folder_id: 111,
+    folder_name: 'xyz-folder-2022',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:25:45.980986',
+    updated_at: '2026-02-02T20:25:47.236015',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 97,
+    folder_id: 112,
+    folder_name: 'xyz-folder-2',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:29:51.642213',
+    updated_at: '2026-02-02T20:29:52.767418',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 98,
+    folder_id: 113,
+    folder_name: 'xyz-folder-2025',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:32:00.098718',
+    updated_at: '2026-02-02T20:32:00.114669',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 99,
+    folder_id: 114,
+    folder_name: 'xyz-folder-2026',
+    folder_size: 5306275,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:37:09.710250',
+    updated_at: '2026-02-02T20:37:10.737274',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 100,
+    folder_id: 115,
+    folder_name: 'xyz-folder-2027',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:43:26.137274',
+    updated_at: '2026-02-02T20:43:27.161781',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 101,
+    folder_id: 116,
+    folder_name: 'xyz-folder-2028',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:44:15.987578',
+    updated_at: '2026-02-02T20:44:15.997033',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 102,
+    folder_id: 117,
+    folder_name: 'xyz-folder-2029',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:52:38.504051',
+    updated_at: '2026-02-02T20:52:39.462306',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 103,
+    folder_id: 118,
+    folder_name: 'xyz-folder-2030',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:58:52.803372',
+    updated_at: '2026-02-02T20:58:52.813284',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 104,
+    folder_id: 119,
+    folder_name: 'xyz-folder-2031',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:00:12.976758',
+    updated_at: '2026-02-02T21:00:12.985944',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 105,
+    folder_id: 120,
+    folder_name: 'xyz-folder-2032',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:12:02.302765',
+    updated_at: '2026-02-02T21:12:02.312775',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 106,
+    folder_id: 121,
+    folder_name: 'xyz-folder-2033',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:16:59.543519',
+    updated_at: '2026-02-02T21:16:59.550114',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 110,
+    folder_id: 125,
+    folder_name: 'xyz-folder',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T14:18:53.905165',
+    updated_at: '2026-02-03T14:18:53.908688',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 111,
+    folder_id: 126,
+    folder_name: 'testing_pdfs',
+    folder_size: 12614547,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:05:27.328026',
+    updated_at: '2026-02-03T15:05:27.332391',
+    message: 'Folder uploaded successfully'
+  }
+]
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '125',
+    name: 'xyz-folder',
+    date: 'February 3, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '126',
+    name: 'testing_pdfs',
+    date: 'February 3, 2026',
+    size: '12.0MB',
+    isNew: true
+  },
+  {
+    id: '130',
+    name: 'Bandicam',
+    date: 'February 3, 2026',
+    size: '29.6MB',
+    isNew: true
+  },
+  {
+    id: '131',
+    name: 'testingfolders',
+    date: 'February 3, 2026',
+    size: '20.8MB',
+    isNew: true
+  },
+  {
+    id: '132',
+    name: '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2',
+    date: 'February 3, 2026',
+    size: '9.4MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+response _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/jobs',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[
+  {
+    job_id: 115,
+    folder_id: 130,
+    folder_name: 'Bandicam',
+    folder_size: 31064561,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:30:39.210689',
+    updated_at: '2026-02-03T15:30:39.214167',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 116,
+    folder_id: 131,
+    folder_name: 'testingfolders',
+    folder_size: 21856963,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:36:42.349319',
+    updated_at: '2026-02-03T15:36:42.353577',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 117,
+    folder_id: 132,
+    folder_name: '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2',
+    folder_size: 9875794,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:37:42.387222',
+    updated_at: '2026-02-03T15:37:42.390746',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 93,
+    folder_id: 108,
+    folder_name: 'xyz-folder-1',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:05:09.236510',
+    updated_at: '2026-02-02T20:05:09.246109',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 94,
+    folder_id: 109,
+    folder_name: 'xyz-folder-2020',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:18:29.585217',
+    updated_at: '2026-02-02T20:18:29.594790',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 96,
+    folder_id: 111,
+    folder_name: 'xyz-folder-2022',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:25:45.980986',
+    updated_at: '2026-02-02T20:25:47.236015',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 97,
+    folder_id: 112,
+    folder_name: 'xyz-folder-2',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:29:51.642213',
+    updated_at: '2026-02-02T20:29:52.767418',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 98,
+    folder_id: 113,
+    folder_name: 'xyz-folder-2025',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:32:00.098718',
+    updated_at: '2026-02-02T20:32:00.114669',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 99,
+    folder_id: 114,
+    folder_name: 'xyz-folder-2026',
+    folder_size: 5306275,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:37:09.710250',
+    updated_at: '2026-02-02T20:37:10.737274',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 100,
+    folder_id: 115,
+    folder_name: 'xyz-folder-2027',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:43:26.137274',
+    updated_at: '2026-02-02T20:43:27.161781',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 101,
+    folder_id: 116,
+    folder_name: 'xyz-folder-2028',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:44:15.987578',
+    updated_at: '2026-02-02T20:44:15.997033',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 102,
+    folder_id: 117,
+    folder_name: 'xyz-folder-2029',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:52:38.504051',
+    updated_at: '2026-02-02T20:52:39.462306',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 103,
+    folder_id: 118,
+    folder_name: 'xyz-folder-2030',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T20:58:52.803372',
+    updated_at: '2026-02-02T20:58:52.813284',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 104,
+    folder_id: 119,
+    folder_name: 'xyz-folder-2031',
+    folder_size: 1039535,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:00:12.976758',
+    updated_at: '2026-02-02T21:00:12.985944',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 105,
+    folder_id: 120,
+    folder_name: 'xyz-folder-2032',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:12:02.302765',
+    updated_at: '2026-02-02T21:12:02.312775',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 106,
+    folder_id: 121,
+    folder_name: 'xyz-folder-2033',
+    folder_size: 838155,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-02T21:16:59.543519',
+    updated_at: '2026-02-02T21:16:59.550114',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 110,
+    folder_id: 125,
+    folder_name: 'xyz-folder',
+    folder_size: 4191577,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T14:18:53.905165',
+    updated_at: '2026-02-03T14:18:53.908688',
+    message: 'Folder uploaded successfully'
+  },
+  {
+    job_id: 111,
+    folder_id: 126,
+    folder_name: 'testing_pdfs',
+    folder_size: 12614547,
+    status: 'completed',
+    uploaded_by: null,
+    created_at: '2026-02-03T15:05:27.328026',
+    updated_at: '2026-02-03T15:05:27.332391',
+    message: 'Folder uploaded successfully'
+  }
+]
+[
+  {
+    id: '112',
+    name: 'xyz-folder-2',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '113',
+    name: 'xyz-folder-2025',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '114',
+    name: 'xyz-folder-2026',
+    date: 'February 2, 2026',
+    size: '5.1MB',
+    isNew: true
+  },
+  {
+    id: '115',
+    name: 'xyz-folder-2027',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '116',
+    name: 'xyz-folder-2028',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '117',
+    name: 'xyz-folder-2029',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '118',
+    name: 'xyz-folder-2030',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '119',
+    name: 'xyz-folder-2031',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '120',
+    name: 'xyz-folder-2032',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '121',
+    name: 'xyz-folder-2033',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  },
+  {
+    id: '125',
+    name: 'xyz-folder',
+    date: 'February 3, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '126',
+    name: 'testing_pdfs',
+    date: 'February 3, 2026',
+    size: '12.0MB',
+    isNew: true
+  },
+  {
+    id: '130',
+    name: 'Bandicam',
+    date: 'February 3, 2026',
+    size: '29.6MB',
+    isNew: true
+  },
+  {
+    id: '131',
+    name: 'testingfolders',
+    date: 'February 3, 2026',
+    size: '20.8MB',
+    isNew: true
+  },
+  {
+    id: '132',
+    name: '25.1634.1.26 SAISD Highland Hills ES.GMP2, BP2',
+    date: 'February 3, 2026',
+    size: '9.4MB',
+    isNew: true
+  },
+  {
+    id: '108',
+    name: 'xyz-folder-1',
+    date: 'February 2, 2026',
+    size: '4.0MB',
+    isNew: true
+  },
+  {
+    id: '109',
+    name: 'xyz-folder-2020',
+    date: 'February 2, 2026',
+    size: '1015.2KB',
+    isNew: true
+  },
+  {
+    id: '111',
+    name: 'xyz-folder-2022',
+    date: 'February 2, 2026',
+    size: '818.5KB',
+    isNew: true
+  }
+]
+[getInferenceStatusAction] Fetching status for: testing_pdfs | URL: http://51.20.2.115:8000/api/inference/status/testing_pdfs
+[getInferenceStatusAction] Response status: 200
+[getInferenceStatusAction] Status data: {
+  folder_name: 'testing_pdfs',
+  job_id: 'cb3399c4',
+  status: 'completed',
+  total_drawings: 18,
+  total_symbols: 3879,
+  created_at: '2026-02-03T15:05:28.369729',
+  completed_at: '2026-02-03T15:07:39.461797',
+  error: null
+}
+[API inference-results] Fetching: http://51.20.2.115:8000/api/inference-results/126
+[API inference-results] Response status: 200
+[API inference-results] Success, drawings: 18
+Response: _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/quantity_takeoffs/folder/126',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/testing_pdfs/images/1be56cf6-ff95-4bb2-acd7-f589baa53ece_E2.04%20-%20POWER%201ST%20FLOOR%20PLAN%20-%20SECTION%204.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T155514Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=9abc04b2aa514fa77e04961d32a47213af53b4fcf55c71d14289a297413b2159
+[API image-proxy] Response status: 200
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/testing_pdfs/images/06e338f8-2339-4507-b061-1e785a946a98_E1.08%20-%20LIGHTING%202ND%20FLOOR%20PLANS%20-%20SECTIONS%208%20%26%209.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T155514Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=2b0926a1b358ade849749b3a5b631bac8f9b39dd2072aa4f428906b3c26201b6
+[API image-proxy] Response status: 200
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/testing_pdfs/images/06e338f8-2339-4507-b061-1e785a946a98_E1.08%20-%20LIGHTING%202ND%20FLOOR%20PLANS%20-%20SECTIONS%208%20%26%209.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T155514Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=2b0926a1b358ade849749b3a5b631bac8f9b39dd2072aa4f428906b3c26201b6
+[API image-proxy] Response status: 200
+[API inference-results] Fetching: http://51.20.2.115:8000/api/inference-results/126
+[API inference-results] Response status: 200
+[API inference-results] Success, drawings: 18
+Response: _Response [Response] {
+  url: 'http://51.20.2.115:8000/api/quantity_takeoffs/folder/126',
+  [Symbol(realm)]: { settingsObject: {} },
+  [Symbol(state)]: {
+    aborted: false,
+    rangeRequested: false,
+    timingAllowPassed: false,
+    requestIncludesCredentials: false,
+    type: 'default',
+    status: 200,
+    timingInfo: null,
+    cacheState: '',
+    statusText: 'OK',
+    headersList: _HeadersList {
+      cookies: null,
+      [Symbol(headers map)]: [Map],
+      [Symbol(headers map sorted)]: null
+    },
+    urlList: [],
+    body: { stream: undefined, source: null, length: null }
+  },
+  [Symbol(headers)]: _HeadersList {
+    cookies: null,
+    [Symbol(headers map)]: Map(4) {
+      'content-length' => [Object],
+      'content-type' => [Object],
+      'date' => [Object],
+      'server' => [Object]
+    },
+    [Symbol(headers map sorted)]: null
+  }
+}
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/testing_pdfs/images/1be56cf6-ff95-4bb2-acd7-f589baa53ece_E2.04%20-%20POWER%201ST%20FLOOR%20PLAN%20-%20SECTION%204.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T160442Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=b894dceec4404677aa0b8169a9767fd209f38306c3afbdbeabfa8a1747a33bb0
+[API image-proxy] Response status: 200
+[API image-proxy] Fetching: https://tumlinson.s3.amazonaws.com/testing_pdfs/images/06e338f8-2339-4507-b061-1e785a946a98_E1.08%20-%20LIGHTING%202ND%20FLOOR%20PLANS%20-%20SECTIONS%208%20%26%209.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3G7WG3HEFYRIEQV6%2F20260203%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260203T160442Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=6729fb3ecd2b5b66c900bf08de513b08b61e3ce5939cd1dd6b17d20aa09a1614
+[API image-proxy] Response status: 200
