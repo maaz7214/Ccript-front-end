@@ -93,12 +93,16 @@ function AnnotatedImageViewer({
   imageUrl, 
   title,
   isFullscreen,
-  onToggleFullscreen 
+  onToggleFullscreen,
+  isImageLoading,
+  onImageLoad
 }: { 
   imageUrl: string;
   title?: string;
   isFullscreen: boolean;
   onToggleFullscreen: () => void;
+  isImageLoading: boolean;
+  onImageLoad: () => void;
 }) {
   const proxiedUrl = getProxiedImageUrl(imageUrl);
   
@@ -106,6 +110,16 @@ function AnnotatedImageViewer({
     <div className={`relative bg-gray-100 rounded-lg overflow-hidden ${
       isFullscreen ? 'h-[500px]' : 'h-[300px]'
     }`}>
+      {/* Loading overlay */}
+      {isImageLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-20">
+          <div className="flex flex-col items-center gap-3 text-gray-500">
+            <Loader2 className="h-8 w-8 animate-spin text-[#009689]" />
+            <span className="text-sm">Loading image...</span>
+          </div>
+        </div>
+      )}
+      
       <TransformWrapper
         initialScale={1}
         minScale={0.5}
@@ -126,6 +140,7 @@ function AnnotatedImageViewer({
               alt={title || 'Annotated blueprint image'}
               className="max-w-full max-h-full object-contain"
               draggable={false}
+              onLoad={onImageLoad}
             />
           </div>
         </TransformComponent>
@@ -145,13 +160,6 @@ function AnnotatedImageViewer({
           <Maximize2 className="h-4 w-4" />
         )}
       </Button>
-      
-      {/* Image title */}
-      {title && (
-        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-sm font-medium text-gray-700 z-10 max-w-[60%] truncate">
-          {title}
-        </div>
-      )}
     </div>
   );
 }
@@ -163,12 +171,14 @@ function DrawingNavigation({
   onPrevious,
   onNext,
   onDotClick,
+  isNavigating,
 }: {
   currentIndex: number;
   totalDrawings: number;
   onPrevious: () => void;
   onNext: () => void;
   onDotClick: (index: number) => void;
+  isNavigating: boolean;
 }) {
   const maxDots = 10;
   const showDots = totalDrawings <= maxDots;
@@ -179,7 +189,7 @@ function DrawingNavigation({
         variant="outline"
         size="sm"
         onClick={onPrevious}
-        disabled={currentIndex === 0}
+        disabled={currentIndex === 0 || isNavigating}
         className="flex items-center gap-1"
       >
         <ChevronLeft className="h-4 w-4" />
@@ -211,7 +221,7 @@ function DrawingNavigation({
         variant="outline"
         size="sm"
         onClick={onNext}
-        disabled={currentIndex === totalDrawings - 1}
+        disabled={currentIndex === totalDrawings - 1 || isNavigating}
         className="flex items-center gap-1"
       >
         Next
@@ -229,6 +239,7 @@ export default function ImageMappingPanel({
 }: ImageMappingPanelProps) {
   const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(false);
 
   const {
     inferenceData,
@@ -243,15 +254,34 @@ export default function ImageMappingPanel({
     goToPrevious,
   } = useInferenceResults(folderId);
 
+  const handlePrevious = useCallback(() => {
+    setIsImageLoading(true);
+    goToPrevious();
+  }, [goToPrevious]);
+
+  const handleNext = useCallback(() => {
+    setIsImageLoading(true);
+    goToNext();
+  }, [goToNext]);
+
+  const handleDotClick = useCallback((index: number) => {
+    setIsImageLoading(true);
+    setCurrentIndex(index);
+  }, [setCurrentIndex]);
+
+  const handleImageLoad = useCallback(() => {
+    setIsImageLoading(false);
+  }, []);
+
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === 'ArrowLeft') {
-        goToPrevious();
+        handlePrevious();
       } else if (e.key === 'ArrowRight') {
-        goToNext();
+        handleNext();
       }
     },
-    [goToPrevious, goToNext]
+    [handlePrevious, handleNext]
   );
 
   // Loading state
@@ -361,6 +391,8 @@ export default function ImageMappingPanel({
                   title={currentDrawing.pdf_name}
                   isFullscreen={isFullscreen}
                   onToggleFullscreen={() => setIsFullscreen(!isFullscreen)}
+                  isImageLoading={isImageLoading}
+                  onImageLoad={handleImageLoad}
                 />
               )}
             </div>
@@ -384,9 +416,10 @@ export default function ImageMappingPanel({
             <DrawingNavigation
               currentIndex={currentIndex}
               totalDrawings={totalDrawings}
-              onPrevious={goToPrevious}
-              onNext={goToNext}
-              onDotClick={setCurrentIndex}
+              onPrevious={handlePrevious}
+              onNext={handleNext}
+              onDotClick={handleDotClick}
+              isNavigating={isImageLoading}
             />
           )}
 

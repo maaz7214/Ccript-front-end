@@ -8,7 +8,7 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getApiUrl } from '@/lib/api';
-import type { Job } from '@/types/jobs';
+import type { Job, JobsListApiResponse } from '@/types/jobs';
 
 /**
  * Get auth token from cookies (server-side)
@@ -48,18 +48,32 @@ async function handleUnauthorized(): Promise<never> {
 
 /**
  * Server Action: Load jobs list
+ * @param searchQuery Optional search query to filter jobs by folder name
  * @returns Array of Job objects (API response format)
  */
-export async function loadJobsAction(): Promise<Job[]> {
-  const url = getApiUrl('/api/jobs');
+export async function loadJobsAction(searchQuery?: string): Promise<Job[]> {
+  let url = getApiUrl('/api/jobs');
+  
+  // Add search query parameter if provided
+  if (searchQuery && searchQuery.trim()) {
+    const params = new URLSearchParams({ q: searchQuery.trim() });
+    url += `?${params.toString()}`;
+  }
+  
   const headers = await getServerAuthHeaders();
 
   try {
+    console.log('=== Server: Fetching Jobs ===');
+    console.log('URL:', url);
+    console.log('Search Query:', searchQuery || '(none)');
+    
     const response = await fetch(url, {
       headers,
       cache: 'no-store',
     });
-   console.log('response', response);
+    
+    console.log('Response Status:', response.status);
+    
     if (!response.ok) {
       if (response.status === 401) {
         // Clear cookies and redirect to login
@@ -71,7 +85,16 @@ export async function loadJobsAction(): Promise<Job[]> {
       throw new Error(errorData.detail || `Failed to load jobs: ${response.statusText}`);
     }
 
-    return await response.json() as Job[];
+    const data = await response.json();
+    
+    // Handle new response structure with total_count and jobs array
+    const jobs = (data as JobsListApiResponse).jobs || (Array.isArray(data) ? data : []);
+    
+    console.log('Jobs loaded successfully:', jobs.length, 'jobs');
+    console.log('Total Count:', (data as JobsListApiResponse).total_count || jobs.length);
+    console.log('============================');
+    
+    return jobs;
   } catch (error) {
     // Check if this is a Next.js redirect error - if so, re-throw it
     if (error && typeof error === 'object' && 'digest' in error && 

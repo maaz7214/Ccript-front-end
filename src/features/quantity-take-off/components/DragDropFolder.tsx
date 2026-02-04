@@ -96,11 +96,12 @@ export default function DragDropFolder({ onFolderUpload, isUploading = false }: 
         </div>
       </div>
 
-      {/* Hidden file input */}
+      {/* Hidden file input - only accept PDF files */}
       <input
         ref={fileInputRef}
         type="file"
         className="hidden"
+        accept=".pdf,application/pdf"
         onChange={handleFileSelect}
         {...({ webkitdirectory: "", directory: "" } as React.InputHTMLAttributes<HTMLInputElement>)}
       />

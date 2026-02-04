@@ -114,24 +114,49 @@ export default function FolderDetailsContent({
   const [summaryData, setSummaryData] = useState({
     totalMaterialExtension: 0,
     totalLaborHours: 0,
+    hourlyLaborRate: 0,
     finalEstimatedBid: 0,
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize] = useState(50); // Default page size from API
+  const [totalCount, setTotalCount] = useState<number | undefined>(undefined);
 
-  // Fetch CSV data from API
+  // Reset to page 1 when search query changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery]);
+
+  // Fetch CSV data from API with debounced search and pagination
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       setError(null);
       
       try {
-        console.log('Fetching folder CSV data for folderId:', folderId);
-        const result = await loadFolderCsvDataAction(folderId);
+        console.log('=== Browser Console: GET Request - Load Folder CSV Data ===');
+        console.log('Folder ID:', folderId);
+        console.log('Search Query:', searchQuery || '(none)');
+        console.log('Page:', currentPage);
+        console.log('Page Size:', pageSize);
+        console.log('API Endpoint: GET /api/quantity_takeoffs/folder/' + folderId + `?page=${currentPage}&page_size=${pageSize}` + (searchQuery ? `&q=${encodeURIComponent(searchQuery)}` : ''));
+        
+        const result = await loadFolderCsvDataAction(folderId, searchQuery, currentPage, pageSize);
+        
+        console.log('=== Browser Console: GET Response Data ===');
+        console.log('Response Items Count:', result.items.length);
+        console.log('Total Count:', result.total_count);
+        console.log('Page:', result.page);
+        console.log('Page Size:', result.page_size);
+        console.log('Response Data:', result);
+        
         setTableData(result.items);
+        setTotalCount(result.total_count);
         setSummaryData({
           totalMaterialExtension: result.totalMaterialExtension,
           totalLaborHours: result.totalLaborHours,
+          hourlyLaborRate: result.hourlyLaborRate,
           finalEstimatedBid: result.finalEstimatedBid,
         });
       } catch (err) {
@@ -144,9 +169,14 @@ export default function FolderDetailsContent({
     };
 
     if (folderId) {
-      fetchData();
+      // Debounce search query to avoid too many API calls
+      const timeoutId = setTimeout(() => {
+        fetchData();
+      }, searchQuery ? 500 : 0); // 500ms delay when searching, immediate when clearing
+
+      return () => clearTimeout(timeoutId);
     }
-  }, [folderId]);
+  }, [folderId, searchQuery, currentPage, pageSize]);
 
   // Initialize edited data when entering edit mode
   useEffect(() => {
@@ -155,11 +185,20 @@ export default function FolderDetailsContent({
     }
   }, [isEditMode, tableData, editedData.length]);
 
-  const filteredData = (isEditMode ? editedData : tableData).filter(row =>
-    row.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    String(row.takeoff_date).includes(searchQuery) ||
-    String(row.trade_price).includes(searchQuery)
-  );
+  // Use tableData directly since API handles filtering
+  // Only filter editedData client-side when in edit mode (since we're editing local state)
+  const filteredData = isEditMode 
+    ? editedData.filter(row =>
+        (row.description?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+        (row.item_no?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+        (row.date?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+        String(row.quantity || '').includes(searchQuery) ||
+        (row.unit?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+        String(row.trade_price || '').includes(searchQuery) ||
+        String(row.discount_percent || '').includes(searchQuery) ||
+        String(row.net_cost || '').includes(searchQuery)
+      )
+    : tableData;
 
   const handleBack = () => {
     router.push('/quantity-take-off');
@@ -167,9 +206,11 @@ export default function FolderDetailsContent({
   // Helper function to detect changed fields between original and edited row
   const getChangedFields = useCallback((original: FolderTableRow, edited: FolderTableRow): QuantityTakeoffUpdateRow | null => {
     const editableFields: (keyof FolderTableRow)[] = [
-      'description', 'takeoff_date', 'trade_price', 'unit', 'discount_percent',
-      'link_price', 'cost_adjust_percent', 'net_cost', 'db_labor', 'labor',
-      'labor_unit', 'labor_adjust_percent', 'total_material', 'total_hours'
+      'item_no', 'description', 'date', 'quantity', 'unit',
+      'trade_price', 'discount_percent', 'net_cost', 
+      'db_labor', 'labor', 'labor_unit', 'labor_adjust_percent',
+      'total_material', 'total_hours',
+      'quantity_per_unit'
     ];
     
     const changes: Partial<QuantityTakeoffUpdateRow> = {};
@@ -245,11 +286,13 @@ export default function FolderDetailsContent({
       
       // Optionally refresh data from server to ensure consistency
       try {
-        const refreshedResult = await loadFolderCsvDataAction(folderId);
+        const refreshedResult = await loadFolderCsvDataAction(folderId, searchQuery, currentPage, pageSize);
         setTableData(refreshedResult.items);
+        setTotalCount(refreshedResult.total_count);
         setSummaryData({
           totalMaterialExtension: refreshedResult.totalMaterialExtension,
           totalLaborHours: refreshedResult.totalLaborHours,
+          hourlyLaborRate: refreshedResult.hourlyLaborRate,
           finalEstimatedBid: refreshedResult.finalEstimatedBid,
         });
       } catch (refreshError) {
@@ -303,18 +346,18 @@ export default function FolderDetailsContent({
       const exportData = dataToExport.map((row, index) => ({
         'S.No': index + 1,
         'ID': row.id,
+        'Item No': row.item_no || '',
         'Description': row.description,
-        'Date': row.takeoff_date,
-        'Trade Price': row.trade_price,
-        'Unit': row.unit,
-        'Disc %': row.discount_percent || '',
-        'Link Price': row.link_price || '',
-        'Cost Adj %': row.cost_adjust_percent || '',
+        'Date': row.date || '',
+        'Quantity': row.quantity || '',
+        'Unit': row.unit || '',
+        'Trade Price': row.trade_price || '',
+        'Discount %': row.discount_percent || '',
         'Net Cost': row.net_cost || '',
         'DB Labor': row.db_labor || '',
         'Labor': row.labor || '',
-        'Unit 2': row.labor_unit || '',
-        'Lab Adj %': row.labor_adjust_percent || '',
+        'Labor Unit': row.labor_unit || '',
+        'Labor Adj %': row.labor_adjust_percent || '',
         'Total Material': row.total_material || '',
         'Total Hours': row.total_hours || ''
       }));
@@ -400,7 +443,7 @@ export default function FolderDetailsContent({
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
               type="text"
-              placeholder="Search File"
+              placeholder="Search by description"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"
@@ -534,19 +577,24 @@ export default function FolderDetailsContent({
 
       {/* Table */}
       <div className="w-full min-w-0 overflow-x-hidden">
-        {isLoading ? (
-          <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
-            <p className="text-gray-500">Loading folder data...</p>
-          </div>
-        ) : error ? (
+        {error ? (
           <div className="bg-white rounded-lg border border-red-200 p-8 text-center">
             <p className="text-red-600">Error: {error}</p>
+          </div>
+        ) : tableData.length === 0 && isLoading ? (
+          <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
+            <p className="text-gray-500">Loading folder data...</p>
           </div>
         ) : (
           <FolderDetailsTable 
             data={filteredData} 
             isEditMode={isEditMode}
             onCellChange={handleCellChange}
+            currentPage={currentPage}
+            totalCount={totalCount}
+            pageSize={pageSize}
+            onPageChange={setCurrentPage}
+            isLoading={isLoading}
           />
         )}
       </div>

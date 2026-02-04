@@ -3,7 +3,8 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { FileText } from 'lucide-react';
+import { FileText, Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
 import DragDropFolder from './DragDropFolder';
 import FolderGrid from './FolderGrid';
 import DeleteFolderDialog from './DeleteFolderDialog';
@@ -65,8 +66,9 @@ function getFolderName(files: FileList): string {
 export default function QuantityTakeOffContent({ initialFolders, userName }: QuantityTakeOffContentProps) {
   const router = useRouter();
   const [folders, setFolders] = useState<FolderCardData[]>(initialFolders);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isLoadingFolders, setIsLoadingFolders] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-  const [uploadError, setUploadError] = useState<string | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [folderToDelete, setFolderToDelete] = useState<FolderCardData | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -96,11 +98,57 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
     }
   }, [initialFolders]);
 
+  // Fetch folders from API when search query changes (with debouncing)
+  useEffect(() => {
+    const fetchFolders = async () => {
+      setIsLoadingFolders(true);
+      try {
+        const fetchedFolders = await loadFoldersAction(searchQuery);
+        setFolders(fetchedFolders);
+      } catch (error) {
+        console.error('Error fetching folders:', error);
+        // Keep existing folders on error
+      } finally {
+        setIsLoadingFolders(false);
+      }
+    };
+
+    // Debounce search query to avoid too many API calls
+    const timeoutId = setTimeout(() => {
+      fetchFolders();
+    }, searchQuery ? 500 : 0); // 500ms delay when searching, immediate when clearing
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
+
   const handleFolderUpload = useCallback(async (files: FileList) => {
     if (files.length === 0) return;
 
+    // Filter out system files (macOS .DS_Store, Windows Thumbs.db, hidden files)
+    const filesArray = Array.from(files);
+    const systemFiles = ['.ds_store', 'thumbs.db', 'desktop.ini', '.spotlight-v100', '.trashes'];
+    const userFiles = filesArray.filter(file => {
+      const fileName = file.name.toLowerCase();
+      // Exclude system files and hidden files
+      return !systemFiles.includes(fileName) && !fileName.startsWith('.');
+    });
+
+    if (userFiles.length === 0) {
+      toast.error('No files found to upload. Please select a folder containing PDF files.');
+      return;
+    }
+
+    // Validate file types - only allow PDF files
+    const unsupportedFiles = userFiles.filter(file => !file.name.toLowerCase().endsWith('.pdf'));
+    
+    if (unsupportedFiles.length > 0) {
+      const fileNames = unsupportedFiles.slice(0, 3).map(f => f.name).join(', ');
+      const additionalCount = unsupportedFiles.length > 3 ? ` and ${unsupportedFiles.length - 3} more` : '';
+      toast.error(`Only PDF files are supported. Found unsupported files: ${fileNames}${additionalCount}`);
+      return;
+    }
+
     setIsUploading(true);
-    setUploadError(null);
 
     try {
       // Get folder name from files
@@ -110,8 +158,8 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
       const formData = new FormData();
       formData.append('folder_name', folderName);
       
-      // Append all files
-      Array.from(files).forEach(file => {
+      // Append only user files (excluding system files)
+      userFiles.forEach(file => {
         formData.append('files', file);
       });
       
@@ -153,12 +201,17 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
       // Optionally refresh folder list from server to get latest data
       // This ensures we have the most up-to-date folder information
       try {
-        const refreshedFolders = await loadFoldersAction();
+        const refreshedFolders = await loadFoldersAction(searchQuery);
         setFolders(refreshedFolders);
       } catch (refreshError) {
         console.error('Error refreshing folder list:', refreshError);
         // Don't show error to user, we already added the folder locally
       }
+
+      // Show success toast
+      toast.success('Folder uploaded successfully', {
+        description: `"${response.folder_name}" with ${userFiles.length} PDF file(s)`,
+      });
 
       // Remove "New" badge after 5 seconds
       setTimeout(() => {
@@ -171,7 +224,9 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
     } catch (error) {
       console.error('Error uploading folder:', error);
       const errorMessage = error instanceof Error ? error.message : 'Failed to upload folder';
-      setUploadError(errorMessage);
+      toast.error('Upload failed', {
+        description: errorMessage,
+      });
     } finally {
       setIsUploading(false);
     }
@@ -215,7 +270,19 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
 
     setIsDeleting(true);
     try {
-      await deleteFolderAction(folderToDelete.id);
+      console.log('=== Browser Console: DELETE Request - Delete Folder ===');
+      console.log('Folder ID:', folderToDelete.id);
+      console.log('Folder Name:', folderToDelete.name);
+      console.log('API Endpoint: DELETE /api/delete-folder/' + folderToDelete.id);
+      
+      const result = await deleteFolderAction(folderToDelete.id);
+      
+      console.log('=== Browser Console: DELETE Response Data ===');
+      console.log('Response Status:', result.status);
+      console.log('Response Message:', result.message);
+      console.log('Folder ID:', result.folder_id);
+      console.log('Deleted Files Count:', result.deleted_files_count);
+      console.log('Response Data:', result);
       
       // Remove folder from local state
       setFolders((prev) => prev.filter((f) => f.id !== folderToDelete.id));
@@ -232,18 +299,25 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
 
       // Refresh folder list from server
       try {
-        const refreshedFolders = await loadFoldersAction();
+        const refreshedFolders = await loadFoldersAction(searchQuery);
         setFolders(refreshedFolders);
       } catch (refreshError) {
         console.error('Error refreshing folder list:', refreshError);
       }
+
+      // Show success toast
+      toast.success('Folder deleted successfully', {
+        description: `"${folderToDelete.name}" has been removed`,
+      });
 
       setDeleteDialogOpen(false);
       setFolderToDelete(null);
     } catch (error) {
       console.error('Error deleting folder:', error);
       const errorMessage = error instanceof Error ? error.message : 'Failed to delete folder';
-      setUploadError(errorMessage);
+      toast.error('Delete failed', {
+        description: errorMessage,
+      });
       setDeleteDialogOpen(false);
       setFolderToDelete(null);
     } finally {
@@ -292,17 +366,24 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
             isUploading={isUploading}
           />
           
-          {uploadError && (
-            <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded">
-              {uploadError}
-            </div>
-          )}
-          <div className="h-[500px] overflow-y-auto"> 
-          <FolderGrid 
-            folders={folders}
-            onFolderClick={handleFolderClick}
-            onDelete={handleDeleteClick}
-          />
+          <div className="h-[500px] overflow-y-auto relative"> 
+            {/* Loading Overlay */}
+            {isLoadingFolders && (
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center">
+                <div className="flex flex-col items-center gap-3 text-gray-600">
+                  <Loader2 className="h-8 w-8 animate-spin text-[#009689]" />
+                  <span className="text-sm font-medium">Loading...</span>
+                </div>
+              </div>
+            )}
+            <FolderGrid
+              folders={folders}
+              onFolderClick={handleFolderClick}
+              onDelete={handleDeleteClick}
+              searchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+              isLoading={false}
+            />
           </div>
         </div>
       </div>

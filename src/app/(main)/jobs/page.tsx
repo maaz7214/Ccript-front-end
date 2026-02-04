@@ -9,7 +9,7 @@ export default async function JobsPage() {
     : 'User';
 
   const jobs = await loadJobsAction();
-console.log(jobs);
+  
   return <JobsContent userName={userName} initialJobs={jobs} />;
 }
 

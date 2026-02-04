@@ -1,6 +1,6 @@
 'use client';
 
-import { Clock, CheckCircle2, XCircle, Calendar, ChevronDown, Sparkles, User, Folder, FileText } from 'lucide-react';
+import { Clock, CheckCircle2, XCircle, Calendar, ChevronDown, Sparkles, Folder, FileText } from 'lucide-react';
 import type { Job } from '@/types/jobs';
 import {
   Accordion,
@@ -115,14 +115,6 @@ export default function JobCard({ job }: JobCardProps) {
 
               {/* Job Details Grid */}
               <div className="grid grid-cols-2 gap-4 text-sm">
-                {/* Uploaded By */}
-                <div className="flex items-center gap-2 text-gray-600">
-                  <User className="h-4 w-4 text-gray-400 shrink-0" />
-                  <span className="truncate">
-                    <span className="text-gray-500">Uploaded by:</span> {job.uploaded_by}
-                  </span>
-                </div>
-
                 {/* Folder Size */}
                 <div className="flex items-center gap-2 text-gray-600">
                   <Folder className="h-4 w-4 text-gray-400 shrink-0" />

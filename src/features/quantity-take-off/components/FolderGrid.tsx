@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { Search } from 'lucide-react';
+import { Search, Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import FolderCard, { type FolderCardData } from './FolderCard';
 
@@ -9,18 +8,25 @@ interface FolderGridProps {
   folders: FolderCardData[];
   onFolderClick?: (folder: FolderCardData) => void;
   onDelete?: (folder: FolderCardData) => void;
+  searchQuery?: string;
+  onSearchChange?: (query: string) => void;
+  isLoading?: boolean;
 }
 
-export default function FolderGrid({ folders, onFolderClick, onDelete }: FolderGridProps) {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  // Filter folders based on search query
-  const filteredFolders = folders.filter(folder =>
-    folder.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+export default function FolderGrid({ 
+  folders, 
+  onFolderClick, 
+  onDelete,
+  searchQuery = '',
+  onSearchChange,
+  isLoading = false
+}: FolderGridProps) {
+  // Use server-side filtered folders directly (no client-side filtering)
+  const filteredFolders = folders;
 
   return (
     <div className="space-y-4">
+
       {/* All Folders Header with Search */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <h2 className="text-xl font-bold text-gray-900">All Folders</h2>
@@ -30,14 +36,15 @@ export default function FolderGrid({ folders, onFolderClick, onDelete }: FolderG
             type="text"
             placeholder="Search Folder"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => onSearchChange?.(e.target.value)}
             className="pl-10"
+            disabled={isLoading}
           />
         </div>
       </div>
 
       {/* Folder Grid */}
-      {filteredFolders.length === 0 ? (
+      {filteredFolders.length === 0 && !isLoading ? (
         <div className="text-center py-12 text-gray-500">
           <p className="text-lg">
             {searchQuery ? `No folders match "${searchQuery}"` : 'No folders yet'}

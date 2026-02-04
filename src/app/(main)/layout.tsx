@@ -13,12 +13,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <Header />
         <div className="flex flex-1 min-w-0">
           <Sidebar />
-          <main className="flex-1 mb-10 p-6 ml-20 flex flex-col min-w-0 overflow-x-hidden">
+          <main className="flex-1 p-6 ml-20 flex flex-col min-w-0 overflow-x-hidden pb-20">
             <div className="flex-1 min-w-0">
               {children}
             </div>
-            <Footer />
           </main>
+          <Footer />
         </div>
       </div>
     </ProtectedRoute>

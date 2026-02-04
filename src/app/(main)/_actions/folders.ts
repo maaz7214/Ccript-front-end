@@ -20,8 +20,16 @@ interface FolderApiResponse {
   upload_date: string;
   size: number;
   uploaded_by: string;
-  created_at: string;
+  created_at?: string;
   files: unknown[];
+}
+
+/**
+ * API Response wrapper for folder list endpoint
+ */
+interface FolderListApiResponse {
+  total_count: number;
+  folders: FolderApiResponse[];
 }
 
 /**
@@ -87,13 +95,14 @@ function formatDate(dateString: string): string {
  * Map API response to FolderCardData format
  */
 function mapFolderToCardData(folder: FolderApiResponse): FolderCardData {
+  const dateString = folder.upload_date || folder.created_at || new Date().toISOString();
   return {
     id: folder.id.toString(),
     name: folder.folder_name,
-    date: formatDate(folder.upload_date || folder.created_at),
+    date: formatDate(dateString),
     size: formatFileSize(folder.size),
     // Optionally mark as new if uploaded within last 24 hours
-    isNew: isRecentlyUploaded(folder.upload_date || folder.created_at),
+    isNew: isRecentlyUploaded(dateString),
   };
 }
 
@@ -109,10 +118,18 @@ function isRecentlyUploaded(dateString: string): boolean {
 
 /**
  * Server Action: Load folder list
+ * @param searchQuery Optional search query to filter folders by name
  * @returns Array of FolderCardData
  */
-export async function loadFoldersAction(): Promise<FolderCardData[]> {
-  const url = getApiUrl('/api/folder-list');
+export async function loadFoldersAction(searchQuery?: string): Promise<FolderCardData[]> {
+  let url = getApiUrl('/api/folder-list');
+  
+  // Add search query parameter if provided
+  if (searchQuery && searchQuery.trim()) {
+    const params = new URLSearchParams({ q: searchQuery.trim() });
+    url += `?${params.toString()}`;
+  }
+  
   const headers = await getServerAuthHeaders();
 
   try {
@@ -132,8 +149,11 @@ export async function loadFoldersAction(): Promise<FolderCardData[]> {
       throw new Error(errorData.detail || `Failed to load folders: ${response.statusText}`);
     }
 
-    const folders: FolderApiResponse[] = await response.json();
+    const data: FolderListApiResponse = await response.json();
 
+    // Handle new response structure with total_count and folders array
+    const folders = data.folders || (Array.isArray(data) ? data : []);
+    
     return folders.map(mapFolderToCardData);
   } catch (error) {
     // Check if this is a Next.js redirect error - if so, re-throw it
@@ -149,13 +169,45 @@ export async function loadFoldersAction(): Promise<FolderCardData[]> {
 }
 
 /**
- * API Response type for quantity takeoff CSV data endpoint
+ * API Response type for quantity takeoff CSV data endpoint (new structure)
  */
 interface QuantityTakeoffApiResponse {
-  items: FolderTableRow[];
-  total_material_extension: number;
-  total_labor_hours: number;
-  final_estimated_bid: number;
+  project_summary: {
+    total_material_extension: number;
+    total_labor_hours: number;
+    hourly_labor_rate: number;
+    final_estimated_bid: number;
+  };
+  estimation_table: Array<{
+    id: number;
+    item_no: string;
+    description: string;
+    date: string;
+    quantity: number;
+    trade_price: number;
+    discount_percent: number;
+    net_cost: number;
+    unit: string;
+    db_labor: number;
+    labor: number;
+    labor_unit: string;
+    labor_adjust_percent: number;
+    total_material: number;
+    total_hours: number;
+    is_parent: boolean;
+    parent_id: number | null;
+    quantity_per_unit: number;
+  }>;
+}
+
+/**
+ * Legacy API Response type (for backward compatibility)
+ */
+interface LegacyQuantityTakeoffApiResponse {
+  items?: FolderTableRow[];
+  total_material_extension?: number;
+  total_labor_hours?: number;
+  final_estimated_bid?: number;
 }
 
 /**
@@ -165,7 +217,11 @@ export interface FolderCsvDataResult {
   items: FolderTableRow[];
   totalMaterialExtension: number;
   totalLaborHours: number;
+  hourlyLaborRate: number;
   finalEstimatedBid: number;
+  total_count?: number;
+  page?: number;
+  page_size?: number;
 }
 
 /**
@@ -215,16 +271,43 @@ function parseTableDateToISO(dateString: string): string {
   return dateString;
 }
 
-export async function loadFolderCsvDataAction(folderId: string): Promise<FolderCsvDataResult> {
-  const url = getApiUrl(`/api/quantity_takeoffs/folder/${folderId}`);
+export async function loadFolderCsvDataAction(
+  folderId: string, 
+  searchQuery?: string,
+  page: number = 1,
+  pageSize: number = 50
+): Promise<FolderCsvDataResult> {
+  let url = getApiUrl(`/api/quantity_takeoffs/folder/${folderId}`);
+  
+  // Build query parameters
+  const params = new URLSearchParams();
+  
+  if (searchQuery && searchQuery.trim()) {
+    params.append('q', searchQuery.trim());
+  }
+  
+  params.append('page', page.toString());
+  params.append('page_size', pageSize.toString());
+  
+  if (params.toString()) {
+    url += `?${params.toString()}`;
+  }
+  
   const headers = await getServerAuthHeaders();
 
   try {
+    console.log('=== Server: Fetching Quantity Takeoffs ===');
+    console.log('URL:', url);
+    console.log('Search Query:', searchQuery || '(none)');
+    console.log('Page:', page);
+    console.log('Page Size:', pageSize);
+    
     const response = await fetch(url, {
       headers,
       cache: 'no-store',
     });
-    console.log('Response:', response);
+    
+    console.log('Response Status:', response.status);
     if (!response.ok) {
       if (response.status === 401) {
         // Clear cookies and redirect to login
@@ -236,20 +319,82 @@ export async function loadFolderCsvDataAction(folderId: string): Promise<FolderC
       throw new Error(errorData.detail || `Failed to load folder data: ${response.statusText}`);
     }
 
-    const data: QuantityTakeoffApiResponse = await response.json();
+    const data = await response.json();
+    console.log('Items loaded:', data.estimation_table?.length || data.items?.length || 0);
+    console.log('============================');
 
-    // Handle both old format (array) and new format (object with items)
-    const items = Array.isArray(data) ? data : (data.items || []);
-    const formattedItems = items.map((item: FolderTableRow) => ({
-      ...item,
-      takeoff_date: formatTableDate(item.takeoff_date)
+    // Check if it's the new format (has project_summary and estimation_table)
+    if (data.project_summary && data.estimation_table) {
+      const newData = data as QuantityTakeoffApiResponse;
+      const formattedItems: FolderTableRow[] = newData.estimation_table.map((item) => ({
+        id: item.id,
+        item_no: item.item_no ?? '',
+        description: item.description ?? '',
+        date: item.date ?? '',
+        quantity: item.quantity ?? null,
+        trade_price: item.trade_price ?? null,
+        discount_percent: item.discount_percent ?? null,
+        net_cost: item.net_cost ?? null,
+        unit: item.unit ?? '',
+        db_labor: item.db_labor ?? null,
+        labor: item.labor ?? null,
+        labor_unit: item.labor_unit ?? '',
+        labor_adjust_percent: item.labor_adjust_percent ?? null,
+        total_material: item.total_material ?? null,
+        total_hours: item.total_hours ?? null,
+        is_parent: item.is_parent ?? false,
+        parent_id: item.parent_id ?? null,
+        quantity_per_unit: item.quantity_per_unit ?? null,
+      }));
+
+      return {
+        items: formattedItems,
+        totalMaterialExtension: newData.project_summary.total_material_extension || 0,
+        totalLaborHours: newData.project_summary.total_labor_hours || 0,
+        hourlyLaborRate: newData.project_summary.hourly_labor_rate || 0,
+        finalEstimatedBid: newData.project_summary.final_estimated_bid || 0,
+        total_count: (data as any).total_count,
+        page: (data as any).page ?? page,
+        page_size: (data as any).page_size ?? pageSize,
+      };
+    }
+
+    // Handle legacy format (array or object with items)
+    const legacyData = data as LegacyQuantityTakeoffApiResponse | FolderTableRow[];
+    const items = Array.isArray(legacyData) 
+      ? legacyData 
+      : (legacyData.items || []);
+    
+    const formattedItems = items.map((item: any, index) => ({
+      id: item.id || (index + 1),
+      item_no: item.item_no ?? '',
+      description: item.description ?? '',
+      date: item.date ?? '',
+      quantity: item.quantity ?? null,
+      trade_price: item.trade_price ?? null,
+      discount_percent: item.discount_percent ?? null,
+      net_cost: item.net_cost ?? null,
+      unit: item.unit ?? '',
+      db_labor: item.db_labor ?? null,
+      labor: item.labor ?? null,
+      labor_unit: item.labor_unit ?? '',
+      labor_adjust_percent: item.labor_adjust_percent ?? null,
+      total_material: item.total_material ?? null,
+      total_hours: item.total_hours ?? null,
+      is_parent: item.is_parent ?? false,
+      parent_id: item.parent_id ?? null,
+      quantity_per_unit: item.quantity_per_unit ?? null,
     }));
 
     return {
       items: formattedItems,
-      totalMaterialExtension: Array.isArray(data) ? 0 : (data.total_material_extension || 0),
-      totalLaborHours: Array.isArray(data) ? 0 : (data.total_labor_hours || 0),
-      finalEstimatedBid: Array.isArray(data) ? 0 : (data.final_estimated_bid || 0),
+      totalMaterialExtension: Array.isArray(legacyData) ? 0 : (legacyData.total_material_extension || 0),
+      totalLaborHours: Array.isArray(legacyData) ? 0 : (legacyData.total_labor_hours || 0),
+      hourlyLaborRate: 0, // Not available in legacy format
+      finalEstimatedBid: Array.isArray(legacyData) ? 0 : (legacyData.final_estimated_bid || 0),
+      total_count: (data as any).total_count,
+      page: (data as any).page ?? page,
+      page_size: (data as any).page_size ?? pageSize,
     };
   } catch (error) {
     // Check if this is a Next.js redirect error - if so, re-throw it
@@ -264,6 +409,7 @@ export async function loadFolderCsvDataAction(folderId: string): Promise<FolderC
       items: [],
       totalMaterialExtension: 0,
       totalLaborHours: 0,
+      hourlyLaborRate: 0,
       finalEstimatedBid: 0,
     };
   }
@@ -353,11 +499,18 @@ export async function deleteFolderAction(folderId: string): Promise<DeleteFolder
   const headers = await getServerAuthHeaders();
 
   try {
+    console.log('=== Server: Deleting Folder ===');
+    console.log('URL:', url);
+    console.log('Method: DELETE');
+    console.log('Folder ID:', folderId);
+    
     const response = await fetch(url, {
       method: 'DELETE',
       headers,
       cache: 'no-store',
     });
+
+    console.log('Response Status:', response.status);
 
     if (!response.ok) {
       if (response.status === 401) {
@@ -367,7 +520,11 @@ export async function deleteFolderAction(folderId: string): Promise<DeleteFolder
       throw new Error(errorData.detail || `Failed to delete folder: ${response.statusText}`);
     }
 
-    return await response.json() as DeleteFolderResponse;
+    const data = await response.json() as DeleteFolderResponse;
+    console.log('Delete Response:', data);
+    console.log('============================');
+    
+    return data;
   } catch (error) {
     // Check if this is a Next.js redirect error - if so, re-throw it
     if (error && typeof error === 'object' && 'digest' in error &&
@@ -389,20 +546,23 @@ export async function deleteFolderAction(folderId: string): Promise<DeleteFolder
  */
 export interface QuantityTakeoffUpdateRow {
   id: number;
+  item_no?: string;
   description?: string;
-  takeoff_date?: string;
-  trade_price?: string | number;
+  date?: string;
+  quantity?: number;
+  trade_price?: number;
+  discount_percent?: number;
+  net_cost?: number;
   unit?: string;
-  discount_percent?: string | number | null;
-  link_price?: string | number;
-  cost_adjust_percent?: string | number;
-  net_cost?: string | number;
-  db_labor?: string | number;
-  labor?: string | number;
+  db_labor?: number;
+  labor?: number;
   labor_unit?: string;
-  labor_adjust_percent?: string | number;
-  total_material?: string | number;
-  total_hours?: string | number;
+  labor_adjust_percent?: number;
+  total_material?: number;
+  total_hours?: number;
+  is_parent?: boolean;
+  parent_id?: number | null;
+  quantity_per_unit?: number;
 }
 
 /**
@@ -440,21 +600,11 @@ export async function updateQuantityTakeoffsAction(
   }
 
   try {
-    // Convert takeoff_date from display format (M/D/YYYY) to ISO format for API
-    const processedUpdates = updates.map(update => {
-      if (update.takeoff_date !== undefined) {
-        return {
-          ...update,
-          takeoff_date: parseTableDateToISO(update.takeoff_date)
-        };
-      }
-      return update;
-    });
 
     const response = await fetch(url, {
       method: 'PUT',
       headers,
-      body: JSON.stringify(processedUpdates),
+      body: JSON.stringify(updates),
       cache: 'no-store',
     });
 
