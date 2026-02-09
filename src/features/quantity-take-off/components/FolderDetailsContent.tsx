@@ -431,7 +431,7 @@ export default function FolderDetailsContent({
                 </Button>
                 <Button
                   onClick={handleEdit}
-                  className="bg-[#009689] hover:bg-[#007f75] text-white whitespace-nowrap cursor-pointer"
+                  className="bg-[#0D0D0D] hover:bg-[#1a1a1a] text-white whitespace-nowrap cursor-pointer"
                   disabled={isSaving}
                 >
                   {isSaving ? 'Saving...' : 'Save'}
@@ -440,7 +440,7 @@ export default function FolderDetailsContent({
             ) : (
               <Button
                 onClick={handleEdit}
-                className="bg-[#009689] hover:bg-[#007f75] text-white whitespace-nowrap cursor-pointer"
+                className="bg-[#0D0D0D] hover:bg-[#1a1a1a] text-white whitespace-nowrap cursor-pointer"
               >
                 Edit
               </Button>
@@ -523,7 +523,7 @@ export default function FolderDetailsContent({
               </div>
               <div>
                 <p className="text-sm text-gray-500 font-medium">Final Estimated Bid</p>
-                <p className="text-xl font-bold text-[#009689]">
+                <p className="text-xl font-bold text-[#0D0D0D]">
                   ${summaryData.finalEstimatedBid.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
               </div>

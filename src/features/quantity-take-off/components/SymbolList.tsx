@@ -63,7 +63,7 @@ export default function SymbolList({
                 onClick={() => onSymbolClick(symbol)}
                 className={`w-full flex items-center justify-between px-3 py-2 rounded-md transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[#009689]/10 border border-[#009689]/30'
+                    ? 'bg-[#0D0D0D]/10 border border-[#0D0D0D]/30'
                     : 'hover:bg-gray-50 border border-transparent'
                 }`}
               >
@@ -78,7 +78,7 @@ export default function SymbolList({
                 </div>
                 <span className={`text-sm font-semibold px-2 py-0.5 rounded-full ${
                   isActive
-                    ? 'bg-[#009689] text-white'
+                    ? 'bg-[#0D0D0D] text-white'
                     : 'bg-gray-100 text-gray-600'
                 }`}>
                   {count}

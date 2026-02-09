@@ -58,7 +58,7 @@ export default function FolderList({ items, onItemClick, onDelete, searchQuery, 
               {/* Icon */}
               <div className="flex items-center justify-center text-2xl">
                 {isFolder ? (
-                  <Folder className="h-7 w-7 text-[#009689]" />
+                  <Folder className="h-7 w-7 text-[#0D0D0D]" />
                 ) : (
                   <File className="h-6 w-6 text-gray-500" />
                 )}
@@ -72,7 +72,7 @@ export default function FolderList({ items, onItemClick, onDelete, searchQuery, 
                 <div className="font-semibold text-gray-900 text-sm">
                   {item.name}
                 </div>
-                <div className="text-xs font-mono bg-teal-100 text-[#009689] px-2 py-1 rounded inline-block w-fit">
+                <div className="text-xs font-mono bg-gray-100 text-[#0D0D0D] px-2 py-1 rounded inline-block w-fit">
                   {item.slug}
                 </div>
               </div>

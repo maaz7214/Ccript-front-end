@@ -134,8 +134,8 @@ export default function InferenceStatusModal({
 
         {/* Content */}
         <div className="flex flex-col items-center text-center space-y-4">
-          <div className="w-16 h-16 bg-[#009689]/10 rounded-full flex items-center justify-center">
-            <Loader2 className="h-8 w-8 text-[#009689] animate-spin" />
+          <div className="w-16 h-16 bg-[#0D0D0D]/10 rounded-full flex items-center justify-center">
+            <Loader2 className="h-8 w-8 text-[#0D0D0D] animate-spin" />
           </div>
           
           <div>

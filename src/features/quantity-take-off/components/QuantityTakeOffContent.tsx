@@ -279,7 +279,7 @@ export default function QuantityTakeOffContent({ initialFolders, userName }: Qua
             <FileText className="h-4 w-4" />
             Jobs
             {/* {jobCounts.all > 0 && (
-              <span className="ml-1 px-2 py-0.5 bg-[#009689] text-white text-xs rounded-full">
+              <span className="ml-1 px-2 py-0.5 bg-[#0D0D0D] text-white text-xs rounded-full">
                 {jobCounts.all}
               </span>
             )} */}

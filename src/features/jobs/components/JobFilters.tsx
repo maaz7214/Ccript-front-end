@@ -36,8 +36,8 @@ export default function JobFilters({ selectedFilter, onFilterChange, counts }: J
             className={`
               px-4 py-2 cursor-pointer rounded-full text-sm font-medium transition-all
               ${isActive
-                ? 'bg-[#009689] border border-[#009689] text-white shadow-sm'
-                : 'border border-[#009689] text-[#009689] hover:bg-green-100'
+                ? 'bg-[#0D0D0D] border border-[#0D0D0D] text-white shadow-sm'
+                : 'border border-[#0D0D0D] text-[#0D0D0D] hover:bg-gray-100'
               }
             `}
           >

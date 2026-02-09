@@ -108,7 +108,7 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
           type="text"
           value={stringValue}
           onChange={(e) => onCellChange(rowId, field, e.target.value)}
-          className={`h-7 px-2 text-xs border-gray-300 focus:border-[#009689] focus:ring-[#009689] w-full ${className}`}
+          className={`h-7 px-2 text-xs border-gray-300 focus:border-[#0D0D0D] focus:ring-[#0D0D0D] w-full ${className}`}
           onClick={(e) => e.stopPropagation()}
         />
       );
@@ -392,7 +392,7 @@ export default function FolderDetailsTable({ data, isEditMode = false, onCellCha
                   onClick={() => handlePageChange(page as number)}
                   className={`h-8 w-8 p-0 ${
                     currentPage === page
-                      ? 'bg-[#009689] hover:bg-[#007f75] text-white'
+                      ? 'bg-[#0D0D0D] hover:bg-[#1a1a1a] text-white'
                       : ''
                   }`}
                 >

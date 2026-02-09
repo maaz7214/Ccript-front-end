@@ -89,7 +89,7 @@ export default function UserAvatar({ userInitials, userName }: UserAvatarProps) 
     <div className="relative" ref={popupRef}>
       {/* User Avatar */}
       <div 
-        className="w-10 h-10 bg-[#009689] text-white rounded-full flex items-center justify-center text-sm font-medium cursor-pointer hover:bg-[#007f75] transition-colors"
+        className="w-10 h-10 bg-[#0D0D0D] text-white rounded-full flex items-center justify-center text-sm font-medium cursor-pointer hover:bg-[#1a1a1a] transition-colors"
         title={userName}
         onClick={handleAvatarClick}
       >

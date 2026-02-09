@@ -25,7 +25,7 @@ export default function JobCard({ job }: JobCardProps) {
           iconColor: 'text-orange-500',
           bgColor: 'bg-orange-50',
           badgeText: 'Queued',
-          badgeColor: 'bg-[#009689] text-white',
+          badgeColor: 'bg-[#0D0D0D] text-white',
           subStatusIcon: null,
           subStatusText: null,
         };
@@ -35,7 +35,7 @@ export default function JobCard({ job }: JobCardProps) {
           iconColor: 'text-blue-500',
           bgColor: 'bg-blue-50',
           badgeText: 'In progress',
-          badgeColor: 'bg-[#009689] text-white',
+          badgeColor: 'bg-[#0D0D0D] text-white',
           subStatusIcon: Sparkles,
           subStatusText: 'Plans in Progress',
         };

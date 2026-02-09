@@ -202,7 +202,7 @@ export default function LoginForm() {
         type="submit"
         variant="default"
         size="lg"
-        className="w-full gap-x-4 rounded-full bg-[#009689] hover:bg-[#007f75] cursor-pointer h-12 text-base font-semibold"
+        className="w-full gap-x-4 rounded-full bg-[#0D0D0D] hover:bg-[#1a1a1a] cursor-pointer h-12 text-base font-semibold"
         disabled={isLoading}
       >
         {isLoading ? 'Signing in...' : 'Sign In'}

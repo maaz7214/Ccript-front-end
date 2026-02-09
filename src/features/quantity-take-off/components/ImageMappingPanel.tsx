@@ -194,7 +194,7 @@ function DrawingNavigation({
               onClick={() => onDotClick(index)}
               className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
                 index === currentIndex
-                  ? 'bg-[#009689] scale-125'
+                  ? 'bg-[#0D0D0D] scale-125'
                   : 'bg-gray-300 hover:bg-gray-400'
               }`}
               aria-label={`Go to drawing ${index + 1}`}
@@ -260,7 +260,7 @@ export default function ImageMappingPanel({
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden mb-4 w-full min-w-0">
         <div className="flex items-center justify-between px-4 py-3 bg-gray-50 border-b border-gray-200">
           <div className="flex items-center gap-2">
-            <FileText className="h-5 w-5 text-[#009689]" />
+            <FileText className="h-5 w-5 text-[#0D0D0D]" />
             <span className="font-medium text-gray-900">Blueprint Images</span>
           </div>
         </div>
@@ -280,7 +280,7 @@ export default function ImageMappingPanel({
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden mb-4 w-full min-w-0">
         <div className="flex items-center justify-between px-4 py-3 bg-gray-50 border-b border-gray-200">
           <div className="flex items-center gap-2">
-            <FileText className="h-5 w-5 text-[#009689]" />
+            <FileText className="h-5 w-5 text-[#0D0D0D]" />
             <span className="font-medium text-gray-900">Blueprint Images</span>
           </div>
         </div>
@@ -303,7 +303,7 @@ export default function ImageMappingPanel({
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 bg-gray-50 border-b border-gray-200">
         <div className="flex items-center gap-2">
-          <FileText className="h-5 w-5 text-[#009689]" />
+          <FileText className="h-5 w-5 text-[#0D0D0D]" />
           <span className="font-medium text-gray-900">
             Blueprint Images
           </span>

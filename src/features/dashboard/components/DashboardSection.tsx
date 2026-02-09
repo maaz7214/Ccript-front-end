@@ -476,7 +476,7 @@ export default function DashboardSection() {
               onClick={handleUploadClick}
               variant="default"
               size="default"
-              className="flex items-center gap-2 bg-[#009689] hover:bg-[#007f75]"
+              className="flex items-center gap-2 bg-[#0D0D0D] hover:bg-[#1a1a1a]"
             >
               <Upload className="h-4 w-4" />
               Upload Folder
@@ -521,7 +521,7 @@ export default function DashboardSection() {
           
           {/* <span
             onClick={navigateToRoot}
-            className="text-[#009689] font-semibold cursor-pointer hover:underline flex items-center gap-1"
+            className="text-[#0D0D0D] font-semibold cursor-pointer hover:underline flex items-center gap-1"
           >
             Neuralogic Drive
           </span> */}
@@ -533,7 +533,7 @@ export default function DashboardSection() {
               ) : (
                 <span
                   onClick={() => navigateToBreadcrumb(index)}
-                  className="text-[#009689] cursor-pointer hover:underline"
+                  className="text-[#0D0D0D] cursor-pointer hover:underline"
                 >
                   {part}
                 </span>
@@ -713,7 +713,7 @@ export default function DashboardSection() {
             {uploadStatus === 'error' && (
               <Button
                 onClick={handleTryAgain}
-                className="bg-[#009689] hover:bg-[#007f75]"
+                className="bg-[#0D0D0D] hover:bg-[#1a1a1a]"
               >
                 Try Again
               </Button>
@@ -723,7 +723,7 @@ export default function DashboardSection() {
             {uploadStatus === 'success' && (
               <Button
                 onClick={handleClose}
-                className="bg-[#009689] hover:bg-[#007f75]"
+                className="bg-[#0D0D0D] hover:bg-[#1a1a1a]"
               >
                 Close
               </Button>

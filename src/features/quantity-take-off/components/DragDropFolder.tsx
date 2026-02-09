@@ -65,7 +65,7 @@ export default function DragDropFolder({ onFolderUpload, isUploading = false }: 
           ${isUploading 
             ? 'border-gray-300 bg-gray-50 opacity-50 cursor-not-allowed'
             : isDragging 
-            ? 'border-[#009689] bg-[#009689]/5 cursor-pointer' 
+            ? 'border-[#0D0D0D] bg-[#0D0D0D]/5 cursor-pointer' 
             : 'border-gray-300 hover:border-gray-400 bg-white cursor-pointer'
           }
         `}
@@ -89,7 +89,7 @@ export default function DragDropFolder({ onFolderUpload, isUploading = false }: 
           <Button
             onClick={handleChooseFile}
             disabled={isUploading}
-            className="bg-[#009689] hover:bg-[#007f75] text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-[#0D0D0D] hover:bg-[#1a1a1a] text-white disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isUploading ? 'Uploading...' : 'Choose File'}
           </Button>

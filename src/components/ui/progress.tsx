@@ -37,7 +37,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
           className="h-full w-full flex-1 transition-all flex items-center justify-center"
           style={{ 
             width: `${clampedPercentage}%`,
-            background: 'linear-gradient(90deg, #009689, #007f75)'
+            background: 'linear-gradient(90deg, #0D0D0D, #1a1a1a)'
           }}
         >
           {showLabel && (

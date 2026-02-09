@@ -82,7 +82,7 @@ export default function Pagination({
               variant={currentPage === page ? 'default' : 'outline'}
               size="sm"
               onClick={() => onPageChange(page)}
-              className={currentPage === page ? 'bg-[#009689] hover:bg-[#007f75]' : ''}
+              className={currentPage === page ? 'bg-[#0D0D0D] hover:bg-[#1a1a1a]' : ''}
             >
               {page}
             </Button>
@@ -123,7 +123,7 @@ export default function Pagination({
             const value = e.target.value;
             onItemsPerPageChange(value === 'all' ? 'all' : parseInt(value));
           }}
-          className="border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#009689]"
+          className="border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#0D0D0D]"
         >
           <option value="10">10</option>
           <option value="25">25</option>
