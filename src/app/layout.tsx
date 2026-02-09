@@ -9,8 +9,8 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Neura",
-  description: "Neura AI Estimation Dashboard",
+  title: "Neuralogic",
+  description: "Neuralogic AI Estimation Dashboard",
 };
 
 export default function RootLayout({

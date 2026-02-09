@@ -14,7 +14,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
                     fill
                 />
                 <div className='absolute bottom-[46px] left-14'>
-                    <h1 className='text-white text-[40px] font-semibold'>Neura</h1>
+                    <h1 className='text-white text-[40px] font-semibold'>Neuralogic</h1>
                     <p className='text-white text-2xl font-normal'>AI Estimation Dashboard</p>
                 </div>
             </div>
@@ -23,7 +23,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
                     {children}
                 </div>
                 <p className="text-center text-sm text-muted-foreground pb-8">
-                    © Neura. All rights reserved.
+                    © Neuralogic. All rights reserved.
                 </p>
             </section>
         </main>
