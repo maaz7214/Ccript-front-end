@@ -13,6 +13,9 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "CCRIPT Agency",
   description: "CCRIPT Agency AI Estimation Dashboard",
+  icons: {
+    icon: "/ccript_logo.png",
+  },
 };
 
 export default function RootLayout({
