@@ -104,7 +104,7 @@ export default function Header() {
         {/* Left side - Logo and Company Name */}
         <div className="flex items-center space-x-3">
           <Image
-            src="/logo.svg"
+            src="/ccript_logo.png"
             alt="CCRIPT Agency Logo"
             width={40}
             height={40}

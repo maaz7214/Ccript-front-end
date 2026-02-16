@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="flex fixed bottom-0 left-0 right-0 z-50 items-center justify-end gap-2 px-6 py-4 bg-white border-t border-gray-100 shadow-sm">
       <span className="text-sm text-muted-foreground">Powered by</span>
       <Image
-        src="/logo.svg"
+        src="/ccript_logo.png"
         alt="CCRIPT Agency Logo"
         width={20}
         height={20}
