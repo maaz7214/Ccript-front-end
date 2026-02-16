@@ -108,7 +108,7 @@ export default function Header() {
             alt="CCRIPT Agency Logo"
             width={40}
             height={40}
-            className="w-10 h-10"
+            className="w-10 h-10 rounded-full"
           />
           <h1 className="text-xl font-semibold text-gray-900">
             CCRIPT Agency

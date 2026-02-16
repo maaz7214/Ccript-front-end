@@ -9,7 +9,7 @@ export default function Footer() {
         alt="CCRIPT Agency Logo"
         width={20}
         height={20}
-        className="w-5 h-5"
+        className="w-5 h-5 rounded-full"
       />
       <span className="text-sm font-medium text-gray-700 dark:text-gray-300">CCRIPT Agency</span>
     </footer>
