@@ -6,12 +6,12 @@ export default function Footer() {
       <span className="text-sm text-muted-foreground">Powered by</span>
       <Image
         src="/Neuralogic Logo.svg"
-        alt="Neuralogic Logo"
+        alt="CCript Logo"
         width={20}
         height={20}
         className="w-5 h-5"
       />
-      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Neuralogic</span>
+      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">CCript</span>
     </footer>
   );
 }

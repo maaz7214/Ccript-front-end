@@ -523,7 +523,7 @@ export default function DashboardSection() {
             onClick={navigateToRoot}
             className="text-[#0D0D0D] font-semibold cursor-pointer hover:underline flex items-center gap-1"
           >
-            Neuralogic Drive
+            CCript Drive
           </span> */}
           {getBreadcrumbParts().map((part, index) => (
             <span key={index} className="flex items-center gap-2">
