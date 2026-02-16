@@ -1,4 +1,4 @@
-# Neura Frontend
+# CCRIPT Agency Frontend
 
 A modern, full-featured file management dashboard built with Next.js 16, featuring authentication, file/folder management, real-time upload progress, and tracking capabilities.
 
@@ -161,7 +161,7 @@ src/
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd neura-frontend
+   cd ccript-agency-frontend
    ```
 
 2. **Install dependencies**
